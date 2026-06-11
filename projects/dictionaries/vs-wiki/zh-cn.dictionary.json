@@ -1,0 +1,1200 @@
+{
+  "metadata": {
+    "name": "Vintage Story Chinese Dictionary",
+    "version": "1.0.0",
+    "language": "zh-CN",
+    "author": "VSCN Team",
+    "source": "https://wiki.vintagestory.at/",
+    "generatedAtUtc": "2026-06-11T19:32:20Z",
+    "termCount": 191
+  },
+  "terms": {
+    "alum": {
+      "translation": "明矾",
+      "type": "wiki-term",
+      "sourcePage": "Alum",
+      "sourceLanguagePage": "Alum/zh"
+    },
+    "anvil": {
+      "translation": "砧",
+      "type": "wiki-term",
+      "sourcePage": "Anvil",
+      "sourceLanguagePage": "Anvil/zh"
+    },
+    "archimedes screw with port": {
+      "translation": "带端口的阿基米德螺旋泵",
+      "type": "wiki-term",
+      "sourcePage": "Archimedes screw",
+      "sourceLanguagePage": "Archimedes screw/zh"
+    },
+    "armor stand": {
+      "translation": "盔甲架",
+      "type": "wiki-term",
+      "sourcePage": "Armor stand",
+      "sourceLanguagePage": "Armor stand/zh"
+    },
+    "arrow": {
+      "translation": "箭",
+      "type": "wiki-term",
+      "sourcePage": "Arrow",
+      "sourceLanguagePage": "Arrow/zh"
+    },
+    "axe": {
+      "translation": "斧",
+      "type": "wiki-term",
+      "sourcePage": "Axe",
+      "sourceLanguagePage": "Axe/zh"
+    },
+    "leather backpack": {
+      "translation": "皮革背包",
+      "type": "wiki-term",
+      "sourcePage": "Backpack",
+      "sourceLanguagePage": "Backpack/zh"
+    },
+    "barrel": {
+      "translation": "木桶",
+      "type": "wiki-term",
+      "sourcePage": "Barrel",
+      "sourceLanguagePage": "Barrel/zh"
+    },
+    "base return teleporter": {
+      "translation": "基地返程传送器",
+      "type": "wiki-term",
+      "sourcePage": "Base return teleporter",
+      "sourceLanguagePage": "Base return teleporter/zh"
+    },
+    "polar bear": {
+      "translation": "北极熊",
+      "type": "wiki-term",
+      "sourcePage": "Bear",
+      "sourceLanguagePage": "Bear/zh-cn"
+    },
+    "aged wooden bed": {
+      "translation": "古木床",
+      "type": "wiki-term",
+      "sourcePage": "Bed",
+      "sourceLanguagePage": "Bed/zh"
+    },
+    "beenade": {
+      "translation": "蜜蜂手雷",
+      "type": "wiki-term",
+      "sourcePage": "Beenade",
+      "sourceLanguagePage": "Beenade/zh"
+    },
+    "bees": {
+      "translation": "蜜蜂",
+      "type": "wiki-term",
+      "sourcePage": "Bees",
+      "sourceLanguagePage": "Bees/zh"
+    },
+    "beeswax": {
+      "translation": "蜂蜡",
+      "type": "wiki-term",
+      "sourcePage": "Beeswax",
+      "sourceLanguagePage": "Beeswax/zh"
+    },
+    "bell": {
+      "translation": "响铃",
+      "type": "wiki-term",
+      "sourcePage": "Bell",
+      "sourceLanguagePage": "Bell/zh"
+    },
+    "berry": {
+      "translation": "浆果",
+      "type": "ingredient",
+      "sourcePage": "Berry",
+      "sourceLanguagePage": "Berry/zh"
+    },
+    "bighorn sheep": {
+      "translation": "大角羊",
+      "type": "wiki-term",
+      "sourcePage": "Bighorn sheep",
+      "sourceLanguagePage": "Bighorn sheep/zh"
+    },
+    "bismuth ingot": {
+      "translation": "铋锭",
+      "type": "wiki-term",
+      "sourcePage": "Bismuth",
+      "sourceLanguagePage": "Bismuth/zh"
+    },
+    "blackguard helm (broken)": {
+      "translation": "残破的黑卫士头盔",
+      "type": "wiki-term",
+      "sourcePage": "Blackguard armor",
+      "sourceLanguagePage": "Blackguard armor/zh"
+    },
+    "bloomery chimney": {
+      "translation": "锻铁炉烟囱",
+      "type": "wiki-term",
+      "sourcePage": "Bloomery",
+      "sourceLanguagePage": "Bloomery/zh"
+    },
+    "boards": {
+      "translation": "木材",
+      "type": "wiki-term",
+      "sourcePage": "Board",
+      "sourceLanguagePage": "Board/zh"
+    },
+    "bone": {
+      "translation": "骨头",
+      "type": "wiki-term",
+      "sourcePage": "Bone",
+      "sourceLanguagePage": "Bone/zh"
+    },
+    "bonemeal": {
+      "translation": "骨粉",
+      "type": "wiki-term",
+      "sourcePage": "Bonemeal",
+      "sourceLanguagePage": "Bonemeal/zh"
+    },
+    "bony ribcage": {
+      "translation": "肋骨",
+      "type": "wiki-term",
+      "sourcePage": "Bony ribcage",
+      "sourceLanguagePage": "Bony ribcage/zh"
+    },
+    "bony soil": {
+      "translation": "多骨土壤",
+      "type": "wiki-term",
+      "sourcePage": "Bony soil",
+      "sourceLanguagePage": "Bony soil/zh"
+    },
+    "book": {
+      "translation": "书本",
+      "type": "wiki-term",
+      "sourcePage": "Book",
+      "sourceLanguagePage": "Book/zh"
+    },
+    "bookshelf": {
+      "translation": "书架",
+      "type": "wiki-term",
+      "sourcePage": "Bookshelf",
+      "sourceLanguagePage": "Bookshelf/zh"
+    },
+    "bookshelves (legacy)": {
+      "translation": "书架（遗迹）",
+      "type": "wiki-term",
+      "sourcePage": "Bookshelf (legacy)",
+      "sourceLanguagePage": "Bookshelf (legacy)/zh"
+    },
+    "borax": {
+      "translation": "硼砂",
+      "type": "wiki-term",
+      "sourcePage": "Borax",
+      "sourceLanguagePage": "Borax/zh"
+    },
+    "bow": {
+      "translation": "弓",
+      "type": "wiki-term",
+      "sourcePage": "Bow",
+      "sourceLanguagePage": "Bow/zh"
+    },
+    "bowl": {
+      "translation": "碗",
+      "type": "wiki-term",
+      "sourcePage": "Bowl",
+      "sourceLanguagePage": "Bowl/zh"
+    },
+    "brass ingot": {
+      "translation": "黄铜锭",
+      "type": "wiki-term",
+      "sourcePage": "Brass",
+      "sourceLanguagePage": "Brass/zh"
+    },
+    "bread": {
+      "translation": "面包",
+      "type": "ingredient",
+      "sourcePage": "Bread",
+      "sourceLanguagePage": "Bread/zh"
+    },
+    "refractory brick": {
+      "translation": "耐火砖",
+      "type": "wiki-term",
+      "sourcePage": "Brick blocks",
+      "sourceLanguagePage": "Brick blocks/zh"
+    },
+    "black bronze ingot": {
+      "translation": "黑铜锭",
+      "type": "wiki-term",
+      "sourcePage": "Bronze",
+      "sourceLanguagePage": "Bronze/zh"
+    },
+    "bug net": {
+      "translation": "捕网",
+      "type": "wiki-term",
+      "sourcePage": "Bug net",
+      "sourceLanguagePage": "Bug net/zh"
+    },
+    "cabbage": {
+      "translation": "卷心菜",
+      "type": "ingredient",
+      "sourcePage": "Cabbage",
+      "sourceLanguagePage": "Cabbage/zh"
+    },
+    "soaked cassava": {
+      "translation": "浸泡过的木薯",
+      "type": "ingredient",
+      "sourcePage": "Cassava",
+      "sourceLanguagePage": "Cassava/zh"
+    },
+    "charcoal": {
+      "translation": "木炭",
+      "type": "wiki-term",
+      "sourcePage": "Charcoal",
+      "sourceLanguagePage": "Charcoal/zh"
+    },
+    "chest": {
+      "translation": "木箱",
+      "type": "wiki-term",
+      "sourcePage": "Chest",
+      "sourceLanguagePage": "Chest/zh"
+    },
+    "chicken": {
+      "translation": "鸡",
+      "type": "wiki-term",
+      "sourcePage": "Chicken",
+      "sourceLanguagePage": "Chicken/zh"
+    },
+    "chisel": {
+      "translation": "凿子",
+      "type": "wiki-term",
+      "sourcePage": "Chisel",
+      "sourceLanguagePage": "Chisel/zh"
+    },
+    "cinnabar": {
+      "translation": "朱砂",
+      "type": "wiki-term",
+      "sourcePage": "Cinnabar",
+      "sourceLanguagePage": "Cinnabar/zh"
+    },
+    "blue clay in soil": {
+      "translation": "含有蓝色粘土的土壤",
+      "type": "wiki-term",
+      "sourcePage": "Clay",
+      "sourceLanguagePage": "Clay/zh"
+    },
+    "clay oven": {
+      "translation": "粘土烤炉",
+      "type": "wiki-term",
+      "sourcePage": "Clay oven",
+      "sourceLanguagePage": "Clay oven/zh"
+    },
+    "cleaver": {
+      "translation": "屠宰刀",
+      "type": "wiki-term",
+      "sourcePage": "Cleaver",
+      "sourceLanguagePage": "Cleaver/zh"
+    },
+    "cloth": {
+      "translation": "布料",
+      "type": "wiki-term",
+      "sourcePage": "Cloth",
+      "sourceLanguagePage": "Cloth/zh"
+    },
+    "club": {
+      "translation": "棒槌",
+      "type": "wiki-term",
+      "sourcePage": "Club",
+      "sourceLanguagePage": "Club/zh"
+    },
+    "anthracite": {
+      "translation": "无烟煤",
+      "type": "wiki-term",
+      "sourcePage": "Coal",
+      "sourceLanguagePage": "Coal/zh"
+    },
+    "coke": {
+      "translation": "焦炭",
+      "type": "wiki-term",
+      "sourcePage": "Coke",
+      "sourceLanguagePage": "Coke/zh"
+    },
+    "compost": {
+      "translation": "堆肥",
+      "type": "wiki-term",
+      "sourcePage": "Compost",
+      "sourceLanguagePage": "Compost/zh"
+    },
+    "cooking pot": {
+      "translation": "烹饪锅",
+      "type": "wiki-term",
+      "sourcePage": "Cooking pot",
+      "sourceLanguagePage": "Cooking pot/zh"
+    },
+    "copper": {
+      "translation": "铜",
+      "type": "wiki-term",
+      "sourcePage": "Copper",
+      "sourceLanguagePage": "Copper/zh"
+    },
+    "crate": {
+      "translation": "板条箱",
+      "type": "wiki-term",
+      "sourcePage": "Crate",
+      "sourceLanguagePage": "Crate/zh"
+    },
+    "crock": {
+      "translation": "瓦罐",
+      "type": "wiki-term",
+      "sourcePage": "Crock",
+      "sourceLanguagePage": "Crock/zh"
+    },
+    "crucible": {
+      "translation": "坩埚",
+      "type": "wiki-term",
+      "sourcePage": "Crucible",
+      "sourceLanguagePage": "Crucible/zh"
+    },
+    "crude oar": {
+      "translation": "简易木桨",
+      "type": "wiki-term",
+      "sourcePage": "Crude oar",
+      "sourceLanguagePage": "Crude oar/zh"
+    },
+    "debarked acacia log": {
+      "translation": "去皮金合欢树原木",
+      "type": "wiki-term",
+      "sourcePage": "Debarked log",
+      "sourceLanguagePage": "Debarked log/zh"
+    },
+    "fallow deer": {
+      "translation": "黇鹿",
+      "type": "wiki-term",
+      "sourcePage": "Deer",
+      "sourceLanguagePage": "Deer/zh"
+    },
+    "display case": {
+      "translation": "展示柜",
+      "type": "wiki-term",
+      "sourcePage": "Display case",
+      "sourceLanguagePage": "Display case/zh"
+    },
+    "dry grass": {
+      "translation": "干草",
+      "type": "wiki-term",
+      "sourcePage": "Dry grass",
+      "sourceLanguagePage": "Dry grass/zh"
+    },
+    "egg": {
+      "translation": "蛋",
+      "type": "wiki-term",
+      "sourcePage": "Egg",
+      "sourceLanguagePage": "Egg/zh"
+    },
+    "falx": {
+      "translation": "镰刀剑",
+      "type": "wiki-term",
+      "sourcePage": "Falx",
+      "sourceLanguagePage": "Falx/zh"
+    },
+    "raw fat": {
+      "translation": "生脂肪块",
+      "type": "wiki-term",
+      "sourcePage": "Fat",
+      "sourceLanguagePage": "Fat/zh"
+    },
+    "feather": {
+      "translation": "羽毛",
+      "type": "wiki-term",
+      "sourcePage": "Feather",
+      "sourceLanguagePage": "Feather/zh"
+    },
+    "firestarter": {
+      "translation": "起火器",
+      "type": "wiki-term",
+      "sourcePage": "Firestarter",
+      "sourceLanguagePage": "Firestarter/zh"
+    },
+    "firewood": {
+      "translation": "木柴",
+      "type": "wiki-term",
+      "sourcePage": "Firewood",
+      "sourceLanguagePage": "Firewood/zh"
+    },
+    "flax": {
+      "translation": "亚麻籽",
+      "type": "ingredient",
+      "sourcePage": "Flax",
+      "sourceLanguagePage": "Flax/zh"
+    },
+    "flint": {
+      "translation": "燧石",
+      "type": "wiki-term",
+      "sourcePage": "Flint",
+      "sourceLanguagePage": "Flint/zh"
+    },
+    "planter": {
+      "translation": "树盆",
+      "type": "wiki-term",
+      "sourcePage": "Flowerpots",
+      "sourceLanguagePage": "Flowerpots/zh"
+    },
+    "forlorn hope helm (broken)": {
+      "translation": "残破的绝境者头盔",
+      "type": "wiki-term",
+      "sourcePage": "Forlorn Hope armor",
+      "sourceLanguagePage": "Forlorn Hope armor/zh"
+    },
+    "fox": {
+      "translation": "狐狸",
+      "type": "wiki-term",
+      "sourcePage": "Fox",
+      "sourceLanguagePage": "Fox/zh"
+    },
+    "fruit juice": {
+      "translation": "果汁",
+      "type": "ingredient",
+      "sourcePage": "Fruitpress",
+      "sourceLanguagePage": "Fruitpress/zh"
+    },
+    "gazelle": {
+      "translation": "羚羊",
+      "type": "wiki-term",
+      "sourcePage": "Gazelle",
+      "sourceLanguagePage": "Gazelle/zh"
+    },
+    "olivine": {
+      "translation": "橄榄石",
+      "type": "wiki-term",
+      "sourcePage": "Gemstone",
+      "sourceLanguagePage": "Gemstone/zh"
+    },
+    "glass": {
+      "translation": "玻璃",
+      "type": "wiki-term",
+      "sourcePage": "Glass",
+      "sourceLanguagePage": "Glass/zh"
+    },
+    "angora goat": {
+      "translation": "安哥拉山羊",
+      "type": "wiki-term",
+      "sourcePage": "Goat",
+      "sourceLanguagePage": "Goat/zh"
+    },
+    "gold ingot": {
+      "translation": "金锭",
+      "type": "wiki-term",
+      "sourcePage": "Gold",
+      "sourceLanguagePage": "Gold/zh"
+    },
+    "grain": {
+      "translation": "稻米",
+      "type": "ingredient",
+      "sourcePage": "Grain",
+      "sourceLanguagePage": "Grain/zh"
+    },
+    "halite stone": {
+      "translation": "盐岩石块",
+      "type": "wiki-term",
+      "sourcePage": "Halite",
+      "sourceLanguagePage": "Halite/zh"
+    },
+    "hammer": {
+      "translation": "锤",
+      "type": "wiki-term",
+      "sourcePage": "Hammer",
+      "sourceLanguagePage": "Hammer/zh"
+    },
+    "hand basket (papyrus)": {
+      "translation": "手提篮（纸莎草）",
+      "type": "wiki-term",
+      "sourcePage": "Hand basket",
+      "sourceLanguagePage": "Hand basket/zh"
+    },
+    "hares": {
+      "translation": "野兔",
+      "type": "wiki-term",
+      "sourcePage": "Hare",
+      "sourceLanguagePage": "Hare/zh"
+    },
+    "aged hay (grass)": {
+      "translation": "陈年干草块",
+      "type": "wiki-term",
+      "sourcePage": "Hay",
+      "sourceLanguagePage": "Hay/zh"
+    },
+    "bandage": {
+      "translation": "绷带",
+      "type": "wiki-term",
+      "sourcePage": "Health",
+      "sourceLanguagePage": "Health/zh"
+    },
+    "henbox": {
+      "translation": "鸡窝",
+      "type": "wiki-term",
+      "sourcePage": "Henbox",
+      "sourceLanguagePage": "Henbox/zh"
+    },
+    "hoe": {
+      "translation": "锄",
+      "type": "tool",
+      "sourcePage": "Hoe",
+      "sourceLanguagePage": "Hoe/zh"
+    },
+    "honey": {
+      "translation": "蜂蜜",
+      "type": "ingredient",
+      "sourcePage": "Honey",
+      "sourceLanguagePage": "Honey/zh"
+    },
+    "honeycomb": {
+      "translation": "蜜脾",
+      "type": "ingredient",
+      "sourcePage": "Honeycomb",
+      "sourceLanguagePage": "Honeycomb/zh"
+    },
+    "hyena": {
+      "translation": "鬣狗",
+      "type": "wiki-term",
+      "sourcePage": "Hyena",
+      "sourceLanguagePage": "Hyena/zh"
+    },
+    "immobilized eidolon": {
+      "translation": "被禁锢的幻灵",
+      "type": "wiki-term",
+      "sourcePage": "Immobilized eidolon",
+      "sourceLanguagePage": "Immobilized eidolon/zh"
+    },
+    "improvised body armor (wood)": {
+      "translation": "木制简易胸甲",
+      "type": "wiki-term",
+      "sourcePage": "Improvised body armor",
+      "sourceLanguagePage": "Improvised body armor/zh"
+    },
+    "copper ingot": {
+      "translation": "铜锭",
+      "type": "wiki-term",
+      "sourcePage": "Ingot",
+      "sourceLanguagePage": "Ingot/zh"
+    },
+    "ink and quill": {
+      "translation": "墨水和笔",
+      "type": "wiki-term",
+      "sourcePage": "Ink and quill",
+      "sourceLanguagePage": "Ink and quill/zh"
+    },
+    "iron": {
+      "translation": "铁",
+      "type": "wiki-term",
+      "sourcePage": "Iron",
+      "sourceLanguagePage": "Iron/zh"
+    },
+    "jonas part (parallel transfer vessel)": {
+      "translation": "乔纳斯部件（平行传输容器）",
+      "type": "wiki-term",
+      "sourcePage": "Jonas part",
+      "sourceLanguagePage": "Jonas part/zh"
+    },
+    "jug": {
+      "translation": "水壶",
+      "type": "wiki-term",
+      "sourcePage": "Jug",
+      "sourceLanguagePage": "Jug/zh"
+    },
+    "knife": {
+      "translation": "小刀",
+      "type": "wiki-term",
+      "sourcePage": "Knife",
+      "sourceLanguagePage": "Knife/zh"
+    },
+    "lapis lazuli": {
+      "translation": "青金石",
+      "type": "wiki-term",
+      "sourcePage": "Lapis lazuli",
+      "sourceLanguagePage": "Lapis lazuli/zh"
+    },
+    "lead": {
+      "translation": "铅",
+      "type": "wiki-term",
+      "sourcePage": "Lead",
+      "sourceLanguagePage": "Lead/zh"
+    },
+    "leather": {
+      "translation": "皮革",
+      "type": "wiki-term",
+      "sourcePage": "Leather",
+      "sourceLanguagePage": "Leather/zh"
+    },
+    "lightning rod": {
+      "translation": "避雷针",
+      "type": "wiki-term",
+      "sourcePage": "Lightning rod",
+      "sourceLanguagePage": "Lightning rod/zh"
+    },
+    "lime": {
+      "translation": "石灰",
+      "type": "wiki-term",
+      "sourcePage": "Lime",
+      "sourceLanguagePage": "Lime/zh"
+    },
+    "linen": {
+      "translation": "亚麻布",
+      "type": "wiki-term",
+      "sourcePage": "Linen",
+      "sourceLanguagePage": "Linen/zh"
+    },
+    "corrupt sawblade locust": {
+      "translation": "腐化锯齿蝗虫",
+      "type": "wiki-term",
+      "sourcePage": "Locust",
+      "sourceLanguagePage": "Locust/zh"
+    },
+    "acacia log": {
+      "translation": "金合欢树原木",
+      "type": "wiki-term",
+      "sourcePage": "Log",
+      "sourceLanguagePage": "Log/zh"
+    },
+    "mantle": {
+      "translation": "地幔",
+      "type": "wiki-term",
+      "sourcePage": "Mantle",
+      "sourceLanguagePage": "Mantle/zh"
+    },
+    "metal parts": {
+      "translation": "金属零件",
+      "type": "wiki-term",
+      "sourcePage": "Metal parts",
+      "sourceLanguagePage": "Metal parts/zh"
+    },
+    "metal plate": {
+      "translation": "金属板",
+      "type": "wiki-term",
+      "sourcePage": "Metal plate",
+      "sourceLanguagePage": "Metal plate/zh"
+    },
+    "metal scraps": {
+      "translation": "金属废料",
+      "type": "wiki-term",
+      "sourcePage": "Metal scraps",
+      "sourceLanguagePage": "Metal scraps/zh"
+    },
+    "meteoric iron ingot": {
+      "translation": "陨铁锭",
+      "type": "wiki-term",
+      "sourcePage": "Meteoric iron",
+      "sourceLanguagePage": "Meteoric iron/zh"
+    },
+    "mortar": {
+      "translation": "砂浆",
+      "type": "wiki-term",
+      "sourcePage": "Mortar",
+      "sourceLanguagePage": "Mortar/zh"
+    },
+    "nails and strips": {
+      "translation": "钉子和垫片",
+      "type": "wiki-term",
+      "sourcePage": "Nails and strips",
+      "sourceLanguagePage": "Nails and strips/zh"
+    },
+    "nickel": {
+      "translation": "镍",
+      "type": "wiki-term",
+      "sourcePage": "Nickel",
+      "sourceLanguagePage": "Nickel/zh"
+    },
+    "night vision mask": {
+      "translation": "夜视面具",
+      "type": "wiki-term",
+      "sourcePage": "Night vision mask",
+      "sourceLanguagePage": "Night vision mask/zh"
+    },
+    "omok table top": {
+      "translation": "棋盘桌面",
+      "type": "wiki-term",
+      "sourcePage": "Omok",
+      "sourceLanguagePage": "Omok/zh"
+    },
+    "onion": {
+      "translation": "洋葱",
+      "type": "ingredient",
+      "sourcePage": "Onion",
+      "sourceLanguagePage": "Onion/zh"
+    },
+    "parchment": {
+      "translation": "羊皮纸",
+      "type": "wiki-term",
+      "sourcePage": "Parchment",
+      "sourceLanguagePage": "Parchment/zh"
+    },
+    "parsnip": {
+      "translation": "欧防风",
+      "type": "ingredient",
+      "sourcePage": "Parsnip",
+      "sourceLanguagePage": "Parsnip/zh"
+    },
+    "stone path stairs": {
+      "translation": "石子路楼梯",
+      "type": "wiki-term",
+      "sourcePage": "Path",
+      "sourceLanguagePage": "Path/zh"
+    },
+    "peanut": {
+      "translation": "花生",
+      "type": "wiki-term",
+      "sourcePage": "Peanut",
+      "sourceLanguagePage": "Peanut/zh"
+    },
+    "peat": {
+      "translation": "泥炭",
+      "type": "wiki-term",
+      "sourcePage": "Peat",
+      "sourceLanguagePage": "Peat/zh"
+    },
+    "peat brick": {
+      "translation": "泥炭砖",
+      "type": "wiki-term",
+      "sourcePage": "Peat brick",
+      "sourceLanguagePage": "Peat brick/zh"
+    },
+    "bear pelt": {
+      "translation": "熊毛皮",
+      "type": "wiki-term",
+      "sourcePage": "Pelt",
+      "sourceLanguagePage": "Pelt/zh"
+    },
+    "pickaxe": {
+      "translation": "镐",
+      "type": "wiki-term",
+      "sourcePage": "Pickaxe",
+      "sourceLanguagePage": "Pickaxe/zh"
+    },
+    "pie": {
+      "translation": "馅饼",
+      "type": "ingredient",
+      "sourcePage": "Pie",
+      "sourceLanguagePage": "Pie/zh"
+    },
+    "pineapple slices": {
+      "translation": "菠萝片",
+      "type": "ingredient",
+      "sourcePage": "Pineapple",
+      "sourceLanguagePage": "Pineapple/zh"
+    },
+    "planks": {
+      "translation": "木板",
+      "type": "wiki-term",
+      "sourcePage": "Planks",
+      "sourceLanguagePage": "Planks/zh"
+    },
+    "plaque": {
+      "translation": "牌匾",
+      "type": "wiki-term",
+      "sourcePage": "Plaque",
+      "sourceLanguagePage": "Plaque/zh"
+    },
+    "sylvite": {
+      "translation": "钾盐",
+      "type": "wiki-term",
+      "sourcePage": "Potash",
+      "sourceLanguagePage": "Potash/zh"
+    },
+    "prospecting pick": {
+      "translation": "探矿镐",
+      "type": "wiki-term",
+      "sourcePage": "Prospecting Pick",
+      "sourceLanguagePage": "Prospecting Pick/zh"
+    },
+    "pumpkin slice": {
+      "translation": "南瓜片",
+      "type": "ingredient",
+      "sourcePage": "Pumpkin",
+      "sourceLanguagePage": "Pumpkin/zh"
+    },
+    "clear quartz": {
+      "translation": "白水晶",
+      "type": "wiki-term",
+      "sourcePage": "Quartz",
+      "sourceLanguagePage": "Quartz/zh"
+    },
+    "quern": {
+      "translation": "石磨",
+      "type": "wiki-term",
+      "sourcePage": "Quern",
+      "sourceLanguagePage": "Quern/zh"
+    },
+    "raccoon": {
+      "translation": "浣熊",
+      "type": "wiki-term",
+      "sourcePage": "Raccoon",
+      "sourceLanguagePage": "Raccoon/zh"
+    },
+    "raft": {
+      "translation": "木筏",
+      "type": "wiki-term",
+      "sourcePage": "Raft",
+      "sourceLanguagePage": "Raft/zh"
+    },
+    "papyrus": {
+      "translation": "纸莎草",
+      "type": "wiki-term",
+      "sourcePage": "Reed",
+      "sourceLanguagePage": "Reed/zh"
+    },
+    "papyrus basket trap": {
+      "translation": "纸莎草篮筐陷阱",
+      "type": "wiki-term",
+      "sourcePage": "Reed basket trap",
+      "sourceLanguagePage": "Reed basket trap/zh"
+    },
+    "papyrus chest": {
+      "translation": "纸莎草编制筐",
+      "type": "wiki-term",
+      "sourcePage": "Reed chest",
+      "sourceLanguagePage": "Reed chest/zh"
+    },
+    "resonator": {
+      "translation": "共鸣器",
+      "type": "wiki-term",
+      "sourcePage": "Resonator",
+      "sourceLanguagePage": "Resonator/zh"
+    },
+    "rift ward": {
+      "translation": "裂缝抑制器",
+      "type": "wiki-term",
+      "sourcePage": "Rift ward",
+      "sourceLanguagePage": "Rift ward/zh"
+    },
+    "rock": {
+      "translation": "岩石",
+      "type": "wiki-term",
+      "sourcePage": "Rock",
+      "sourceLanguagePage": "Rock/zh"
+    },
+    "copper roofing": {
+      "translation": "铜板屋顶",
+      "type": "wiki-term",
+      "sourcePage": "Roofing blocks",
+      "sourceLanguagePage": "Roofing blocks/zh"
+    },
+    "rope": {
+      "translation": "绳索捆",
+      "type": "wiki-term",
+      "sourcePage": "Rope",
+      "sourceLanguagePage": "Rope/zh"
+    },
+    "rot": {
+      "translation": "腐烂物",
+      "type": "wiki-term",
+      "sourcePage": "Rot",
+      "sourceLanguagePage": "Rot/zh"
+    },
+    "rusty gears": {
+      "translation": "生锈的齿轮",
+      "type": "wiki-term",
+      "sourcePage": "Rusty gears",
+      "sourceLanguagePage": "Rusty gears/zh"
+    },
+    "alchemist saddle blanket": {
+      "translation": "炼金术士鞍毯",
+      "type": "wiki-term",
+      "sourcePage": "Saddle blanket",
+      "sourceLanguagePage": "Saddle blanket/zh"
+    },
+    "salmon": {
+      "translation": "鲑鱼",
+      "type": "wiki-term",
+      "sourcePage": "Salmon",
+      "sourceLanguagePage": "Salmon/zh"
+    },
+    "saltpeter": {
+      "translation": "硝石",
+      "type": "wiki-term",
+      "sourcePage": "Saltpeter",
+      "sourceLanguagePage": "Saltpeter/zh"
+    },
+    "sand": {
+      "translation": "沙子",
+      "type": "wiki-term",
+      "sourcePage": "Sand",
+      "sourceLanguagePage": "Sand/zh"
+    },
+    "saw": {
+      "translation": "锯子",
+      "type": "wiki-term",
+      "sourcePage": "Saw",
+      "sourceLanguagePage": "Saw/zh"
+    },
+    "scrap weapon kit": {
+      "translation": "废料武器套件",
+      "type": "wiki-term",
+      "sourcePage": "Scrap weapon kit",
+      "sourceLanguagePage": "Scrap weapon kit/zh"
+    },
+    "scythe": {
+      "translation": "镰刀",
+      "type": "wiki-term",
+      "sourcePage": "Scythe",
+      "sourceLanguagePage": "Scythe/zh"
+    },
+    "sea shell": {
+      "translation": "贝壳",
+      "type": "wiki-term",
+      "sourcePage": "Sea shell",
+      "sourceLanguagePage": "Sea shell/zh"
+    },
+    "sewing kit": {
+      "translation": "针线包",
+      "type": "wiki-term",
+      "sourcePage": "Sewing kit",
+      "sourceLanguagePage": "Sewing kit/zh"
+    },
+    "shovel": {
+      "translation": "铲",
+      "type": "wiki-term",
+      "sourcePage": "Shovel",
+      "sourceLanguagePage": "Shovel/zh"
+    },
+    "sieve": {
+      "translation": "筛网",
+      "type": "wiki-term",
+      "sourcePage": "Sieve",
+      "sourceLanguagePage": "Sieve/zh"
+    },
+    "sign": {
+      "translation": "告示牌",
+      "type": "wiki-term",
+      "sourcePage": "Sign",
+      "sourceLanguagePage": "Sign/zh"
+    },
+    "signpost": {
+      "translation": "路标",
+      "type": "wiki-term",
+      "sourcePage": "Signpost",
+      "sourceLanguagePage": "Signpost/zh"
+    },
+    "silver ingot": {
+      "translation": "银锭",
+      "type": "wiki-term",
+      "sourcePage": "Silver",
+      "sourceLanguagePage": "Silver/zh"
+    },
+    "sling": {
+      "translation": "投石索",
+      "type": "wiki-term",
+      "sourcePage": "Sling",
+      "sourceLanguagePage": "Sling/zh"
+    },
+    "stone path": {
+      "translation": "石子路小径",
+      "type": "wiki-term",
+      "sourcePage": "Soil Blocks",
+      "sourceLanguagePage": "Soil Blocks/zh"
+    },
+    "soybean": {
+      "translation": "大豆",
+      "type": "wiki-term",
+      "sourcePage": "Soybean",
+      "sourceLanguagePage": "Soybean/zh"
+    },
+    "spear": {
+      "translation": "长矛",
+      "type": "wiki-term",
+      "sourcePage": "Spear",
+      "sourceLanguagePage": "Spear/zh"
+    },
+    "stick": {
+      "translation": "木棍",
+      "type": "wiki-term",
+      "sourcePage": "Stick",
+      "sourceLanguagePage": "Stick/zh"
+    },
+    "cobble skull": {
+      "translation": "头骨圆石",
+      "type": "wiki-term",
+      "sourcePage": "Stone Blocks",
+      "sourceLanguagePage": "Stone Blocks/zh"
+    },
+    "storage vessel": {
+      "translation": "陶罐",
+      "type": "wiki-term",
+      "sourcePage": "Storage vessel",
+      "sourceLanguagePage": "Storage vessel/zh"
+    },
+    "straw dummy": {
+      "translation": "稻草人",
+      "type": "wiki-term",
+      "sourcePage": "Straw dummy",
+      "sourceLanguagePage": "Straw dummy/zh"
+    },
+    "strewn straw": {
+      "translation": "铺草泥土",
+      "type": "wiki-term",
+      "sourcePage": "Strewn straw",
+      "sourceLanguagePage": "Strewn straw/zh"
+    },
+    "sulfur chunk": {
+      "translation": "硫磺",
+      "type": "wiki-term",
+      "sourcePage": "Sulfur",
+      "sourceLanguagePage": "Sulfur/zh"
+    },
+    "support beam": {
+      "translation": "支撑梁",
+      "type": "wiki-term",
+      "sourcePage": "Support beam",
+      "sourceLanguagePage": "Support beam/zh"
+    },
+    "temporal gear": {
+      "translation": "时空齿轮",
+      "type": "wiki-term",
+      "sourcePage": "Temporal gear",
+      "sourceLanguagePage": "Temporal gear/zh"
+    },
+    "terminus teleporter": {
+      "translation": "终点传送器",
+      "type": "wiki-term",
+      "sourcePage": "Terminus teleporter",
+      "sourceLanguagePage": "Terminus teleporter/zh"
+    },
+    "termite": {
+      "translation": "白蚁",
+      "type": "wiki-term",
+      "sourcePage": "Termite",
+      "sourceLanguagePage": "Termite/zh"
+    },
+    "termite mound": {
+      "translation": "白蚁丘",
+      "type": "wiki-term",
+      "sourcePage": "Termite mound",
+      "sourceLanguagePage": "Termite mound/zh"
+    },
+    "thatch": {
+      "translation": "茅草",
+      "type": "wiki-term",
+      "sourcePage": "Thatch",
+      "sourceLanguagePage": "Thatch/zh"
+    },
+    "tin ingot": {
+      "translation": "锡锭",
+      "type": "wiki-term",
+      "sourcePage": "Tin",
+      "sourceLanguagePage": "Tin/zh"
+    },
+    "tool rack": {
+      "translation": "工具架",
+      "type": "wiki-term",
+      "sourcePage": "Tool rack",
+      "sourceLanguagePage": "Tool rack/zh"
+    },
+    "burned out torch": {
+      "translation": "燃尽的火把",
+      "type": "wiki-term",
+      "sourcePage": "Torch",
+      "sourceLanguagePage": "Torch/zh"
+    },
+    "broken static translocator": {
+      "translation": "损坏的传送器",
+      "type": "wiki-term",
+      "sourcePage": "Translocator",
+      "sourceLanguagePage": "Translocator/zh"
+    },
+    "small trough": {
+      "translation": "小饲料槽",
+      "type": "wiki-term",
+      "sourcePage": "Trough",
+      "sourceLanguagePage": "Trough/zh"
+    },
+    "tuning cylinder": {
+      "translation": "音律滚筒",
+      "type": "wiki-term",
+      "sourcePage": "Tuning cylinder",
+      "sourceLanguagePage": "Tuning cylinder/zh"
+    },
+    "tuning spear": {
+      "translation": "黑客长矛",
+      "type": "wiki-term",
+      "sourcePage": "Tuning spear",
+      "sourceLanguagePage": "Tuning spear/zh"
+    },
+    "turnip": {
+      "translation": "芜菁",
+      "type": "ingredient",
+      "sourcePage": "Turnip",
+      "sourceLanguagePage": "Turnip/zh"
+    },
+    "flax twine": {
+      "translation": "亚麻线",
+      "type": "wiki-term",
+      "sourcePage": "Twine",
+      "sourceLanguagePage": "Twine/zh"
+    },
+    "vertical rack": {
+      "translation": "立式物品架",
+      "type": "wiki-term",
+      "sourcePage": "Vertical rack",
+      "sourceLanguagePage": "Vertical rack/zh"
+    },
+    "gray boar": {
+      "translation": "灰野猪",
+      "type": "wiki-term",
+      "sourcePage": "Wild pig",
+      "sourceLanguagePage": "Wild pig/zh"
+    },
+    "wolf": {
+      "translation": "狼",
+      "type": "wiki-term",
+      "sourcePage": "Wolf",
+      "sourceLanguagePage": "Wolf/zh"
+    },
+    "wooden bucket": {
+      "translation": "手提木桶",
+      "type": "wiki-term",
+      "sourcePage": "Wooden bucket",
+      "sourceLanguagePage": "Wooden bucket/zh"
+    },
+    "wrench": {
+      "translation": "扳手",
+      "type": "wiki-term",
+      "sourcePage": "Wrench",
+      "sourceLanguagePage": "Wrench/zh"
+    },
+    "zinc ingot": {
+      "translation": "锌锭",
+      "type": "wiki-term",
+      "sourcePage": "Zinc",
+      "sourceLanguagePage": "Zinc/zh"
+    }
+  },
+  "modifiers": {
+    "cooked": {
+      "translation": "熟的",
+      "template": "{term}"
+    },
+    "chopped": {
+      "translation": "切碎的",
+      "template": "{term}碎"
+    },
+    "salted": {
+      "translation": "腌",
+      "template": "{modifier}{term}"
+    },
+    "charred": {
+      "translation": "烧焦的",
+      "template": "{term}{modifier}"
+    }
+  },
+  "aliases": {
+    "pickled": "salted",
+    "undercooked": "part-baked",
+    "half-baked": "part-baked"
+  },
+  "templates": {
+    "default": "{modifier}{term}",
+    "part-baked": "{term}{modifier}",
+    "charred": "{term}{modifier}"
+  },
+  "transforms": [
+    {
+      "id": "chopped",
+      "regex": "切碎的(.+)",
+      "replacement": "$1碎"
+    },
+    {
+      "id": "cooked",
+      "regex": "(.*?的)熟的",
+      "replacement": "$1"
+    }
+  ],
+  "exceptions": {}
+}
