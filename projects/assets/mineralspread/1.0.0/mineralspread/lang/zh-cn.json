@@ -1,0 +1,10 @@
+{
+  "coreBindingMsg": "绑定扩散核心矿物",
+  "coreFailureMsg": "扩散核心已失效，请将矿物重新放置在核心上方。",
+  "corePlacementMsg": "扩散核心已放置，请将要扩散的矿物放置在核心顶部的 地表 上。",
+  "game:tabname-mineralspread": "矿物扩散",
+  "illegalBinding": "请勿绑定扩散核心！！",
+  "mineralspread:block-spreadingcore": "扩散核心",
+  "mineralspread:blockdesc-spreadingcore": "一种能够扩散方块的神秘核心",
+  "mineralspread:handbook.spreadingcore.text": "<strong>扩散核心使用指南</strong>\n\n这个东西似乎能够从世界的某个位置传送矿物。\n\n\n不过，岩石 需要更换。将核心放置在中间，核心的顶层可以填充你想要扩散的矿物，\n在周围和底部放置岩石。它可以扩散到顶部绑定的方块上。\n\n\n其余五个面都可以在默认范围 6 内进行扩散。\n\n\n注意：默认情况下，它只能扩散到类似 矿物 的 岩石 上。\n\n\n\n <a href=\"handbooksearch://Spreading core\">扩散核心</a>"
+}
