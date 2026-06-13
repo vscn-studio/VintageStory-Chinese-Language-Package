@@ -58,6 +58,54 @@ public static class TranslationPackBuilder
         return new PackResult(outputZipPath, validated.Count, prepared.ScanResult.SkippedDirectoryCount);
     }
 
+    public static ReleaseMilestoneDescription DescribeReleaseMilestone(
+        PackerConfig config,
+        string repositoryRoot,
+        int milestoneCount,
+        string packageVersion)
+    {
+        ArgumentNullException.ThrowIfNull(config);
+        ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
+        ArgumentException.ThrowIfNullOrWhiteSpace(packageVersion);
+
+        if (milestoneCount <= 0 || milestoneCount % 10 != 0)
+        {
+            throw new PackerException($"milestone must be a positive multiple of 10, got '{milestoneCount}'.");
+        }
+
+        var prepared = PrepareBuild(config, repositoryRoot);
+        var ordered = prepared.SelectedTranslations
+            .OrderBy(item => item.SourceDirectory, StringComparer.OrdinalIgnoreCase)
+            .ToList();
+
+        if (milestoneCount > ordered.Count)
+        {
+            throw new PackerException(
+                $"milestone '{milestoneCount}' exceeds the current packaged translation count '{ordered.Count}'.");
+        }
+
+        var batchStartIndex = milestoneCount - 10;
+        var entries = ordered
+            .Skip(batchStartIndex)
+            .Take(10)
+            .Select(item => new ReleaseMilestoneEntry(
+                item.ProjectSlug,
+                item.TargetModVersion,
+                item.RealModId,
+                item.SourceDirectory,
+                item.DestinationPath))
+            .ToArray();
+
+        return new ReleaseMilestoneDescription(
+            milestoneCount,
+            batchStartIndex + 1,
+            batchStartIndex + entries.Length,
+            ordered.Count,
+            prepared.ScanResult.SkippedDirectoryCount,
+            packageVersion.Trim(),
+            entries);
+    }
+
     private static PreparedBuild PrepareBuild(PackerConfig config, string repositoryRoot)
     {
         config.ApplyDefaults();
@@ -186,6 +234,9 @@ public static class TranslationPackBuilder
                 .First();
 
             selected.Add(new SelectedTranslation(
+                winner.Candidate.ProjectSlug,
+                winner.Candidate.TargetModVersion,
+                winner.Candidate.RealModId,
                 winner.Candidate.SourceDirectory,
                 winner.Candidate.SourceFilePath,
                 destinationGroup.Key));
@@ -304,6 +355,9 @@ public static class TranslationPackBuilder
     private sealed record VersionedCandidate(TranslationCandidate Candidate, NuGetVersion Version);
 
     private sealed record SelectedTranslation(
+        string ProjectSlug,
+        string TargetModVersion,
+        string RealModId,
         string SourceDirectory,
         string SourceFilePath,
         string DestinationPath);

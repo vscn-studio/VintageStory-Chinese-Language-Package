@@ -347,6 +347,49 @@ public sealed class PackerTests
         Assert.Contains("recommended_package_version=0.0.1", stdout.ToString(), StringComparison.Ordinal);
     }
 
+    [Fact]
+    public async Task CliRunner_DescribeReleaseCommand_ListsMilestoneEntries()
+    {
+        using var workspace = new TestWorkspace();
+
+        for (var i = 0; i < 10; i++)
+        {
+            workspace.WriteText(
+                $"projects/assets/mod{i}/1.0.{i}/mod{i}/lang/zh-cn.json",
+                $$"""
+                {
+                  "item.name": "mod{{i}}"
+                }
+                """);
+        }
+
+        workspace.WriteText(
+            "projects/assets/zmod/9.9.9/zmod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "zmod"
+            }
+            """);
+
+        var configPath = workspace.WriteConfigFile();
+        var stdout = new StringWriter();
+        var stderr = new StringWriter();
+
+        var exitCode = await CliRunner.RunAsync(
+            ["describe-release", "--config", configPath, "--milestone", "10", "--package-version", "0.0.1"],
+            stdout,
+            stderr,
+            workspace.RootPath);
+
+        Assert.Equal(0, exitCode);
+        Assert.Equal(string.Empty, stderr.ToString());
+        Assert.Contains("Auto-generated release for reaching 10 translated mod language files.", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("Package version: 0.0.1", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("Milestone entries (1-10):", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("mod-name: mod0 | mod-version: 1.0.0 | modid: mod0", stdout.ToString(), StringComparison.Ordinal);
+        Assert.DoesNotContain("mod-name: zmod", stdout.ToString(), StringComparison.Ordinal);
+    }
+
     private sealed class TestWorkspace : IDisposable
     {
         public TestWorkspace()

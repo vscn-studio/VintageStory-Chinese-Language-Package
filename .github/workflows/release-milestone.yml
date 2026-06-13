@@ -111,10 +111,7 @@ jobs:
             version="${item##*:}"
             release_tag="mods-${milestone}"
             dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version "${version}"
-            notes=$(printf '%s\n\n%s\n%s' \
-              "Auto-generated release for reaching ${milestone} translated mod language files." \
-              "Included packaged translation count: ${COUNT}" \
-              "Package version: ${version}")
+            notes=$(dotnet run --project src/Packer -- describe-release --config config/packer/default.json --milestone "${milestone}" --package-version "${version}")
             gh release create "${release_tag}" \
               --target "${GITHUB_SHA}" \
               "build/VSCN-VintageStory-Chinese-Language-Pack-${version}.zip" \
