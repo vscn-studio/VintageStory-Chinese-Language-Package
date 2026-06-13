@@ -5,7 +5,7 @@ namespace Packer;
 public static class CliRunner
 {
     private const string Usage =
-        "Usage: dotnet run --project src/Packer -- pack --config <path> [--package-version <value>]";
+        "Usage: dotnet run --project src/Packer -- <pack|inspect> --config <path> [--package-version <value>]";
 
     public static async Task<int> RunAsync(
         string[] args,
@@ -14,7 +14,7 @@ public static class CliRunner
         string repositoryRoot,
         CancellationToken cancellationToken = default)
     {
-        if (!TryParseArguments(args, out var configPath, out var packageVersion, out var parseError))
+        if (!TryParseArguments(args, out var command, out var configPath, out var packageVersion, out var parseError))
         {
             await stderr.WriteLineAsync(parseError ?? Usage);
             return 1;
@@ -23,6 +23,16 @@ public static class CliRunner
         try
         {
             var config = await PackerConfigLoader.LoadAsync(configPath!, repositoryRoot, cancellationToken);
+            if (string.Equals(command, "inspect", StringComparison.OrdinalIgnoreCase))
+            {
+                var inspection = TranslationPackBuilder.Inspect(config, repositoryRoot);
+                await stdout.WriteLineAsync($"selected_translation_count={inspection.SelectedTranslationCount}");
+                await stdout.WriteLineAsync($"skipped_directory_count={inspection.SkippedDirectoryCount}");
+                await stdout.WriteLineAsync($"release_milestone_count={inspection.ReleaseMilestoneCount}");
+                await stdout.WriteLineAsync($"recommended_package_version={inspection.RecommendedPackageVersion}");
+                return 0;
+            }
+
             if (packageVersion is not null)
             {
                 config.PackageVersion = packageVersion.Trim();
@@ -57,10 +67,12 @@ public static class CliRunner
 
     private static bool TryParseArguments(
         string[] args,
+        out string? command,
         out string? configPath,
         out string? packageVersion,
         out string? error)
     {
+        command = null;
         configPath = null;
         packageVersion = null;
         error = null;
@@ -71,11 +83,14 @@ public static class CliRunner
             return false;
         }
 
-        if (!string.Equals(args[0], "pack", StringComparison.OrdinalIgnoreCase))
+        if (!string.Equals(args[0], "pack", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(args[0], "inspect", StringComparison.OrdinalIgnoreCase))
         {
             error = $"Unknown command '{args[0]}'.{Environment.NewLine}{Usage}";
             return false;
         }
+
+        command = args[0];
 
         for (var i = 1; i < args.Length; i++)
         {
@@ -111,6 +126,13 @@ public static class CliRunner
         if (string.IsNullOrWhiteSpace(configPath))
         {
             error = $"Missing required --config argument.{Environment.NewLine}{Usage}";
+            return false;
+        }
+
+        if (string.Equals(command, "inspect", StringComparison.OrdinalIgnoreCase) &&
+            !string.IsNullOrWhiteSpace(packageVersion))
+        {
+            error = $"--package-version is only supported by the pack command.{Environment.NewLine}{Usage}";
             return false;
         }
 

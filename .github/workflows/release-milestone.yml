@@ -34,52 +34,87 @@ jobs:
       - name: Run tests
         run: dotnet test
 
-      - name: Compute milestones
-        id: milestone
+      - name: Inspect pack metadata
+        id: inspect
         shell: bash
         run: |
-          count=$(find projects/assets -path '*/lang/zh-cn.json' | wc -l | tr -d ' ')
-          current=$((count / 10 * 10))
-          echo "count=$count" >> "$GITHUB_OUTPUT"
-          echo "current=$current" >> "$GITHUB_OUTPUT"
+          while IFS='=' read -r key value; do
+            echo "${key}=${value}" >> "$GITHUB_OUTPUT"
+          done < <(dotnet run --project src/Packer -- inspect --config config/packer/default.json)
 
-          milestones=()
-          if [ "$current" -ge 10 ]; then
-            for (( milestone=10; milestone<=current; milestone+=10 )); do
-              tag="mods-${milestone}"
-              if ! git rev-parse "$tag" >/dev/null 2>&1; then
-                milestones+=("$milestone")
-              fi
-            done
-          fi
+      - name: Plan release rebuild
+        id: milestone
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SELECTED_TRANSLATION_COUNT: ${{ steps.inspect.outputs.selected_translation_count }}
+          RELEASE_MILESTONE_COUNT: ${{ steps.inspect.outputs.release_milestone_count }}
+        run: |
+          echo "selected_translation_count=${SELECTED_TRANSLATION_COUNT}" >> "$GITHUB_OUTPUT"
 
-          if [ "${#milestones[@]}" -eq 0 ]; then
+          if [ "${RELEASE_MILESTONE_COUNT}" -lt 10 ]; then
             echo "should_release=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
-          milestones_csv=$(IFS=,; echo "${milestones[*]}")
-          echo "should_release=true" >> "$GITHUB_OUTPUT"
-          echo "milestones=$milestones_csv" >> "$GITHUB_OUTPUT"
+          rebuild=()
+          for (( milestone=10; milestone<=RELEASE_MILESTONE_COUNT; milestone+=10 )); do
+            release_tag="mods-${milestone}"
+            release_version="0.0.$((milestone / 10))"
+            expected_asset="VSCN-VintageStory-Chinese-Language-Pack-${release_version}.zip"
+            existing_assets=$(gh release view "${release_tag}" --json assets --jq '.assets[].name' 2>/dev/null || true)
 
-      - name: Build and publish releases
+            if [ -n "${existing_assets}" ] && printf '%s\n' "${existing_assets}" | grep -Fx "${expected_asset}" >/dev/null 2>&1; then
+              continue
+            fi
+
+            rebuild+=("${milestone}:${release_version}")
+          done
+
+          if [ "${#rebuild[@]}" -eq 0 ]; then
+            echo "should_release=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          rebuild_csv=$(IFS=,; echo "${rebuild[*]}")
+          echo "should_release=true" >> "$GITHUB_OUTPUT"
+          echo "rebuild=${rebuild_csv}" >> "$GITHUB_OUTPUT"
+
+      - name: Delete outdated release and tag
         if: steps.milestone.outputs.should_release == 'true'
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          COUNT: ${{ steps.milestone.outputs.count }}
-          MILESTONES: ${{ steps.milestone.outputs.milestones }}
+          REBUILD: ${{ steps.milestone.outputs.rebuild }}
         run: |
-          IFS=',' read -ra milestones <<< "$MILESTONES"
-          for milestone in "${milestones[@]}"; do
-            version="$(date -u +'%Y.%-m.%-d-rel')${milestone}"
-            dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version "$version"
+          IFS=',' read -ra rebuild <<< "${REBUILD}"
+          for item in "${rebuild[@]}"; do
+            milestone="${item%%:*}"
+            release_tag="mods-${milestone}"
+            gh release delete "${release_tag}" --yes >/dev/null 2>&1 || true
+            git push --delete origin "${release_tag}" >/dev/null 2>&1 || true
+          done
+
+      - name: Build and publish release
+        if: steps.milestone.outputs.should_release == 'true'
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COUNT: ${{ steps.milestone.outputs.selected_translation_count }}
+          REBUILD: ${{ steps.milestone.outputs.rebuild }}
+        run: |
+          IFS=',' read -ra rebuild <<< "${REBUILD}"
+          for item in "${rebuild[@]}"; do
+            milestone="${item%%:*}"
+            version="${item##*:}"
+            release_tag="mods-${milestone}"
+            dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version "${version}"
             notes=$(printf '%s\n\n%s\n%s' \
               "Auto-generated release for reaching ${milestone} translated mod language files." \
-              "Included translation file count: ${COUNT}" \
+              "Included packaged translation count: ${COUNT}" \
               "Package version: ${version}")
-            gh release create "mods-${milestone}" \
+            gh release create "${release_tag}" \
               "build/VSCN-VintageStory-Chinese-Language-Pack-${version}.zip" \
               --title "Translation milestone ${milestone}" \
-              --notes "$notes"
+              --notes "${notes}"
           done

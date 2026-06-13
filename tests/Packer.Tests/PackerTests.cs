@@ -236,7 +236,7 @@ public sealed class PackerTests
         Assert.Equal(0, exitCode);
         Assert.Equal(string.Empty, stderr.ToString());
         Assert.Contains("Packed 1 translation file(s)", stdout.ToString(), StringComparison.Ordinal);
-        Assert.True(File.Exists(Path.Combine(workspace.RootPath, "build", "VSCN-VintageStory-Chinese-Language-Pack-0.1.0.zip")));
+        Assert.True(File.Exists(Path.Combine(workspace.RootPath, "build", "VSCN-VintageStory-Chinese-Language-Pack-0.0.0.zip")));
     }
 
     [Fact]
@@ -254,7 +254,7 @@ public sealed class PackerTests
         var configPath = workspace.WriteConfigFile();
         var stdout = new StringWriter();
         var stderr = new StringWriter();
-        var version = "2026.6.12-pr083830";
+        var version = "0.0.12-dev.1";
 
         var exitCode = await CliRunner.RunAsync(
             ["pack", "--config", configPath, "--package-version", version],
@@ -291,13 +291,60 @@ public sealed class PackerTests
         var stderr = new StringWriter();
 
         var exitCode = await CliRunner.RunAsync(
-            ["pack", "--config", configPath, "--package-version", "20260612-083830"],
+            ["pack", "--config", configPath, "--package-version", "0.0.1-pr.1"],
             stdout,
             stderr,
             workspace.RootPath);
 
         Assert.Equal(1, exitCode);
-        Assert.Contains("valid SemVer-compatible version", stderr.ToString(), StringComparison.Ordinal);
+        Assert.Contains("Vintage Story mod site version format", stderr.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task CliRunner_InspectCommand_ReturnsRecommendedReleaseVersionFromSelectedTranslations()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "v1"
+            }
+            """);
+        workspace.WriteText(
+            "projects/assets/example/1.1.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "v2"
+            }
+            """);
+
+        for (var i = 0; i < 10; i++)
+        {
+            workspace.WriteText(
+                $"projects/assets/mod{i}/1.0.0/mod{i}/lang/zh-cn.json",
+                $$"""
+                {
+                  "item.name": "mod{{i}}"
+                }
+                """);
+        }
+
+        var configPath = workspace.WriteConfigFile();
+        var stdout = new StringWriter();
+        var stderr = new StringWriter();
+
+        var exitCode = await CliRunner.RunAsync(
+            ["inspect", "--config", configPath],
+            stdout,
+            stderr,
+            workspace.RootPath);
+
+        Assert.Equal(0, exitCode);
+        Assert.Equal(string.Empty, stderr.ToString());
+        Assert.Contains("selected_translation_count=11", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("release_milestone_count=10", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("recommended_package_version=0.0.1", stdout.ToString(), StringComparison.Ordinal);
     }
 
     private sealed class TestWorkspace : IDisposable
@@ -321,7 +368,7 @@ public sealed class PackerTests
                 """
                 {
                   "packageName": "VSCN Vintage Story Chinese Language Pack",
-                  "packageVersion": "0.1.0",
+                  "packageVersion": "0.0.0",
                   "description": "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。",
                   "authors": ["VSCN-Studio"],
                   "modId": "vscnlangpack",

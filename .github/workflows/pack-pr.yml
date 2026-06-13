@@ -27,13 +27,22 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
-      - name: Generate timestamp version
-        id: version
-        run: |
-          echo "value=$(date -u +'%Y.%-m.%-d-pr%H%M%S')" >> "$GITHUB_OUTPUT"
-
       - name: Run tests
         run: dotnet test
+
+      - name: Inspect pack metadata
+        id: inspect
+        shell: bash
+        run: |
+          while IFS='=' read -r key value; do
+            echo "${key}=${value}" >> "$GITHUB_OUTPUT"
+          done < <(dotnet run --project src/Packer -- inspect --config config/packer/default.json)
+
+      - name: Generate PR package version
+        id: version
+        shell: bash
+        run: |
+          echo "value=${{ steps.inspect.outputs.recommended_package_version }}-dev.${{ github.run_attempt }}" >> "$GITHUB_OUTPUT"
 
       - name: Build pack
         run: dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version "${{ steps.version.outputs.value }}"

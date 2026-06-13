@@ -6,6 +6,23 @@ namespace Packer;
 
 public static class TranslationPackBuilder
 {
+    public static PackInspection Inspect(
+        PackerConfig config,
+        string repositoryRoot)
+    {
+        ArgumentNullException.ThrowIfNull(config);
+        ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
+
+        var prepared = PrepareBuild(config, repositoryRoot);
+        var selectedTranslationCount = prepared.SelectedTranslations.Count;
+
+        return new PackInspection(
+            selectedTranslationCount,
+            prepared.ScanResult.SkippedDirectoryCount,
+            selectedTranslationCount / 10 * 10,
+            PackageVersionCalculator.GetReleasePackageVersion(selectedTranslationCount));
+    }
+
     public static async Task<PackResult> BuildAsync(
         PackerConfig config,
         string repositoryRoot,
@@ -14,18 +31,8 @@ public static class TranslationPackBuilder
         ArgumentNullException.ThrowIfNull(config);
         ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
 
-        config.ApplyDefaults();
-        config.Validate();
-
-        var contentRoot = PackerConfigLoader.ResolvePath(config.ContentRoot, repositoryRoot);
-        if (!Directory.Exists(contentRoot))
-        {
-            throw new PackerException($"Content root does not exist: {contentRoot}");
-        }
-
-        var scanResult = ScanCandidates(contentRoot, config);
-        var selected = SelectCandidates(scanResult.Candidates, config);
-        var validated = await ValidateSelectedTranslationsAsync(selected, cancellationToken);
+        var prepared = PrepareBuild(config, repositoryRoot);
+        var validated = await ValidateSelectedTranslationsAsync(prepared.SelectedTranslations, cancellationToken);
 
         var outputDirectory = PackerConfigLoader.ResolvePath(config.OutputDirectory, repositoryRoot);
         Directory.CreateDirectory(outputDirectory);
@@ -48,7 +55,23 @@ public static class TranslationPackBuilder
             throw;
         }
 
-        return new PackResult(outputZipPath, validated.Count, scanResult.SkippedDirectoryCount);
+        return new PackResult(outputZipPath, validated.Count, prepared.ScanResult.SkippedDirectoryCount);
+    }
+
+    private static PreparedBuild PrepareBuild(PackerConfig config, string repositoryRoot)
+    {
+        config.ApplyDefaults();
+        config.Validate();
+
+        var contentRoot = PackerConfigLoader.ResolvePath(config.ContentRoot, repositoryRoot);
+        if (!Directory.Exists(contentRoot))
+        {
+            throw new PackerException($"Content root does not exist: {contentRoot}");
+        }
+
+        var scanResult = ScanCandidates(contentRoot, config);
+        var selected = SelectCandidates(scanResult.Candidates, config);
+        return new PreparedBuild(scanResult, selected);
     }
 
     private static void ReplaceOutputAtomically(string tempZipPath, string outputZipPath)
@@ -292,6 +315,10 @@ public static class TranslationPackBuilder
     private sealed record ScanResult(
         IReadOnlyList<TranslationCandidate> Candidates,
         int SkippedDirectoryCount);
+
+    private sealed record PreparedBuild(
+        ScanResult ScanResult,
+        List<SelectedTranslation> SelectedTranslations);
 
     private sealed class ModInfo
     {

@@ -1,4 +1,3 @@
-using NuGet.Versioning;
 using System.Text.Json.Serialization;
 
 namespace Packer;
@@ -9,7 +8,7 @@ public sealed class PackerConfig
     public string PackageName { get; set; } = "VSCN Vintage Story Chinese Language Pack";
 
     [JsonPropertyName("packageVersion")]
-    public string PackageVersion { get; set; } = "0.1.0";
+    public string PackageVersion { get; set; } = "0.0.0";
 
     [JsonPropertyName("description")]
     public string Description { get; set; } = "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。";
@@ -47,7 +46,7 @@ public sealed class PackerConfig
     public void ApplyDefaults()
     {
         PackageName = NormalizeOrDefault(PackageName, "VSCN Vintage Story Chinese Language Pack");
-        PackageVersion = NormalizeOrDefault(PackageVersion, "0.1.0");
+        PackageVersion = NormalizeOrDefault(PackageVersion, "0.0.0");
         Description = NormalizeOrDefault(Description, "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。");
         Authors = NormalizeList(Authors, "VSCN-Studio");
         ModId = NormalizeOrDefault(ModId, "vscnlangpack");
@@ -73,10 +72,10 @@ public sealed class PackerConfig
             throw new PackerException("packageVersion must not be empty.");
         }
 
-        if (!NuGetVersion.TryParse(PackageVersion, out _))
+        if (!PackageVersionCalculator.IsSupportedPackageVersion(PackageVersion))
         {
             throw new PackerException(
-                $"packageVersion must be a valid SemVer-compatible version, got '{PackageVersion}'.");
+                $"packageVersion must match the Vintage Story mod site version format 'X.Y.Z' or 'X.Y.Z-(dev|pre|rc).N', got '{PackageVersion}'.");
         }
 
         if (string.IsNullOrWhiteSpace(ModId))
