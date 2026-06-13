@@ -93,6 +93,7 @@ jobs:
             release_tag="mods-${milestone}"
             gh release delete "${release_tag}" --yes >/dev/null 2>&1 || true
             git push --delete origin "${release_tag}" >/dev/null 2>&1 || true
+            git tag -d "${release_tag}" >/dev/null 2>&1 || true
           done
 
       - name: Build and publish release
@@ -100,6 +101,7 @@ jobs:
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_SHA: ${{ github.sha }}
           COUNT: ${{ steps.milestone.outputs.selected_translation_count }}
           REBUILD: ${{ steps.milestone.outputs.rebuild }}
         run: |
@@ -114,6 +116,7 @@ jobs:
               "Included packaged translation count: ${COUNT}" \
               "Package version: ${version}")
             gh release create "${release_tag}" \
+              --target "${GITHUB_SHA}" \
               "build/VSCN-VintageStory-Chinese-Language-Pack-${version}.zip" \
               --title "Translation milestone ${milestone}" \
               --notes "${notes}"
