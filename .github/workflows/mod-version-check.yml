@@ -1,0 +1,31 @@
+name: Mod Latest Version Check
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mod-version-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate summary
+        shell: bash
+        run: |
+          mkdir -p build
+          python3 .github/scripts/mod_version_check.py --repo-root . --output build/mod-version-check-summary.md
+          cat build/mod-version-check-summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload summary artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mod-version-check-summary
+          path: build/mod-version-check-summary.md
+          if-no-files-found: error
