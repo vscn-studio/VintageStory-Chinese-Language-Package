@@ -64,16 +64,16 @@ jobs:
           export ZIP_PATH="${zip_path}"
           export README_PATH="${readme_path}"
           python3 - <<'PY'
-from pathlib import Path
-import zipfile
-import os
+          from pathlib import Path
+          import zipfile
+          import os
 
-zip_path = Path(os.environ["ZIP_PATH"])
-readme_path = Path(os.environ["README_PATH"])
+          zip_path = Path(os.environ["ZIP_PATH"])
+          readme_path = Path(os.environ["README_PATH"])
 
-with zipfile.ZipFile(zip_path, "a", compression=zipfile.ZIP_DEFLATED) as archive:
-    archive.write(readme_path, "README.md")
-PY
+          with zipfile.ZipFile(zip_path, "a", compression=zipfile.ZIP_DEFLATED) as archive:
+              archive.write(readme_path, "README.md")
+          PY
 
       - name: Create release
         shell: bash
