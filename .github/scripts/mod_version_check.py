@@ -5,6 +5,7 @@ import concurrent.futures
 import datetime as dt
 import json
 import re
+import socket
 import sys
 import urllib.error
 import urllib.parse
@@ -29,6 +30,7 @@ class ModRecord:
     chinese_name: str
     english_name: str
     homepage: str
+    repository_modids: list[str]
     repository_versions: list[str]
     repository_latest: str
     official_latest: str = ""
@@ -41,8 +43,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".", help="Repository root directory")
     parser.add_argument("--output", required=True, help="Output markdown file path")
-    parser.add_argument("--timeout", type=int, default=20, help="HTTP timeout in seconds")
-    parser.add_argument("--workers", type=int, default=8, help="Concurrent fetch workers")
+    parser.add_argument("--timeout", type=int, default=30, help="HTTP timeout in seconds")
+    parser.add_argument("--workers", type=int, default=4, help="Concurrent fetch workers")
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root).resolve()
@@ -100,14 +102,21 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
     for slug_dir in sorted((path for path in content_root.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
         slug = slug_dir.name
         versions: list[str] = []
+        modids: list[str] = []
         for version_dir in sorted((path for path in slug_dir.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
             if has_translation(version_dir):
                 versions.append(version_dir.name)
+                modids.extend(
+                    modid_dir.name
+                    for modid_dir in version_dir.iterdir()
+                    if modid_dir.is_dir() and (modid_dir / "lang" / "zh-cn.json").is_file()
+                )
 
         if not versions:
             continue
 
         unique_versions = dedupe_sorted_versions(versions)
+        unique_modids = dedupe_case_insensitive(modids)
         index_entry = index_map.get(slug, {})
         chinese_name = text_or_default(index_entry.get("translation"), slug)
         english_name = text_or_default(index_entry.get("name"), slug)
@@ -119,6 +128,7 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
                 chinese_name=chinese_name,
                 english_name=english_name,
                 homepage=homepage,
+                repository_modids=unique_modids,
                 repository_versions=unique_versions,
                 repository_latest=unique_versions[0],
             )
@@ -148,7 +158,13 @@ def fetch_official_metadata(
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {
-            executor.submit(fetch_official_metadata_for_slug, record.slug, index_map.get(record.slug, {}), timeout): record.slug
+            executor.submit(
+                fetch_official_metadata_for_slug,
+                record.slug,
+                index_map.get(record.slug, {}),
+                record.repository_modids,
+                timeout,
+            ): record.slug
             for record in records
         }
         for future in concurrent.futures.as_completed(futures):
@@ -167,10 +183,12 @@ def fetch_official_metadata(
 def fetch_official_metadata_for_slug(
     slug: str,
     index_entry: dict[str, Any],
+    repository_modids: list[str],
     timeout: int,
 ) -> OfficialModData | None:
     candidates = [slug]
     candidates.extend(homepage_candidates(text_or_default(index_entry.get("homepage"), "")))
+    candidates.extend(repository_modids)
 
     seen: set[str] = set()
     for candidate in candidates:
@@ -217,12 +235,12 @@ def convert_official_payload(payload: Any, index_entry: dict[str, Any]) -> Offic
             homepage = f"https://mods.vintagestory.at/show/mod/{mod_id}"
 
     latest_version = text_or_default(latest_release.get("modversion") if latest_release else "", "")
-    updated_at = first_non_empty(
+    updated_at = format_shanghai_time(first_non_empty(
         text_or_default(mod.get("lastreleased"), ""),
         text_or_default(latest_release.get("created") if latest_release else "", ""),
         text_or_default(mod.get("lastmodified"), ""),
         text_or_default(mod.get("created"), ""),
-    )
+    ))
 
     if not latest_version:
         return None
@@ -236,9 +254,19 @@ def convert_official_payload(payload: Any, index_entry: dict[str, Any]) -> Offic
 
 
 def fetch_json(url: str, timeout: int) -> Any:
-    request = urllib.request.Request(url, headers={"User-Agent": "VSCN-ModVersionCheck/1.0"})
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        return json.loads(response.read().decode("utf-8"))
+    last_error: Exception | None = None
+    for _ in range(3):
+        request = urllib.request.Request(url, headers={"User-Agent": "VSCN-ModVersionCheck/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                return json.loads(response.read().decode("utf-8"))
+        except (urllib.error.URLError, TimeoutError, socket.timeout) as exc:
+            last_error = exc
+
+    if last_error is not None:
+        raise last_error
+
+    raise RuntimeError(f"Failed to fetch {url}")
 
 
 def parse_dt(value: str) -> dt.datetime:
@@ -253,6 +281,17 @@ def parse_dt(value: str) -> dt.datetime:
     if parsed.tzinfo is None:
         return parsed.replace(tzinfo=dt.timezone.utc)
     return parsed
+
+
+def format_shanghai_time(value: str) -> str:
+    if not value:
+        return ""
+
+    parsed = parse_dt(value)
+    if parsed == dt.datetime.min.replace(tzinfo=dt.timezone.utc):
+        return value
+
+    return parsed.astimezone(dt.timezone(dt.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def compare_versions(left: str, right: str) -> int:
@@ -332,6 +371,21 @@ def dedupe_sorted_versions(values: list[str]) -> list[str]:
     return unique
 
 
+def dedupe_case_insensitive(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    result: list[str] = []
+    for value in values:
+        text = text_or_default(value, "")
+        if not text:
+            continue
+        key = text.casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(text)
+    return result
+
+
 def homepage_candidates(homepage: str) -> list[str]:
     if not homepage:
         return []
@@ -380,7 +434,7 @@ def render_markdown(records: list[ModRecord]) -> str:
     lines.append(f"- 总模组数：{len(records)}")
     lines.append(f"- 需要更新：{len(outdated)}")
     lines.append(f"- 官方数据缺失：{missing}")
-    lines.append(f"- 生成时间（UTC）：{dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S')}")
+    lines.append(f"- 生成时间（UTC+8）：{format_shanghai_time(dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M:%S'))}")
     lines.append("")
     lines.append("## 待更新模组")
     lines.append("")
