@@ -1,1 +1,506 @@
-{}
+{
+  "achievements": {
+    "name": "Achievements",
+    "translation": "成就",
+    "authors": [
+      "DejFidOFF"
+    ],
+    "homepage": "https://mods.vintagestory.at/achievements",
+    "latestVersion": "1.0.9"
+  },
+  "aculinaryartillery": {
+    "name": "A Culinary Artillery",
+    "translation": "烹饪火炮",
+    "authors": [
+      "l33tmaan"
+    ],
+    "homepage": "https://mods.vintagestory.at/aculinaryartillery",
+    "latestVersion": "2.0.0-dev.20"
+  },
+  "alchemy": {
+    "name": "Alchemy",
+    "translation": "炼金术",
+    "authors": [
+      "llama3013"
+    ],
+    "homepage": "https://mods.vintagestory.at/alchemy",
+    "latestVersion": "2.1.0-rc.68"
+  },
+  "animaltrader": {
+    "name": "Animal Trader",
+    "translation": "动物商人",
+    "authors": [
+      "Shazza"
+    ],
+    "homepage": "https://mods.vintagestory.at/animaltrader",
+    "latestVersion": "1.1.0"
+  },
+  "awearablelight": {
+    "name": "A Wearable Light",
+    "translation": "可穿戴灯",
+    "authors": [
+      "misterandydandy"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/1036",
+    "latestVersion": "1.2.3-pre.2"
+  },
+  "betterloot": {
+    "name": "Better Loot",
+    "translation": "更好的战利品",
+    "authors": [
+      "DejFidOFF"
+    ],
+    "homepage": "https://mods.vintagestory.at/betterloot",
+    "latestVersion": "2.0.2"
+  },
+  "betterruins": {
+    "name": "BetterRuins",
+    "translation": "更好的废墟",
+    "authors": [
+      "NiclAss"
+    ],
+    "homepage": "https://mods.vintagestory.at/betterruins",
+    "latestVersion": "0.6.3"
+  },
+  "biomes": {
+    "name": "Biomes",
+    "translation": "生物群系",
+    "authors": [
+      "Crabb"
+    ],
+    "homepage": "https://mods.vintagestory.at/biomes",
+    "latestVersion": "2.0.3"
+  },
+  "blacksmithglovesv2": {
+    "name": "Blacksmith Gloves V2",
+    "translation": "铁匠手套 V2",
+    "authors": [
+      "TheKremes"
+    ],
+    "homepage": "https://mods.vintagestory.at/blacksmithglovesv2",
+    "latestVersion": "2.0.1"
+  },
+  "blocksoverlay": {
+    "name": "Block Overlay",
+    "translation": "方块覆盖层",
+    "authors": [
+      "Xel"
+    ],
+    "homepage": "https://mods.vintagestory.at/xray",
+    "latestVersion": "4.11.3"
+  },
+  "boricalchemy": {
+    "name": "Boric Alchemy",
+    "translation": "硼炼金术",
+    "authors": [
+      "MrBadWithNames"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/5577",
+    "latestVersion": "1.9.4"
+  },
+  "butchering": {
+    "name": "Butchering",
+    "translation": "屠宰",
+    "authors": [
+      "CaptainOats"
+    ],
+    "homepage": "https://mods.vintagestory.at/butchering",
+    "latestVersion": "1.13.4"
+  },
+  "carryon": {
+    "name": "Carry On",
+    "translation": "携带",
+    "authors": [
+      "NerdScurvy"
+    ],
+    "homepage": "https://mods.vintagestory.at/carryon",
+    "latestVersion": "2.0.0-pre.4"
+  },
+  "chiselleaf": {
+    "name": "Chisel Leaf",
+    "translation": "凿刻树叶",
+    "authors": [
+      "azurempress"
+    ],
+    "homepage": "https://mods.vintagestory.at/chiselleaf",
+    "latestVersion": "1.2.0"
+  },
+  "chiseltools": {
+    "name": "QP's Chisel Tools",
+    "translation": "QP 的凿刻工具",
+    "authors": [
+      "QPTech"
+    ],
+    "homepage": "https://mods.vintagestory.at/chiseltools",
+    "latestVersion": "1.17.2"
+  },
+  "claims": {
+    "name": "C&N Claims",
+    "translation": "C&N 领地",
+    "authors": [
+      "KenigVovan"
+    ],
+    "homepage": "https://mods.vintagestory.at/canclaims",
+    "latestVersion": "4.3.13"
+  },
+  "combatoverhaul": {
+    "name": "Combat Overhaul",
+    "translation": "战斗大修",
+    "authors": [
+      "Maltiez"
+    ],
+    "homepage": "https://mods.vintagestory.at/combatoverhaul",
+    "latestVersion": "0.16.16"
+  },
+  "efmealsmodule": {
+    "name": "Expanded Foods: Meals Module",
+    "translation": "扩展食物：餐食模块",
+    "authors": [
+      "l33tmaan"
+    ],
+    "homepage": "https://mods.vintagestory.at/efmealsmodule",
+    "latestVersion": "1.0.0-dev.4"
+  },
+  "em": {
+    "name": "Expanded Matter",
+    "translation": "扩展物质",
+    "authors": [
+      "Tels"
+    ],
+    "homepage": "https://mods.vintagestory.at/em",
+    "latestVersion": "3.7.0"
+  },
+  "expandedfoods": {
+    "name": "Expanded Foods: Core",
+    "translation": "扩展食物：核心",
+    "authors": [
+      "l33tmaan"
+    ],
+    "homepage": "https://mods.vintagestory.at/expandedfoods",
+    "latestVersion": "2.0.0-dev.10"
+  },
+  "fastmap": {
+    "name": "Fast Map",
+    "translation": "快速地图",
+    "authors": [
+      "chrisunfocused"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/8499",
+    "latestVersion": "122.5.1"
+  },
+  "feralplayerpack": {
+    "name": "Animalica - Playable Animals",
+    "translation": "Animalica - 可玩动物",
+    "authors": [
+      "Craditz"
+    ],
+    "homepage": "https://mods.vintagestory.at/feralplayerpack",
+    "latestVersion": "0.2.10"
+  },
+  "firearms": {
+    "name": "Firearms",
+    "translation": "火器",
+    "authors": [
+      "Maltiez"
+    ],
+    "homepage": "https://mods.vintagestory.at/firearms",
+    "latestVersion": "1.8.1"
+  },
+  "foodshelves": {
+    "name": "Food Shelves",
+    "translation": "食物货架",
+    "authors": [
+      "SONZINA"
+    ],
+    "homepage": "https://mods.vintagestory.at/foodshelves",
+    "latestVersion": "3.0.4"
+  },
+  "fromgoldencombs": {
+    "name": "From Golden Combs",
+    "translation": "金蜂巢",
+    "authors": [
+      "Vinter_Nacht"
+    ],
+    "homepage": "https://mods.vintagestory.at/fromgoldencombs",
+    "latestVersion": "2.0.7"
+  },
+  "grouplog": {
+    "name": "Group Log",
+    "translation": "群组日志",
+    "authors": [
+      "ValrothGryffn"
+    ],
+    "homepage": "https://mods.vintagestory.at/grouplog",
+    "latestVersion": "1.0.3"
+  },
+  "icebreaker": {
+    "name": "Icebreaker Mod",
+    "translation": "破冰者",
+    "authors": [
+      "Benata"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/7962",
+    "latestVersion": "1.22.3"
+  },
+  "icecycle": {
+    "name": "Ice Cycle",
+    "translation": "冰循环",
+    "authors": [
+      "Luceo"
+    ],
+    "homepage": "https://mods.vintagestory.at/icecycle",
+    "latestVersion": "1.0.2"
+  },
+  "imgui": {
+    "name": "ImGui",
+    "translation": "即时模式图形界面",
+    "authors": [
+      "Maltiez"
+    ],
+    "homepage": "https://mods.vintagestory.at/imgui",
+    "latestVersion": "1.2.7"
+  },
+  "justtofu": {
+    "name": "Just Tofu",
+    "translation": "纯豆腐",
+    "authors": [
+      "LexicalAnomaly"
+    ],
+    "homepage": "https://mods.vintagestory.at/justtofu",
+    "latestVersion": "1.0.1"
+  },
+  "kscartographytable": {
+    "name": "K's Cartography Table",
+    "translation": "K 的制图桌",
+    "authors": [
+      "Kaisentlaia"
+    ],
+    "homepage": "https://mods.vintagestory.at/kscartographytable",
+    "latestVersion": "2.0.2"
+  },
+  "lockinteract": {
+    "name": "LockInteract",
+    "translation": "锁定交互",
+    "authors": [
+      "Arkzenir"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/9482",
+    "latestVersion": "2.1.1"
+  },
+  "mealrevariation": {
+    "name": "Variations on a Meal - Revaried",
+    "translation": "餐食重制",
+    "authors": [
+      "LexicalAnomaly"
+    ],
+    "homepage": "https://mods.vintagestory.at/mealrevariation",
+    "latestVersion": "3.1.3"
+  },
+  "metalpots": {
+    "name": "Metal Cooking Pots",
+    "translation": "金属烹饪锅",
+    "authors": [
+      "Yoldovahkriid"
+    ],
+    "homepage": "https://mods.vintagestory.at/metalpots",
+    "latestVersion": "1.7.9"
+  },
+  "millwright": {
+    "name": "Millwright",
+    "translation": "磨坊工匠",
+    "authors": [
+      "SpearAndFang"
+    ],
+    "homepage": "https://mods.vintagestory.at/millwright",
+    "latestVersion": "1.3.3"
+  },
+  "mineralspread": {
+    "name": "mineralspread",
+    "translation": "矿物扩散",
+    "authors": [
+      "paipaijun"
+    ],
+    "homepage": "https://mods.vintagestory.at/mineralspread",
+    "latestVersion": "1.0.0"
+  },
+  "moregoat": {
+    "name": "MORE GOAT",
+    "translation": "更多山羊",
+    "authors": [
+      "Shazza"
+    ],
+    "homepage": "https://mods.vintagestory.at/moregoat",
+    "latestVersion": "1.1.0"
+  },
+  "petai": {
+    "name": "Pet AI",
+    "translation": "宠物 AI",
+    "authors": [
+      "Gerste"
+    ],
+    "homepage": "https://mods.vintagestory.at/petai",
+    "latestVersion": "5.1.1"
+  },
+  "playercorpse": {
+    "name": "Player Corpse",
+    "translation": "玩家尸体",
+    "authors": [
+      "DArkHekRoMaNT"
+    ],
+    "homepage": "https://mods.vintagestory.at/playercorpse",
+    "latestVersion": "1.12.0"
+  },
+  "playercorpseforkedazu": {
+    "name": "Player Corpse (Azu Modded)",
+    "translation": "玩家尸体（Azu 分支）",
+    "authors": [
+      "azurempress"
+    ],
+    "homepage": "https://mods.vintagestory.at/playercorpseforkedazu",
+    "latestVersion": "1.13.1"
+  },
+  "playermodellib": {
+    "name": "Player Model lib",
+    "translation": "玩家模型库",
+    "authors": [
+      "Maltiez"
+    ],
+    "homepage": "https://mods.vintagestory.at/playermodellib",
+    "latestVersion": "1.21.1"
+  },
+  "primitivesurvival": {
+    "name": "Primitive Survival",
+    "translation": "原始生存",
+    "authors": [
+      "SpearAndFang"
+    ],
+    "homepage": "https://mods.vintagestory.at/primitivesurvival",
+    "latestVersion": "5.0.6"
+  },
+  "quiversfork": {
+    "name": "Quivers and Sheaths Fork",
+    "translation": "箭袋与刀鞘分支",
+    "authors": [
+      "Alodh"
+    ],
+    "homepage": "https://mods.vintagestory.at/quiversfork",
+    "latestVersion": "0.9.14"
+  },
+  "realgrapes": {
+    "name": "Real Grapes",
+    "translation": "真实葡萄",
+    "authors": [
+      "xXx_Ape_xXx"
+    ],
+    "homepage": "https://mods.vintagestory.at/realgrapes",
+    "latestVersion": "1.4.0"
+  },
+  "riftwardtweaks": {
+    "name": "Rift Ward Tweaks",
+    "translation": "裂隙守卫调整",
+    "authors": [
+      "Elocrypt"
+    ],
+    "homepage": "https://mods.vintagestory.at/riftwardtweaks",
+    "latestVersion": "2.8.0"
+  },
+  "seafarer": {
+    "name": "Seafarer",
+    "translation": "航海者",
+    "authors": [
+      "TechnoGoth"
+    ],
+    "homepage": "https://mods.vintagestory.at/seafarer",
+    "latestVersion": "0.5.15"
+  },
+  "simplevoicechat": {
+    "name": "Simple Voice Chat",
+    "translation": "简易语音聊天",
+    "authors": [
+      "HansJack"
+    ],
+    "homepage": "https://mods.vintagestory.at/simplevoicechat",
+    "latestVersion": "0.1.3"
+  },
+  "stonebakeoven": {
+    "name": "Stone Bake Oven",
+    "translation": "石烤炉",
+    "authors": [
+      "CaptainOats"
+    ],
+    "homepage": "https://mods.vintagestory.at/stonebakeoven",
+    "latestVersion": "1.3.5"
+  },
+  "stonedoors": {
+    "name": "Stone Doors",
+    "translation": "石门",
+    "authors": [
+      "Wulk"
+    ],
+    "homepage": "https://mods.vintagestory.at/stonedoors",
+    "latestVersion": "1.0.0"
+  },
+  "stonequarry": {
+    "name": "Stone Quarry",
+    "translation": "石材采石场",
+    "authors": [
+      "DArkHekRoMaNT"
+    ],
+    "homepage": "https://mods.vintagestory.at/stonequarry",
+    "latestVersion": "3.5.1"
+  },
+  "storagetweaks": {
+    "name": "Storage Tweaks",
+    "translation": "储物优化",
+    "authors": [
+      "Trojan96"
+    ],
+    "homepage": "https://mods.vintagestory.at/storagetweaks",
+    "latestVersion": "1.3.2-rc.1"
+  },
+  "synergy": {
+    "name": "Synergy",
+    "translation": "协同",
+    "authors": [
+      "Zaldaryon"
+    ],
+    "homepage": "https://mods.vintagestory.at/synergy",
+    "latestVersion": "1.1.15"
+  },
+  "tailorsachet": {
+    "name": "Tailor Sachet",
+    "translation": "裁缝香囊",
+    "authors": [
+      "Dweomer"
+    ],
+    "homepage": "https://mods.vintagestory.at/tailorsachet",
+    "latestVersion": "1.2.0"
+  },
+  "toeclasses": {
+    "name": "Thrones of Emberfall - Classes",
+    "translation": "余烬之座 - 职业",
+    "authors": [
+      "svanax"
+    ],
+    "homepage": "https://mods.vintagestory.at/toeclasses",
+    "latestVersion": "1.0.9"
+  },
+  "vintagekinematics": {
+    "name": "Vintage Kinematics",
+    "translation": "复古运动学",
+    "authors": [
+      "Garward"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/8639",
+    "latestVersion": "1.3.13"
+  },
+  "vintageriftclient": {
+    "name": "Vintage Rift - Client",
+    "translation": "Vintage Rift - 客户端",
+    "authors": [
+      "Cecer"
+    ],
+    "homepage": "https://mods.vintagestory.at/vintageriftclient",
+    "latestVersion": "1.0.6"
+  }
+}
