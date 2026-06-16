@@ -386,8 +386,8 @@ public sealed class PackerTests
         Assert.Contains("# VSCN Vintage Story 汉化包", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("语言包版本：0.0.1", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("发布类型：release", stdout.ToString(), StringComparison.Ordinal);
-        Assert.Contains("| 模组中文名称 | 模组英文名称 | 模组ID | 模组最新版本 | 模组贡献者 |", stdout.ToString(), StringComparison.Ordinal);
-        Assert.Contains("| mod0 | mod0 | mod0 | 1.0.0 |  |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| 模组中文名称 | 模组英文名称 | 模组ID | 模组最新版本 |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| mod0 | mod0 | mod0 | 1.0.0 |", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("zmod", stdout.ToString(), StringComparison.Ordinal);
     }
 
@@ -460,7 +460,7 @@ public sealed class PackerTests
         Assert.Equal(0, exitCode);
         Assert.Equal(string.Empty, stderr.ToString());
         Assert.Contains(
-            "| 更好的战利品 | Better Loot | betterloot | 2.0.3 |  |",
+            "| [更好的战利品](https://mods.vintagestory.at/betterloot) | [Better Loot](https://mods.vintagestory.at/betterloot) | betterloot | 2.0.3 |",
             stdout.ToString(),
             StringComparison.Ordinal);
     }

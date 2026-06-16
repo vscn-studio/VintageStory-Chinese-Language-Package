@@ -40,7 +40,7 @@ public static class CliRunner
                     repositoryRoot,
                     packageVersion!);
                 var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, repositoryRoot, releaseKind!));
+                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, releaseKind!));
                 return 0;
             }
 
@@ -51,7 +51,7 @@ public static class CliRunner
                     repositoryRoot,
                     packageVersion!);
                 var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, repositoryRoot, "release"));
+                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, "release"));
                 return 0;
             }
 
@@ -245,7 +245,6 @@ public static class CliRunner
     private static string FormatReleasePackageDescription(
         ReleasePackageDescription description,
         IReadOnlyDictionary<string, ModMetadata> metadata,
-        string repositoryRoot,
         string releaseKind)
     {
         var builder = new StringBuilder();
@@ -259,7 +258,7 @@ public static class CliRunner
         builder.AppendLine();
         builder.AppendLine("## 模组清单");
         builder.AppendLine();
-        AppendEntriesTable(builder, description.Entries, metadata, repositoryRoot);
+        AppendEntriesTable(builder, description.Entries, metadata);
 
         return builder.ToString();
     }
@@ -267,49 +266,31 @@ public static class CliRunner
     private static void AppendEntriesTable(
         StringBuilder builder,
         IReadOnlyList<ReleaseMilestoneEntry> entries,
-        IReadOnlyDictionary<string, ModMetadata> metadata,
-        string repositoryRoot)
+        IReadOnlyDictionary<string, ModMetadata> metadata)
     {
-        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 模组最新版本 | 模组贡献者 |");
-        builder.AppendLine("| --- | --- | --- | --- | --- |");
+        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 模组最新版本 |");
+        builder.AppendLine("| --- | --- | --- | --- |");
 
         foreach (var entry in entries)
         {
-            var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata, repositoryRoot);
+            var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
             builder.AppendLine(
-                $"| {EscapeMarkdownTableCell(item.ChineseName)} | {EscapeMarkdownTableCell(item.EnglishName)} | {EscapeMarkdownTableCell(item.ModId)} | {EscapeMarkdownTableCell(item.LatestVersion)} | {FormatTranslators(item.Translators)} |");
+                $"| {FormatLinkedName(item.ChineseName, item.Homepage)} | {FormatLinkedName(item.EnglishName, item.Homepage)} | {EscapeMarkdownTableCell(item.ModId)} | {EscapeMarkdownTableCell(item.LatestVersion)} |");
         }
     }
 
-    private static string FormatTranslators(IReadOnlyList<string> translators)
+    private static string FormatLinkedName(string name, string homepage)
     {
-        if (translators.Count == 0)
+        var escapedName = EscapeMarkdownTableCell(name);
+        if (string.IsNullOrWhiteSpace(homepage))
         {
-            return string.Empty;
+            return escapedName;
         }
 
-        return string.Join(
-            ", ",
-            translators.Select(contributor =>
-            {
-                var escaped = EscapeMarkdownTableCell(contributor);
-                return IsGitHubUserName(contributor)
-                    ? $"[{escaped}](https://github.com/{Uri.EscapeDataString(contributor)})"
-                    : escaped;
-            }));
-    }
-
-    private static bool IsGitHubUserName(string value)
-    {
-        if (string.IsNullOrWhiteSpace(value) || value.Length > 39)
-        {
-            return false;
-        }
-
-        return value.All(ch => char.IsAsciiLetterOrDigit(ch) || ch == '-')
-               && value[0] != '-'
-               && value[^1] != '-'
-               && !value.Contains("--", StringComparison.Ordinal);
+        var escapedHomepage = homepage
+            .Replace(")", "%29", StringComparison.Ordinal)
+            .Replace("(", "%28", StringComparison.Ordinal);
+        return $"[{escapedName}]({escapedHomepage})";
     }
 
     private static string EscapeMarkdownTableCell(string value)

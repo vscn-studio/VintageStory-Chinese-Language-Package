@@ -1,8 +1,6 @@
 using System.Net;
-using System.Diagnostics;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Collections.Concurrent;
 
 namespace Packer;
 
@@ -18,11 +16,10 @@ public sealed record ReleaseEntryMetadata(
     string EnglishName,
     string ModId,
     string LatestVersion,
-    string[] Translators);
+    string Homepage);
 
 public static class ModMetadataProvider
 {
-    private static readonly ConcurrentDictionary<string, string[]> TranslatorCache = new(StringComparer.OrdinalIgnoreCase);
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNameCaseInsensitive = true,
@@ -94,12 +91,10 @@ public static class ModMetadataProvider
 
     public static ReleaseEntryMetadata ResolveEntryMetadata(
         ReleaseMilestoneEntry entry,
-        IReadOnlyDictionary<string, ModMetadata> metadata,
-        string repositoryRoot)
+        IReadOnlyDictionary<string, ModMetadata> metadata)
     {
         ArgumentNullException.ThrowIfNull(entry);
         ArgumentNullException.ThrowIfNull(metadata);
-        ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
 
         metadata.TryGetValue(entry.ProjectSlug, out var item);
         if (item is null)
@@ -115,62 +110,7 @@ public static class ModMetadataProvider
             englishName,
             entry.RealModId,
             latestVersion,
-            GetTranslators(repositoryRoot, entry.SourceFilePath));
-    }
-
-    private static string[] GetTranslators(string repositoryRoot, string sourceFilePath)
-    {
-        var cacheKey = Path.GetFullPath(sourceFilePath);
-        return TranslatorCache.GetOrAdd(cacheKey, _ => ReadTranslators(repositoryRoot, sourceFilePath));
-    }
-
-    private static string[] ReadTranslators(string repositoryRoot, string sourceFilePath)
-    {
-        var relativePath = Path.GetRelativePath(repositoryRoot, sourceFilePath);
-        if (relativePath.StartsWith("..", StringComparison.Ordinal))
-        {
-            return [];
-        }
-
-        try
-        {
-            var startInfo = new ProcessStartInfo("git")
-            {
-                WorkingDirectory = repositoryRoot,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-            startInfo.ArgumentList.Add("log");
-            startInfo.ArgumentList.Add("--follow");
-            startInfo.ArgumentList.Add("--format=%an");
-            startInfo.ArgumentList.Add("--");
-            startInfo.ArgumentList.Add(relativePath);
-
-            using var process = Process.Start(startInfo);
-            if (process is null)
-            {
-                return [];
-            }
-
-            var output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit(10000);
-            if (process.ExitCode != 0)
-            {
-                return [];
-            }
-
-            return output
-                .Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .Where(author => !string.IsNullOrWhiteSpace(author))
-                .Distinct(StringComparer.OrdinalIgnoreCase)
-                .ToArray();
-        }
-        catch
-        {
-            return [];
-        }
+            FirstNonWhiteSpace(item?.Homepage, string.Empty));
     }
 
     private static async Task<IReadOnlyDictionary<string, ModMetadata>> LoadIndexAsync(

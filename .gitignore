@@ -3,3 +3,6 @@ bin/
 obj/
 TestResults/
 .translator-cache/
+bin2/
+obj2/
+tmp-obj/
