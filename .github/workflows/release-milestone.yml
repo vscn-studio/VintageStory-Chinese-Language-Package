@@ -54,6 +54,27 @@ jobs:
           dotnet run --project src/Packer -- describe-release --config config/packer/default.json --package-version "${VERSION}" --release-kind "${RELEASE_KIND}" --fetch-api > "${notes_path}"
           dotnet run --project src/Packer -- describe-package --config config/packer/default.json --package-version "${VERSION}" --fetch-api > "${readme_path}"
 
+      - name: Add README to package
+        shell: bash
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          zip_path="build/VintageStory-Chinese-Language-Package-${VERSION}.zip"
+          readme_path="build/README-${VERSION}.md"
+          export ZIP_PATH="${zip_path}"
+          export README_PATH="${readme_path}"
+          python3 - <<'PY'
+from pathlib import Path
+import zipfile
+import os
+
+zip_path = Path(os.environ["ZIP_PATH"])
+readme_path = Path(os.environ["README_PATH"])
+
+with zipfile.ZipFile(zip_path, "a", compression=zipfile.ZIP_DEFLATED) as archive:
+    archive.write(readme_path, "README.md")
+PY
+
       - name: Create release
         shell: bash
         env:
@@ -65,7 +86,6 @@ jobs:
           gh release create "v${VERSION}" \
             --target "${GITHUB_SHA}" \
             "build/VintageStory-Chinese-Language-Package-${VERSION}.zip" \
-            "build/README-${VERSION}.md#README.md" \
             --title "VintageStory-Chinese-Language-Package ${VERSION}" \
             --notes-file "build/release-notes-${VERSION}.md" \
             $( [ "${RELEASE_KIND}" = "pre-release" ] && echo --prerelease )
