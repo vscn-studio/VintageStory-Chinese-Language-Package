@@ -512,6 +512,26 @@
     "homepage": "https://mods.vintagestory.at/ecosystemflora",
     "latestVersion": "3.6.0"
   },
+  "hydrateordiedrate": {
+    "name": "Hydrate or Diedrate",
+    "translation": "饮水或渴死",
+    "authors": [
+      "Chronolegionaire",
+      "TheInsanityGod"
+    ],
+    "homepage": "https://mods.vintagestory.at/hydrateordiedrate",
+    "latestVersion": "2.4.13"
+  },
+    "indappledgroves": {
+    "name": "In Dappled Groves",
+    "translation": "斑驳林影",
+    "authors": [
+      "Vinter_Nacht",
+      "Huldra_Nacht"
+    ],
+    "homepage": "https://mods.vintagestory.at/indappledgroves",
+    "latestVersion": "3.0.1-rc.5"
+  },
     "vsroofing": {
     "name": "VS Roofing Mod",
     "translation": "VS 屋顶",
