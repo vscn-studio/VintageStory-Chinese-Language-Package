@@ -13,6 +13,7 @@
 ```text
 config/packer/default.json
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/zh-cn.json
+projects/assets/<mod-name>/<mod-version>/<modid>/lang/builtin
 projects/assets/index.json
 src/Packer
 tests/Packer.Tests
@@ -31,7 +32,25 @@ tests/Packer.Tests
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 ```
 
-打包时只会输出 `zh-cn.json`。
+打包时只会输出 `zh-cn.json`。如果某个版本由作者自带简体中文，可以在对应 `lang` 目录放置一个空的 `builtin` 文件作为标记；该版本会参与版本判断，但不会被打包输出。
+
+如果某个模组已经完全改由作者内置汉化维护，可以在 `projects/assets/index.json` 中将该模组的 `latestVersion` 写为 `builtin`：
+
+```json
+{
+  "chiseltools": {
+    "name": "QP's Chisel Tools",
+    "translation": "QP 的凿刻工具",
+    "authors": [
+      "QPTech"
+    ],
+    "homepage": "https://mods.vintagestory.at/chiseltools",
+    "latestVersion": "builtin"
+  }
+}
+```
+
+这种写法会让打包器和版本检查工作流完全跳过该模组。
 
 ## 新增翻译
 
@@ -69,6 +88,8 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 
 当同一个真实 `modid` 同时存在多个目标模组版本时，打包器会默认选择最高版本；如果版本无法比较、同一归一化版本重复，或最终输出路径发生冲突，打包会直接失败并列出冲突来源。
 
+如果最高版本目录中存在 `lang/builtin` 标记，打包器会认为该版本已由作者内置汉化并跳过该模组，不会回退打包旧版本社区翻译。
+
 ## 本地打包
 
 在仓库根目录运行：
@@ -105,6 +126,8 @@ Release 通过 `.github/workflows/release-milestone.yml` 手动触发，输入 `
 发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者。
 
 Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
+
+模组最新版本检查会生成待更新模组表和完整模组版本表。完整版本表包含“状态”列：`仓库维护` 表示仍由本仓库提供社区翻译，`作者内置` 表示该版本通过 `lang/builtin` 标记为作者自带汉化。`index.json` 中 `latestVersion` 为 `builtin` 的模组会被版本检查直接跳过。
 
 ## 安装到 Vintage Story
 

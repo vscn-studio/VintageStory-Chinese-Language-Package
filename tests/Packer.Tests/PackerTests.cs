@@ -87,6 +87,84 @@ public sealed class PackerTests
     }
 
     [Fact]
+    public async Task BuildAsync_SkipsAuthorBuiltinLatestVersionWithoutFallingBack()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "旧社区翻译"
+            }
+            """);
+        workspace.WriteText("projects/assets/example/1.1.0/examplemod/lang/builtin", string.Empty);
+
+        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
+
+        Assert.Equal(0, result.SelectedTranslationCount);
+        Assert.Equal(0, result.SkippedDirectoryCount);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        var entryNames = archive.Entries
+            .Select(entry => entry.FullName)
+            .OrderBy(name => name, StringComparer.Ordinal)
+            .ToArray();
+        Assert.Equal(["modinfo.json"], entryNames);
+    }
+
+    [Fact]
+    public async Task BuildAsync_UsesCommunityTranslationWhenItIsNewerThanAuthorBuiltin()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText("projects/assets/example/1.0.0/examplemod/lang/builtin", string.Empty);
+        workspace.WriteText(
+            "projects/assets/example/1.1.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "新社区翻译"
+            }
+            """);
+
+        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
+
+        Assert.Equal(1, result.SelectedTranslationCount);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        Assert.NotNull(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
+    }
+
+    [Fact]
+    public async Task BuildAsync_SkipsProjectWhenIndexLatestVersionIsBuiltin()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/index.json",
+            """
+            {
+              "example": {
+                "name": "Example",
+                "translation": "示例",
+                "latestVersion": "builtin"
+              }
+            }
+            """);
+        workspace.WriteText(
+            "projects/assets/example/9.9.9/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "不会入包"
+            }
+            """);
+
+        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
+
+        Assert.Equal(0, result.SelectedTranslationCount);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        Assert.Null(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
+    }
+
+    [Fact]
     public async Task BuildAsync_ThrowsWhenVersionCannotBeParsed()
     {
         using var workspace = new TestWorkspace();

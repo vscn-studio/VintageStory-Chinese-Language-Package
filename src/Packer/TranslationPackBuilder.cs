@@ -121,13 +121,14 @@ public static class TranslationPackBuilder
         var excludedProjects = config.GetExcludedProjectsSet();
         var excludedModIds = config.GetExcludedModIdsSet();
         var excludedVersions = config.GetExcludedVersionsSet();
+        var builtinProjects = LoadIndexBuiltinProjects(contentRoot);
         var candidates = new List<TranslationCandidate>();
         var skippedDirectoryCount = 0;
 
         foreach (var projectDirectory in Directory.EnumerateDirectories(contentRoot).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
         {
             var projectSlug = Path.GetFileName(projectDirectory);
-            if (excludedProjects.Contains(projectSlug))
+            if (excludedProjects.Contains(projectSlug) || builtinProjects.Contains(projectSlug))
             {
                 continue;
             }
@@ -148,7 +149,21 @@ public static class TranslationPackBuilder
                         continue;
                     }
 
-                    var languageFilePath = Path.Combine(modIdDirectory, "lang", $"{config.TargetLanguage}.json");
+                    var languageDirectory = Path.Combine(modIdDirectory, "lang");
+                    var builtinMarkerPath = Path.Combine(languageDirectory, "builtin");
+                    if (File.Exists(builtinMarkerPath))
+                    {
+                        candidates.Add(new TranslationCandidate(
+                            projectSlug,
+                            targetModVersion,
+                            realModId,
+                            modIdDirectory,
+                            builtinMarkerPath,
+                            CandidateKind.AuthorBuiltin));
+                        continue;
+                    }
+
+                    var languageFilePath = Path.Combine(languageDirectory, $"{config.TargetLanguage}.json");
                     if (!File.Exists(languageFilePath))
                     {
                         skippedDirectoryCount++;
@@ -160,12 +175,51 @@ public static class TranslationPackBuilder
                         targetModVersion,
                         realModId,
                         modIdDirectory,
-                        languageFilePath));
+                        languageFilePath,
+                        CandidateKind.CommunityTranslation));
                 }
             }
         }
 
         return new ScanResult(candidates, skippedDirectoryCount);
+    }
+
+    private static HashSet<string> LoadIndexBuiltinProjects(string contentRoot)
+    {
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        var indexPath = Path.Combine(contentRoot, "index.json");
+        if (!File.Exists(indexPath))
+        {
+            return result;
+        }
+
+        try
+        {
+            using var document = JsonDocument.Parse(File.ReadAllBytes(indexPath));
+            if (document.RootElement.ValueKind != JsonValueKind.Object)
+            {
+                return result;
+            }
+
+            foreach (var project in document.RootElement.EnumerateObject())
+            {
+                if (project.Value.ValueKind != JsonValueKind.Object ||
+                    !project.Value.TryGetProperty("latestVersion", out var latestVersion) ||
+                    latestVersion.ValueKind != JsonValueKind.String ||
+                    !string.Equals(latestVersion.GetString()?.Trim(), "builtin", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                result.Add(project.Name);
+            }
+        }
+        catch (JsonException ex)
+        {
+            throw new PackerException($"Invalid metadata index '{indexPath}': {ex.Message}");
+        }
+
+        return result;
     }
 
     private static List<SelectedTranslation> SelectCandidates(
@@ -215,6 +269,11 @@ public static class TranslationPackBuilder
             var winner = parsedCandidates
                 .OrderByDescending(item => item.Version, VersionComparer.VersionReleaseMetadata)
                 .First();
+
+            if (winner.Candidate.Kind == CandidateKind.AuthorBuiltin)
+            {
+                continue;
+            }
 
             selected.Add(new SelectedTranslation(
                 winner.Candidate.ProjectSlug,
@@ -322,12 +381,19 @@ public static class TranslationPackBuilder
             candidates.Select(candidate => $"- {candidate.SourceDirectory}"));
     }
 
+    private enum CandidateKind
+    {
+        CommunityTranslation,
+        AuthorBuiltin
+    }
+
     private sealed record TranslationCandidate(
         string ProjectSlug,
         string TargetModVersion,
         string RealModId,
         string SourceDirectory,
-        string SourceFilePath)
+        string SourceFilePath,
+        CandidateKind Kind)
     {
         public string GetDestinationPath(string targetLanguage)
         {

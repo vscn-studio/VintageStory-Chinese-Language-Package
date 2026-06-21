@@ -15,6 +15,10 @@ from functools import cmp_to_key
 from pathlib import Path
 from typing import Any
 
+BUILTIN_VERSION = "builtin"
+STATUS_REPOSITORY = "仓库维护"
+STATUS_AUTHOR_BUILTIN = "作者内置"
+
 
 @dataclass(frozen=True)
 class OfficialModData:
@@ -33,6 +37,7 @@ class ModRecord:
     repository_modids: list[str]
     repository_versions: list[str]
     repository_latest: str
+    status: str = STATUS_REPOSITORY
     official_latest: str = ""
     official_updated_at: str = ""
     official_found: bool = False
@@ -64,7 +69,7 @@ def main() -> int:
         record.official_found = True
         record.official_latest = official.latest_version
         record.official_updated_at = official.updated_at
-        if record.official_latest:
+        if record.official_latest and record.status != STATUS_AUTHOR_BUILTIN:
             record.needs_update = compare_versions(record.repository_latest, record.official_latest) < 0
 
     records.sort(key=lambda item: (not item.needs_update, item.chinese_name.casefold(), item.english_name.casefold()))
@@ -101,26 +106,31 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
 
     for slug_dir in sorted((path for path in content_root.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
         slug = slug_dir.name
+        index_entry = index_map.get(slug, {})
+        if is_index_builtin(index_entry):
+            continue
+
         versions: list[str] = []
         modids: list[str] = []
+        builtin_versions: set[str] = set()
         for version_dir in sorted((path for path in slug_dir.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
-            if has_translation(version_dir):
+            version_modids, has_builtin = scan_version_directory(version_dir)
+            if version_modids:
                 versions.append(version_dir.name)
-                modids.extend(
-                    modid_dir.name
-                    for modid_dir in version_dir.iterdir()
-                    if modid_dir.is_dir() and (modid_dir / "lang" / "zh-cn.json").is_file()
-                )
+                modids.extend(version_modids)
+                if has_builtin:
+                    builtin_versions.add(version_dir.name.casefold())
 
         if not versions:
             continue
 
         unique_versions = dedupe_sorted_versions(versions)
         unique_modids = dedupe_case_insensitive(modids)
-        index_entry = index_map.get(slug, {})
         chinese_name = text_or_default(index_entry.get("translation"), slug)
         english_name = text_or_default(index_entry.get("name"), slug)
         homepage = text_or_default(index_entry.get("homepage"), build_homepage_from_index(index_entry))
+        repository_latest = unique_versions[0]
+        status = STATUS_AUTHOR_BUILTIN if repository_latest.casefold() in builtin_versions else STATUS_REPOSITORY
 
         records.append(
             ModRecord(
@@ -130,20 +140,32 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
                 homepage=homepage,
                 repository_modids=unique_modids,
                 repository_versions=unique_versions,
-                repository_latest=unique_versions[0],
+                repository_latest=repository_latest,
+                status=status,
             )
         )
 
     return records
 
 
-def has_translation(version_dir: Path) -> bool:
+def is_index_builtin(index_entry: dict[str, Any]) -> bool:
+    return text_or_default(index_entry.get("latestVersion"), "").casefold() == BUILTIN_VERSION
+
+
+def scan_version_directory(version_dir: Path) -> tuple[list[str], bool]:
+    modids: list[str] = []
+    has_builtin = False
     for modid_dir in version_dir.iterdir():
         if not modid_dir.is_dir():
             continue
-        if (modid_dir / "lang" / "zh-cn.json").is_file():
-            return True
-    return False
+        lang_dir = modid_dir / "lang"
+        if (lang_dir / "builtin").is_file():
+            modids.append(modid_dir.name)
+            has_builtin = True
+            continue
+        if (lang_dir / "zh-cn.json").is_file():
+            modids.append(modid_dir.name)
+    return modids, has_builtin
 
 
 def fetch_official_metadata(
@@ -456,8 +478,8 @@ def render_markdown(records: list[ModRecord]) -> str:
     lines.append("")
     lines.append("## 模组版本表")
     lines.append("")
-    lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
-    lines.append("| --- | --- | --- | --- | --- | --- |")
+    lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 状态 | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
+    lines.append("| --- | --- | --- | --- | --- | --- | --- |")
 
     for record in records:
         modids = "<br>".join(escape_cell(modid) for modid in record.repository_modids) if record.repository_modids else "未记录"
@@ -465,7 +487,7 @@ def render_markdown(records: list[ModRecord]) -> str:
         latest_version = escape_cell(record.official_latest) if record.official_latest else "未获取"
         updated_at = escape_cell(record.official_updated_at) if record.official_updated_at else "未获取"
         lines.append(
-            f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | {repo_versions} | {latest_version} | {updated_at} |"
+            f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | {escape_cell(record.status)} | {repo_versions} | {latest_version} | {updated_at} |"
         )
 
     lines.append("")
