@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>复古物语译名标准化</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <input id="searchInput" type="search" placeholder="搜索英文术语、中文译名或分类" autocomplete="off">
+      <p id="summary">正在载入术语表...</p>
+      <nav id="categoryNav" class="category-nav" aria-label="术语分类"></nav>
+      <section id="content" class="content" aria-live="polite"></section>
+      <p id="emptyState" class="empty" hidden>没有找到匹配的译名。</p>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

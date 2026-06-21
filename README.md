@@ -96,6 +96,14 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 
 ## 译名标准化术语表
 
+术语表网页展示入口：
+
+```text
+docs/terminology/
+```
+
+网页直接读取 `projects/translation-terminology/zh-cn/*.json` 作为数据源。
+
 译名标准化文件位于：
 
 ```text
