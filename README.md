@@ -4,6 +4,14 @@
 
 仓库中的翻译资源按模组名、目标模组版本和真实 `modid` 组织，最终由本地打包器生成一个可直接放入 Vintage Story `Mods` 目录的聚合包 zip。
 
+## 相关页面
+
+| 名称 | 地址 |
+| --- | --- |
+| VSCN-Studio 网站 | <https://vscn.studio> |
+| 译名标准化页面 | <https://vscn-studio.github.io/VintageStory-Chinese-Language-Package/docs/terminology/> |
+| 游戏模组库 | <https://mods.vintagestory.at/vscnlangpack> |
+
 ## 环境要求
 
 - .NET SDK 8 或更高
