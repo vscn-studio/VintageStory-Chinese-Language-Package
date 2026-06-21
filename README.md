@@ -15,7 +15,7 @@ config/packer/default.json
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/zh-cn.json
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/builtin
 projects/assets/index.json
-projects/translation-terminology/*.json
+projects/translation-terminology/<language>/*.json
 projects/dictionaries/vs-wiki/zh-cn.dictionary.json
 src/Packer
 tests/Packer.Tests
@@ -27,7 +27,7 @@ tests/Packer.Tests
 - `<mod-version>` 表示目标模组版本，不表示游戏版本。
 - `<modid>` 必须使用被汉化模组的真实 `modid`。
 - `projects/assets/index.json` 用于维护模组展示元数据，键名为 `<mod-name>`。
-- `projects/translation-terminology/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
+- `projects/translation-terminology/<language>/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
 - `projects/dictionaries/vs-wiki/zh-cn.dictionary.json` 是从 Vintage Story Wiki 抽取的来源字典，供生成或校对术语表时参考。
 
 可选地，你也可以在同目录保留源语言文件，例如：
@@ -99,7 +99,7 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 译名标准化文件位于：
 
 ```text
-projects/translation-terminology/
+projects/translation-terminology/zh-cn/
 ```
 
 每个分类文件都是一个普通 JSON 对象，扁平键值结构：
@@ -113,7 +113,7 @@ projects/translation-terminology/
 
 键名为英文术语，值为标准中文译名。
 
-当前分类文件如下：
+当前简体中文术语文件如下：
 
 ```text
 overview.json                     标准化概况
@@ -133,6 +133,18 @@ mod-common-terms.json             模组通用术语
 technical-content.json            技术性内容
 other.json                        其他
 ```
+
+Weblate 的文件掩码必须包含 `*` 来表示语言代码，因此每个分类组件应使用如下形式：
+
+```text
+projects/translation-terminology/*/blocks.json
+projects/translation-terminology/*/items.json
+projects/translation-terminology/*/temporal-lore-and-story.json
+```
+
+其中 `*` 会匹配当前的 `zh-cn` 目录。新增其他语言时，应放在同一层级，例如 `projects/translation-terminology/en/blocks.json` 或 Weblate 采用的对应语言代码目录。
+
+Weblate 接入时建议将这些文件分别作为 JSON 组件导入，并在组件设置中启用 `Use as a glossary`。不要把 `projects/translation-terminology/*/*.json` 当作单个术语组件的文件掩码使用，因为这些文件名表示分类，不表示语言代码。
 
 ## 本地打包
 
