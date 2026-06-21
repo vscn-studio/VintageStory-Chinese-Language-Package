@@ -549,5 +549,14 @@
     ],
     "homepage": "https://mods.vintagestory.at/tankardsandgoblets",
     "latestVersion": "1.4.3"
+  },
+    "reelmower": {
+    "name": "Reel Mower",
+    "translation": "滚刀割草机",
+    "authors": [
+      "Mike"
+    ],
+    "homepage": "https://mods.vintagestory.at/reelmower",
+    "latestVersion": "1.4.7"
   }
 }
