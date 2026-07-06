@@ -28,13 +28,21 @@ class OfficialModData:
     updated_at: str
 
 
+@dataclass(frozen=True)
+class IndexLookupEntry:
+    key: str
+    data: dict[str, Any]
+
+
 @dataclass
 class ModRecord:
     slug: str
+    index_key: str
     chinese_name: str
     english_name: str
     homepage: str
     repository_modids: list[str]
+    api_candidate_modids: list[str]
     repository_versions: list[str]
     repository_latest: str
     status: str = STATUS_REPOSITORY
@@ -67,6 +75,10 @@ def main() -> int:
             continue
 
         record.official_found = True
+        if official.homepage and not record.homepage:
+            record.homepage = official.homepage
+        if official.name and record.english_name.casefold() == record.slug.casefold():
+            record.english_name = official.name
         record.official_latest = official.latest_version
         record.official_updated_at = official.updated_at
         if record.official_latest and record.status != STATUS_AUTHOR_BUILTIN:
@@ -100,24 +112,24 @@ def load_index_map(path: Path) -> dict[str, dict[str, Any]]:
 
 def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> list[ModRecord]:
     content_root = repo_root / "projects" / "assets"
+    index_lookup = build_index_lookup(index_map)
     records: list[ModRecord] = []
     if not content_root.is_dir():
         return records
 
     for slug_dir in sorted((path for path in content_root.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
         slug = slug_dir.name
-        index_entry = index_map.get(slug, {})
-        if is_index_builtin(index_entry):
-            continue
 
         versions: list[str] = []
         modids: list[str] = []
+        version_modids_by_version: dict[str, list[str]] = {}
         builtin_versions: set[str] = set()
         for version_dir in sorted((path for path in slug_dir.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
-            version_modids, has_builtin = scan_version_directory(version_dir)
-            if version_modids:
+            current_version_modids, has_builtin = scan_version_directory(version_dir)
+            if current_version_modids:
                 versions.append(version_dir.name)
-                modids.extend(version_modids)
+                modids.extend(current_version_modids)
+                version_modids_by_version[version_dir.name] = current_version_modids
                 if has_builtin:
                     builtin_versions.add(version_dir.name.casefold())
 
@@ -125,20 +137,29 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
             continue
 
         unique_versions = dedupe_sorted_versions(versions)
-        unique_modids = dedupe_case_insensitive(modids)
+        repository_latest = unique_versions[0]
+        api_candidate_modids = dedupe_case_insensitive(modids)
+        latest_modids = version_modids_by_version.get(repository_latest, [])
+        unique_modids = dedupe_case_insensitive(latest_modids or api_candidate_modids)
+        index_lookup_entry = resolve_index_entry(index_lookup, [slug, *unique_modids, *api_candidate_modids])
+        index_entry = index_lookup_entry.data
+        if is_index_builtin(index_entry):
+            continue
+
         chinese_name = text_or_default(index_entry.get("translation"), slug)
         english_name = text_or_default(index_entry.get("name"), slug)
         homepage = text_or_default(index_entry.get("homepage"), build_homepage_from_index(index_entry))
-        repository_latest = unique_versions[0]
         status = STATUS_AUTHOR_BUILTIN if repository_latest.casefold() in builtin_versions else STATUS_REPOSITORY
 
         records.append(
             ModRecord(
                 slug=slug,
+                index_key=index_lookup_entry.key,
                 chinese_name=chinese_name,
                 english_name=english_name,
                 homepage=homepage,
                 repository_modids=unique_modids,
+                api_candidate_modids=api_candidate_modids,
                 repository_versions=unique_versions,
                 repository_latest=repository_latest,
                 status=status,
@@ -155,7 +176,7 @@ def is_index_builtin(index_entry: dict[str, Any]) -> bool:
 def scan_version_directory(version_dir: Path) -> tuple[list[str], bool]:
     modids: list[str] = []
     has_builtin = False
-    for modid_dir in version_dir.iterdir():
+    for modid_dir in sorted((path for path in version_dir.iterdir() if path.is_dir()), key=lambda path: path.name.casefold()):
         if not modid_dir.is_dir():
             continue
         lang_dir = modid_dir / "lang"
@@ -177,14 +198,15 @@ def fetch_official_metadata(
     result: dict[str, OfficialModData] = {}
     if not records:
         return result
+    index_lookup = build_index_lookup(index_map)
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         futures = {
             executor.submit(
                 fetch_official_metadata_for_slug,
                 record.slug,
-                index_map.get(record.slug, {}),
-                record.repository_modids,
+                resolve_index_entry(index_lookup, [record.index_key, record.slug, *record.repository_modids, *record.api_candidate_modids]),
+                record.api_candidate_modids,
                 timeout,
             ): record.slug
             for record in records
@@ -204,20 +226,23 @@ def fetch_official_metadata(
 
 def fetch_official_metadata_for_slug(
     slug: str,
-    index_entry: dict[str, Any],
-    repository_modids: list[str],
+    index_lookup_entry: IndexLookupEntry,
+    api_candidate_modids: list[str],
     timeout: int,
 ) -> OfficialModData | None:
-    candidates = [slug]
+    index_entry = index_lookup_entry.data
+    candidates = [slug, index_lookup_entry.key]
+    candidates.extend(index_entry_candidates(index_lookup_entry.key, index_entry))
     candidates.extend(homepage_candidates(text_or_default(index_entry.get("homepage"), "")))
-    candidates.extend(repository_modids)
+    candidates.extend(api_candidate_modids)
 
     seen: set[str] = set()
     for candidate in candidates:
         candidate = candidate.strip()
-        if not candidate or candidate in seen:
+        candidate_key = candidate.casefold()
+        if not candidate or candidate_key in seen:
             continue
-        seen.add(candidate)
+        seen.add(candidate_key)
         payload = fetch_json(f"https://mods.vintagestory.at/api/mod/{urllib.parse.quote(candidate, safe='')}", timeout)
         official = convert_official_payload(payload, index_entry)
         if official is not None:
@@ -406,6 +431,60 @@ def dedupe_case_insensitive(values: list[str]) -> list[str]:
         seen.add(key)
         result.append(text)
     return result
+
+
+def build_index_lookup(index_map: dict[str, dict[str, Any]]) -> dict[str, IndexLookupEntry]:
+    lookup: dict[str, IndexLookupEntry] = {}
+
+    for key, index_entry in index_map.items():
+        add_index_lookup_candidate(lookup, key, IndexLookupEntry(key, index_entry), overwrite=True)
+
+    for key, index_entry in index_map.items():
+        lookup_entry = resolve_index_entry(lookup, [key])
+        for candidate in index_entry_candidates(key, index_entry):
+            add_index_lookup_candidate(lookup, candidate, lookup_entry, overwrite=False)
+
+    return lookup
+
+
+def add_index_lookup_candidate(
+    lookup: dict[str, IndexLookupEntry],
+    candidate: str,
+    lookup_entry: IndexLookupEntry,
+    *,
+    overwrite: bool,
+) -> None:
+    normalized = text_or_default(candidate, "").casefold()
+    if not normalized:
+        return
+    if overwrite or normalized not in lookup:
+        lookup[normalized] = lookup_entry
+
+
+def resolve_index_entry(lookup: dict[str, IndexLookupEntry], candidates: list[str]) -> IndexLookupEntry:
+    for candidate in candidates:
+        normalized = text_or_default(candidate, "").casefold()
+        if not normalized:
+            continue
+        lookup_entry = lookup.get(normalized)
+        if lookup_entry is not None:
+            return lookup_entry
+    return IndexLookupEntry("", {})
+
+
+def index_entry_candidates(key: str, index_entry: dict[str, Any]) -> list[str]:
+    candidates = [key]
+    candidates.extend(homepage_candidates(text_or_default(index_entry.get("homepage"), "")))
+
+    alias = text_or_default(index_entry.get("urlalias"), "")
+    if alias:
+        candidates.append(alias.strip().strip("/"))
+
+    mod_id = index_entry.get("modid")
+    if isinstance(mod_id, int) and mod_id > 0:
+        candidates.append(str(mod_id))
+
+    return candidates
 
 
 def homepage_candidates(homepage: str) -> list[str]:
