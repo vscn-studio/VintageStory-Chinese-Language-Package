@@ -241,6 +241,30 @@ public sealed class PackerTests
     }
 
     [Fact]
+    public async Task BuildAsync_AllowsJsonCommentsAndTrailingCommas()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              // section
+              "item.name": "带注释",
+            }
+            """);
+
+        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
+
+        Assert.Equal(1, result.SelectedTranslationCount);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        using var translationReader = new StreamReader(archive.GetEntry("assets/examplemod/lang/zh-cn.json")!.Open());
+        var translationContent = await translationReader.ReadToEndAsync();
+        Assert.Contains("// section", translationContent, StringComparison.Ordinal);
+        Assert.Contains("\"item.name\": \"带注释\"", translationContent, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task BuildAsync_ThrowsWhenJsonIsInvalid()
     {
         using var workspace = new TestWorkspace();
@@ -248,7 +272,8 @@ public sealed class PackerTests
             "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
             """
             {
-              "item.name": "坏掉了",
+              "item.name": "坏掉了"
+              "item.other": "仍然坏着"
             }
             """);
 

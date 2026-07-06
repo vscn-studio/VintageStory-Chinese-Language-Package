@@ -6,6 +6,12 @@ namespace Packer;
 
 public static class TranslationPackBuilder
 {
+    private static readonly JsonDocumentOptions TranslationJsonOptions = new()
+    {
+        CommentHandling = JsonCommentHandling.Skip,
+        AllowTrailingCommas = true
+    };
+
     public static PackInspection Inspect(
         PackerConfig config,
         string repositoryRoot)
@@ -300,7 +306,7 @@ public static class TranslationPackBuilder
 
             try
             {
-                using var document = JsonDocument.Parse(payload);
+                using var document = JsonDocument.Parse(payload, TranslationJsonOptions);
                 if (document.RootElement.ValueKind != JsonValueKind.Object)
                 {
                     throw new PackerException($"JSON root must be an object: {item.SourceFilePath}");
