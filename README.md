@@ -14,7 +14,8 @@
 
 ## 环境要求
 
-- .NET SDK 8 或更高
+- .NET SDK 8 或更高，用于构建打包器和运行测试。
+- .NET SDK 10，用于构建 `src/Updater` 中面向 Vintage Story 1.22.x API 的自动更新模组。
 
 ## 仓库结构
 
@@ -26,6 +27,7 @@ projects/assets/index.json
 projects/translation-terminology/<language>/*.json
 projects/dictionaries/vs-wiki/zh-cn.dictionary.json
 src/Packer
+src/Updater
 tests/Packer.Tests
 ```
 
@@ -37,6 +39,7 @@ tests/Packer.Tests
 - `projects/assets/index.json` 用于维护模组展示元数据，键名为 `<mod-name>`。
 - `projects/translation-terminology/<language>/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
 - `projects/dictionaries/vs-wiki/zh-cn.dictionary.json` 是从 Vintage Story Wiki 抽取的来源字典，供生成或校对术语表时参考。
+- `src/Updater` 是独立的客户端代码模组 `vscnlangpackupdater`，用于从 GitHub Releases 自动下载最新版汉化包。
 
 可选地，你也可以在同目录保留源语言文件，例如：
 
@@ -200,16 +203,41 @@ dotnet test
 
 ## GitHub Actions
 
-Release 通过 `.github/workflows/release-milestone.yml` 手动触发，输入 `version` 和 `release_kind` 即可。
+Release 通过 `.github/workflows/release.yml` 手动触发，输入 `version` 和 `release_kind` 即可。
 
 发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者，并生成贡献者翻译数量统计表。
 
 Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
 
+同一个 Release 会额外上传 `vscnlangpackupdater-<version>.zip`，用于发布自动更新客户端模组。
+
 模组最新版本检查会生成待更新模组表和完整模组版本表。完整版本表包含“状态”列：`仓库维护` 表示仍由本仓库提供社区翻译，`作者内置` 表示该版本通过 `lang/builtin` 标记为作者自带汉化。`index.json` 中 `latestVersion` 为 `builtin` 的模组会被版本检查直接跳过。
+
+## 自动更新模组
+
+`src/Updater` 提供 `vscnlangpackupdater` 客户端代码模组。它会在客户端启动后请求 GitHub Releases 的最新发布版本：
+
+```text
+https://api.github.com/repos/vscn-studio/VintageStory-Chinese-Language-Package/releases/latest
+```
+
+如果最新 Release 版本高于当前已加载的 `vscnlangpack`，它会下载对应的 `VintageStory-Chinese-Language-Package-<version>.zip` 到玩家的 `Mods` 目录，并提示玩家重启游戏生效。它不会自动打包语言包，也不依赖额外云服务器。
+
+构建 updater 时需要将 `VINTAGE_STORY` 指向包含 `VintagestoryAPI.dll` 的游戏安装目录：
+
+```powershell
+dotnet build src/Updater/Updater.csproj -c Release
+```
+
+构建产物位于：
+
+```text
+src/Updater/bin/Release/mod/
+```
 
 ## 安装到 Vintage Story
 
 1. 运行打包命令生成 zip。
 2. 将生成的 zip 放入 Vintage Story 的 `Mods` 目录。
 3. 启动游戏后，语言包会以 `vscnlangpack` 这个模组 ID 被识别，并覆盖你已安装且受支持模组的对应简体中文语言文件。
+4. 如需启动时自动检查 GitHub Release 最新版，可额外安装 `vscnlangpackupdater`。

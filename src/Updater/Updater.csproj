@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>vscnlangpackupdater</AssemblyName>
+    <RootNamespace>VscnLanguagePackUpdater</RootNamespace>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\$(Configuration)\mod</OutputPath>
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == '' and '$(VINTAGE_STORY)' != ''">$(VINTAGE_STORY)</VintageStoryDir>
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == '' and Exists('$(MSBuildThisFileDirectory)..\..\..\vs_client_linux-x64_1.22.2\vintagestory\VintagestoryAPI.dll')">$(MSBuildThisFileDirectory)..\..\..\vs_client_linux-x64_1.22.2\vintagestory</VintageStoryDir>
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == '' and Exists('$(MSBuildThisFileDirectory)..\..\..\VSSL\workspace\servers\windows\1.22.0-rc.10\VintagestoryAPI.dll')">$(MSBuildThisFileDirectory)..\..\..\VSSL\workspace\servers\windows\1.22.0-rc.10</VintageStoryDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI">
+      <HintPath>$(VintageStoryDir)\VintagestoryAPI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="modinfo.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="ValidateVintageStoryDir" BeforeTargets="BeforeBuild">
+    <Error
+      Condition="'$(VintageStoryDir)' == '' or !Exists('$(VintageStoryDir)\VintagestoryAPI.dll')"
+      Text="VSCN language pack updater build failed: could not find VintagestoryAPI.dll. Set VINTAGE_STORY to your Vintage Story install root, the folder that contains VintagestoryAPI.dll." />
+  </Target>
+
+</Project>

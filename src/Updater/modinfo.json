@@ -1,0 +1,16 @@
+{
+  "type": "code",
+  "modid": "vscnlangpackupdater",
+  "name": "VSCN Language Pack Updater",
+  "description": "Downloads the latest VSCN Vintage Story Chinese Language Pack from GitHub Releases.",
+  "authors": [
+    "VSCN-Studio"
+  ],
+  "version": "0.1.0",
+  "side": "client",
+  "requiredOnClient": false,
+  "requiredOnServer": false,
+  "dependencies": {
+    "game": "1.22.0"
+  }
+}

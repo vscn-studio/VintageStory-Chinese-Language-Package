@@ -1,4 +1,4 @@
-name: Manual Release Pack
+name: Release
 
 on:
   workflow_dispatch:
@@ -18,6 +18,9 @@ on:
 permissions:
   contents: write
 
+env:
+  VINTAGE_STORY_BUILD_VERSION: 1.22.3
+
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -31,7 +34,9 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            8.0.x
+            10.0.x
 
       - name: Run tests
         run: dotnet test
@@ -75,6 +80,46 @@ jobs:
               archive.write(readme_path, "README.md")
           PY
 
+      - name: Download Vintage Story API
+        shell: bash
+        run: |
+          vintage_story_dir="${RUNNER_TEMP}/vintagestory"
+          archive_path="${RUNNER_TEMP}/vs-server.tar.gz"
+          mkdir -p "${vintage_story_dir}"
+          curl -fsSL "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${VINTAGE_STORY_BUILD_VERSION}.tar.gz" -o "${archive_path}"
+          tar -xzf "${archive_path}" -C "${vintage_story_dir}"
+          test -f "${vintage_story_dir}/VintagestoryAPI.dll"
+          echo "VINTAGE_STORY=${vintage_story_dir}" >> "${GITHUB_ENV}"
+
+      - name: Build updater mod
+        shell: bash
+        run: dotnet build src/Updater/Updater.csproj -c Release
+
+      - name: Stamp updater mod version
+        shell: bash
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          path = Path("src/Updater/bin/Release/mod/modinfo.json")
+          data = json.loads(path.read_text(encoding="utf-8"))
+          data["version"] = os.environ["VERSION"]
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          PY
+
+      - name: Pack updater mod
+        shell: bash
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          updater_zip="${GITHUB_WORKSPACE}/build/vscnlangpackupdater-${VERSION}.zip"
+          mkdir -p build
+          (cd src/Updater/bin/Release/mod && zip -r "${updater_zip}" .)
+
       - name: Create release
         shell: bash
         env:
@@ -86,6 +131,7 @@ jobs:
           gh release create "v${VERSION}" \
             --target "${GITHUB_SHA}" \
             "build/VintageStory-Chinese-Language-Package-${VERSION}.zip" \
+            "build/vscnlangpackupdater-${VERSION}.zip" \
             --title "VintageStory-Chinese-Language-Package ${VERSION}" \
             --notes-file "build/release-notes-${VERSION}.md" \
             $( [ "${RELEASE_KIND}" = "pre-release" ] && echo --prerelease )
