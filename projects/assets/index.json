@@ -47,22 +47,6 @@
     "homepage": "https://mods.vintagestory.at/alchemy",
     "latestVersion": "2.1.0-rc.81"
   },
-  "animaltrader": {
-    "name": "Animal Trader",
-    "translation": "动物商人",
-    "authors": [
-      "Shazza"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/animaltrader",
-    "latestVersion": "1.1.0"
-  },
   "awearablelight": {
     "name": "A Wearable Light",
     "translation": "可穿戴灯",
@@ -127,22 +111,6 @@
     "homepage": "https://mods.vintagestory.at/biomes",
     "latestVersion": "2.1.1"
   },
-  "blacksmithglovesv2": {
-    "name": "Blacksmith Gloves V2",
-    "translation": "铁匠手套 V2",
-    "authors": [
-      "TheKremes"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/blacksmithglovesv2",
-    "latestVersion": "2.0.1"
-  },
   "blocksoverlay": {
     "name": "Block Overlay",
     "translation": "方块覆盖层",
@@ -158,22 +126,6 @@
     ],
     "homepage": "https://mods.vintagestory.at/xray",
     "latestVersion": "4.11.5"
-  },
-  "boricalchemy": {
-    "name": "Boric Alchemy",
-    "translation": "硼炼金术",
-    "authors": [
-      "MrBadWithNames"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/show/mod/5577",
-    "latestVersion": "1.9.4"
   },
   "butchering": {
     "name": "Butchering",
@@ -271,22 +223,6 @@
     "homepage": "https://mods.vintagestory.at/combatoverhaul",
     "latestVersion": "0.16.16"
   },
-  "efmealsmodule": {
-    "name": "Expanded Foods: Meals Module",
-    "translation": "扩展食物：餐食模块",
-    "authors": [
-      "l33tmaan"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/efmealsmodule",
-    "latestVersion": "1.0.0-dev.4"
-  },
   "em": {
     "name": "Expanded Matter",
     "translation": "扩展物质",
@@ -318,22 +254,6 @@
     ],
     "homepage": "https://mods.vintagestory.at/expandedfoods",
     "latestVersion": "2.0.0-dev.12"
-  },
-  "fastmap": {
-    "name": "Fast Map",
-    "translation": "快速地图",
-    "authors": [
-      "chrisunfocused"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/show/mod/8499",
-    "latestVersion": "122.5.1"
   },
   "animalicacore": {
     "name": "Animalica - Playable Animals",
@@ -447,22 +367,6 @@
     "homepage": "https://mods.vintagestory.at/icecycle",
     "latestVersion": "1.0.2"
   },
-  "imgui": {
-    "name": "ImGui",
-    "translation": "即时模式图形界面",
-    "authors": [
-      "Maltiez"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/imgui",
-    "latestVersion": "1.2.7"
-  },
   "justtofu": {
     "name": "Just Tofu",
     "translation": "纯豆腐",
@@ -494,22 +398,6 @@
     ],
     "homepage": "https://mods.vintagestory.at/kscartographytable",
     "latestVersion": "2.0.4"
-  },
-  "lockinteract": {
-    "name": "LockInteract",
-    "translation": "锁定交互",
-    "authors": [
-      "Arkzenir"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/show/mod/9482",
-    "latestVersion": "2.1.1"
   },
   "mealrevariation": {
     "name": "Variations on a Meal - Revaried",
@@ -575,22 +463,6 @@
     "homepage": "https://mods.vintagestory.at/mineralspread",
     "latestVersion": "1.0.0"
   },
-  "moregoat": {
-    "name": "MORE GOAT",
-    "translation": "更多山羊",
-    "authors": [
-      "Shazza"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/moregoat",
-    "latestVersion": "1.1.0"
-  },
   "petai": {
     "name": "Pet AI",
     "translation": "宠物 AI",
@@ -613,7 +485,7 @@
     "authors": [
       "DArkHekRoMaNT"
     ],
-  "contributors": [
+    "contributors": [
       {
         "name": "HansJack",
         "url": "https://github.com/TGU-HansJack",
@@ -622,22 +494,6 @@
     ],
     "homepage": "https://mods.vintagestory.at/playercorpse",
     "latestVersion": "1.12.0"
-  },
-  "playercorpseforkedazu": {
-    "name": "Player Corpse (Azu Modded)",
-    "translation": "玩家尸体（Azu 分支）",
-    "authors": [
-      "azurempress"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/playercorpseforkedazu",
-    "latestVersion": "1.13.1"
   },
   "playermodellib": {
     "name": "Player Model lib",
@@ -670,54 +526,6 @@
     ],
     "homepage": "https://mods.vintagestory.at/primitivesurvival",
     "latestVersion": "5.0.6"
-  },
-  "quiversfork": {
-    "name": "Quivers and Sheaths Fork",
-    "translation": "箭袋与刀鞘分支",
-    "authors": [
-      "Alodh"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/quiversfork",
-    "latestVersion": "0.9.14"
-  },
-  "realgrapes": {
-    "name": "Real Grapes",
-    "translation": "真实葡萄",
-    "authors": [
-      "xXx_Ape_xXx"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/realgrapes",
-    "latestVersion": "1.4.0"
-  },
-  "riftwardtweaks": {
-    "name": "Rift Ward Tweaks",
-    "translation": "裂隙守卫调整",
-    "authors": [
-      "Elocrypt"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/riftwardtweaks",
-    "latestVersion": "2.8.0"
   },
   "seafarer": {
     "name": "Seafarer",
@@ -815,22 +623,6 @@
     "homepage": "https://mods.vintagestory.at/storagetweaks",
     "latestVersion": "1.3.3"
   },
-  "synergy": {
-    "name": "Synergy",
-    "translation": "协同",
-    "authors": [
-      "Zaldaryon"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/synergy",
-    "latestVersion": "1.1.15"
-  },
   "tailorsachet": {
     "name": "Tailor Sachet",
     "translation": "裁缝香囊",
@@ -863,39 +655,7 @@
     "homepage": "https://mods.vintagestory.at/toeclasses",
     "latestVersion": "1.0.10"
   },
-  "vintagekinematics": {
-    "name": "Vintage Kinematics",
-    "translation": "复古运动学",
-    "authors": [
-      "Garward"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/show/mod/8639",
-    "latestVersion": "1.3.13"
-  },
-  "vintageriftclient": {
-    "name": "Vintage Rift - Client",
-    "translation": "Vintage Rift - 客户端",
-    "authors": [
-      "Cecer"
-    ],
-    "contributors": [
-      {
-        "name": "HansJack",
-        "url": "https://github.com/TGU-HansJack",
-        "role": "Chinese Translator"
-      }
-    ],
-    "homepage": "https://mods.vintagestory.at/vintageriftclient",
-    "latestVersion": "1.0.6"
-  },
-    "ecosystemflora": {
+  "ecosystemflora": {
     "name": "Ecosystem - Flora",
     "translation": "生态系统 - 植物",
     "authors": [
@@ -928,7 +688,7 @@
     "homepage": "https://mods.vintagestory.at/hydrateordiedrate",
     "latestVersion": "2.4.14"
   },
-    "indappledgroves": {
+  "indappledgroves": {
     "name": "In Dappled Groves",
     "translation": "斑驳林影",
     "authors": [
@@ -945,7 +705,7 @@
     "homepage": "https://mods.vintagestory.at/indappledgroves",
     "latestVersion": "3.0.1-rc.5"
   },
-    "vsroofing": {
+  "vsroofing": {
     "name": "VS Roofing Mod",
     "translation": "VS 屋顶",
     "authors": [
@@ -961,7 +721,7 @@
     "homepage": "https://mods.vintagestory.at/show/mod/30143",
     "latestVersion": "1.6.3"
   },
-    "tankardsandgoblets": {
+  "tankardsandgoblets": {
     "name": "Tankards, Goblets and More!",
     "translation": "酒杯、高脚杯及更多！",
     "authors": [
@@ -977,7 +737,7 @@
     "homepage": "https://mods.vintagestory.at/tankardsandgoblets",
     "latestVersion": "1.4.4"
   },
-    "reelmower": {
+  "reelmower": {
     "name": "Reel Mower",
     "translation": "滚刀割草机",
     "authors": [
@@ -1025,7 +785,7 @@
       }
     ]
   },
-    "chunklod": {
+  "chunklod": {
     "name": "Chunk LOD",
     "translation": "遥远的地平线",
     "authors": [
