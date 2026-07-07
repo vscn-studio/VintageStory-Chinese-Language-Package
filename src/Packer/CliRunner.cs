@@ -259,6 +259,10 @@ public static class CliRunner
         builder.AppendLine("## 模组清单");
         builder.AppendLine();
         AppendEntriesTable(builder, description.Entries, metadata);
+        builder.AppendLine();
+        builder.AppendLine("## 贡献者统计");
+        builder.AppendLine();
+        AppendContributorStatsTable(builder, description.Entries, metadata);
 
         return builder.ToString();
     }
@@ -268,15 +272,86 @@ public static class CliRunner
         IReadOnlyList<ReleaseMilestoneEntry> entries,
         IReadOnlyDictionary<string, ModMetadata> metadata)
     {
-        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 模组最新版本 |");
-        builder.AppendLine("| --- | --- | --- | --- |");
+        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 贡献者 | 模组最新版本 |");
+        builder.AppendLine("| --- | --- | --- | --- | --- |");
 
         foreach (var entry in entries)
         {
             var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
             builder.AppendLine(
-                $"| {FormatLinkedName(item.ChineseName, item.Homepage)} | {FormatLinkedName(item.EnglishName, item.Homepage)} | {EscapeMarkdownTableCell(item.ModId)} | {EscapeMarkdownTableCell(item.LatestVersion)} |");
+                $"| {FormatLinkedName(item.ChineseName, item.Homepage)} | {FormatLinkedName(item.EnglishName, item.Homepage)} | {EscapeMarkdownTableCell(item.ModId)} | {FormatContributors(item.Contributors)} | {EscapeMarkdownTableCell(item.LatestVersion)} |");
         }
+    }
+
+    private static void AppendContributorStatsTable(
+        StringBuilder builder,
+        IReadOnlyList<ReleaseMilestoneEntry> entries,
+        IReadOnlyDictionary<string, ModMetadata> metadata)
+    {
+        var stats = new Dictionary<string, ContributorStat>(StringComparer.OrdinalIgnoreCase);
+
+        foreach (var entry in entries)
+        {
+            var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
+            foreach (var contributor in item.Contributors)
+            {
+                if (string.IsNullOrWhiteSpace(contributor.Name))
+                {
+                    continue;
+                }
+
+                var key = $"{contributor.Name}\n{contributor.Url}";
+                if (!stats.TryGetValue(key, out var stat))
+                {
+                    stat = new ContributorStat(contributor.Name, contributor.Url);
+                    stats[key] = stat;
+                }
+
+                stat.Count++;
+                if (!string.IsNullOrWhiteSpace(contributor.Role))
+                {
+                    stat.Roles.Add(contributor.Role.Trim());
+                }
+            }
+        }
+
+        if (stats.Count == 0)
+        {
+            builder.AppendLine("- 无");
+            return;
+        }
+
+        builder.AppendLine("| 贡献者 | 角色 | 翻译数量 |");
+        builder.AppendLine("| --- | --- | --- |");
+
+        foreach (var stat in stats.Values
+                     .OrderByDescending(item => item.Count)
+                     .ThenBy(item => item.Name, StringComparer.OrdinalIgnoreCase))
+        {
+            var roles = stat.Roles.Count > 0
+                ? string.Join("<br>", stat.Roles.OrderBy(role => role, StringComparer.OrdinalIgnoreCase).Select(EscapeMarkdownTableCell))
+                : "未记录";
+            builder.AppendLine(
+                $"| {FormatLinkedName(stat.Name, stat.Url)} | {roles} | {stat.Count} |");
+        }
+    }
+
+    private static string FormatContributors(IReadOnlyCollection<ModContributor> contributors)
+    {
+        if (contributors.Count == 0)
+        {
+            return "未记录";
+        }
+
+        return string.Join("<br>", contributors.Select(FormatContributor));
+    }
+
+    private static string FormatContributor(ModContributor contributor)
+    {
+        var name = FormatLinkedName(contributor.Name, contributor.Url);
+        return string.IsNullOrWhiteSpace(contributor.Role)
+            ? name
+            : $"{name} ({EscapeMarkdownTableCell(contributor.Role)})";
     }
 
     private static string FormatLinkedName(string name, string homepage)
@@ -301,5 +376,16 @@ public static class CliRunner
             .Replace("\r", " ", StringComparison.Ordinal)
             .Replace("\n", " ", StringComparison.Ordinal)
             .Trim();
+    }
+
+    private sealed class ContributorStat(string name, string url)
+    {
+        public string Name { get; } = name;
+
+        public string Url { get; } = url;
+
+        public int Count { get; set; }
+
+        public HashSet<string> Roles { get; } = new(StringComparer.OrdinalIgnoreCase);
     }
 }

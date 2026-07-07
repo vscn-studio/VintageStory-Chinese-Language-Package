@@ -90,13 +90,20 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
        "authors": [
          "DejFidOFF"
        ],
+       "contributors": [
+         {
+           "name": "HansJack",
+           "url": "https://github.com/TGU-HansJack",
+           "role": "Chinese Translator"
+         }
+       ],
        "homepage": "https://mods.vintagestory.at/betterloot",
        "latestVersion": "2.0.3"
      }
    }
    ```
 
-   其中 `betterloot` 对应仓库目录里的 `<mod-name>`。发布 Release 时会通过 `mods.vintagestory.at/api` 获取英文名、主页、作者和最新版本；`translation` 这类中文展示名仍以 `index.json` 为准。
+   其中 `betterloot` 对应仓库目录里的 `<mod-name>`。`authors` 是原模组作者；`contributors` 是汉化贡献者，支持贡献者名称、链接和角色。发布 Release 时会通过 `mods.vintagestory.at/api` 获取英文名、主页、作者和最新版本；`translation` 和 `contributors` 这类人工维护信息仍以 `index.json` 为准。
 
 当同一个真实 `modid` 同时存在多个目标模组版本时，打包器会默认选择最高版本；如果版本无法比较、同一归一化版本重复，或最终输出路径发生冲突，打包会直接失败并列出冲突来源。
 
@@ -195,7 +202,7 @@ dotnet test
 
 Release 通过 `.github/workflows/release-milestone.yml` 手动触发，输入 `version` 和 `release_kind` 即可。
 
-发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者。
+发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者，并生成贡献者翻译数量统计表。
 
 Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
 

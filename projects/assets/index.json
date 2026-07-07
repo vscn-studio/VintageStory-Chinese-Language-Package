@@ -5,6 +5,13 @@
     "authors": [
       "DejFidOFF"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/achievements",
     "latestVersion": "1.1.0"
   },
@@ -13,6 +20,13 @@
     "translation": "烹饪火炮",
     "authors": [
       "l33tmaan"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/aculinaryartillery",
     "latestVersion": "2.0.0-dev.21"
@@ -23,6 +37,13 @@
     "authors": [
       "llama3013"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/alchemy",
     "latestVersion": "2.1.0-rc.81"
   },
@@ -31,6 +52,13 @@
     "translation": "动物商人",
     "authors": [
       "Shazza"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/animaltrader",
     "latestVersion": "1.1.0"
@@ -41,6 +69,13 @@
     "authors": [
       "misterandydandy"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/show/mod/1036",
     "latestVersion": "1.2.3-pre.2"
   },
@@ -49,6 +84,13 @@
     "translation": "更好的战利品",
     "authors": [
       "DejFidOFF"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/betterloot",
     "latestVersion": "2.0.2"
@@ -59,6 +101,13 @@
     "authors": [
       "NiclAss"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/betterruins",
     "latestVersion": "0.6.3"
   },
@@ -67,6 +116,13 @@
     "translation": "生物群系",
     "authors": [
       "Crabb"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/biomes",
     "latestVersion": "2.1.1"
@@ -77,6 +133,13 @@
     "authors": [
       "TheKremes"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/blacksmithglovesv2",
     "latestVersion": "2.0.1"
   },
@@ -85,6 +148,13 @@
     "translation": "方块覆盖层",
     "authors": [
       "Xel"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/xray",
     "latestVersion": "4.11.5"
@@ -95,6 +165,13 @@
     "authors": [
       "MrBadWithNames"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/show/mod/5577",
     "latestVersion": "1.9.4"
   },
@@ -103,6 +180,13 @@
     "translation": "屠宰",
     "authors": [
       "CaptainOats"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/butchering",
     "latestVersion": "1.13.5"
@@ -113,6 +197,13 @@
     "authors": [
       "NerdScurvy"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/carryon",
     "latestVersion": "2.0.0-pre.7"
   },
@@ -121,6 +212,13 @@
     "translation": "凿刻树叶",
     "authors": [
       "azurempress"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/chiselleaf",
     "latestVersion": "1.2.1"
@@ -131,6 +229,13 @@
     "authors": [
       "QPTech"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/chiseltools",
     "latestVersion": "builtin"
   },
@@ -139,6 +244,13 @@
     "translation": "C&N 领地",
     "authors": [
       "KenigVovan"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/canclaims",
     "latestVersion": "4.3.17"
@@ -149,6 +261,13 @@
     "authors": [
       "Maltiez"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/combatoverhaul",
     "latestVersion": "0.16.16"
   },
@@ -157,6 +276,13 @@
     "translation": "扩展食物：餐食模块",
     "authors": [
       "l33tmaan"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/efmealsmodule",
     "latestVersion": "1.0.0-dev.4"
@@ -167,6 +293,13 @@
     "authors": [
       "Tels"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/em",
     "latestVersion": "3.7.0"
   },
@@ -175,6 +308,13 @@
     "translation": "扩展食物：核心",
     "authors": [
       "l33tmaan"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/expandedfoods",
     "latestVersion": "2.0.0-dev.12"
@@ -185,6 +325,13 @@
     "authors": [
       "chrisunfocused"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/show/mod/8499",
     "latestVersion": "122.5.1"
   },
@@ -193,6 +340,13 @@
     "translation": "Animalica - 可玩动物",
     "authors": [
       "Craditz"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/feralplayerpack",
     "latestVersion": "1.0.6"
@@ -203,6 +357,13 @@
     "authors": [
       "Maltiez"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/firearms",
     "latestVersion": "1.8.1"
   },
@@ -211,6 +372,13 @@
     "translation": "食物货架",
     "authors": [
       "SONZINA"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/foodshelves",
     "latestVersion": "3.0.4"
@@ -221,6 +389,13 @@
     "authors": [
       "Vinter_Nacht"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/fromgoldencombs",
     "latestVersion": "2.0.8"
   },
@@ -229,6 +404,13 @@
     "translation": "群组日志",
     "authors": [
       "ValrothGryffn"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/grouplog",
     "latestVersion": "1.0.5"
@@ -239,6 +421,13 @@
     "authors": [
       "Benata"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/show/mod/7962",
     "latestVersion": "1.22.3"
   },
@@ -247,6 +436,13 @@
     "translation": "冰循环",
     "authors": [
       "Luceo"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/icecycle",
     "latestVersion": "1.0.2"
@@ -257,6 +453,13 @@
     "authors": [
       "Maltiez"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/imgui",
     "latestVersion": "1.2.7"
   },
@@ -265,6 +468,13 @@
     "translation": "纯豆腐",
     "authors": [
       "LexicalAnomaly"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/justtofu",
     "latestVersion": "1.0.1"
@@ -275,6 +485,13 @@
     "authors": [
       "Kaisentlaia"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/kscartographytable",
     "latestVersion": "2.0.4"
   },
@@ -283,6 +500,13 @@
     "translation": "锁定交互",
     "authors": [
       "Arkzenir"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/show/mod/9482",
     "latestVersion": "2.1.1"
@@ -293,6 +517,13 @@
     "authors": [
       "LexicalAnomaly"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/mealrevariation",
     "latestVersion": "3.1.6"
   },
@@ -301,6 +532,13 @@
     "translation": "金属烹饪锅",
     "authors": [
       "Yoldovahkriid"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/metalpots",
     "latestVersion": "1.8.0"
@@ -311,6 +549,13 @@
     "authors": [
       "SpearAndFang"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/millwright",
     "latestVersion": "1.3.3"
   },
@@ -319,6 +564,13 @@
     "translation": "矿物扩散",
     "authors": [
       "paipaijun"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/mineralspread",
     "latestVersion": "1.0.0"
@@ -329,6 +581,13 @@
     "authors": [
       "Shazza"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/moregoat",
     "latestVersion": "1.1.0"
   },
@@ -337,6 +596,13 @@
     "translation": "宠物 AI",
     "authors": [
       "Gerste"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/petai",
     "latestVersion": "5.1.1"
@@ -347,6 +613,13 @@
     "authors": [
       "DArkHekRoMaNT"
     ],
+  "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/playercorpse",
     "latestVersion": "1.12.0"
   },
@@ -355,6 +628,13 @@
     "translation": "玩家尸体（Azu 分支）",
     "authors": [
       "azurempress"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/playercorpseforkedazu",
     "latestVersion": "1.13.1"
@@ -365,6 +645,13 @@
     "authors": [
       "Maltiez"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/playermodellib",
     "latestVersion": "1.23.1"
   },
@@ -373,6 +660,13 @@
     "translation": "原始生存",
     "authors": [
       "SpearAndFang"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/primitivesurvival",
     "latestVersion": "5.0.6"
@@ -383,6 +677,13 @@
     "authors": [
       "Alodh"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/quiversfork",
     "latestVersion": "0.9.14"
   },
@@ -391,6 +692,13 @@
     "translation": "真实葡萄",
     "authors": [
       "xXx_Ape_xXx"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/realgrapes",
     "latestVersion": "1.4.0"
@@ -401,6 +709,13 @@
     "authors": [
       "Elocrypt"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/riftwardtweaks",
     "latestVersion": "2.8.0"
   },
@@ -409,6 +724,13 @@
     "translation": "航海者",
     "authors": [
       "TechnoGoth"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/seafarer",
     "latestVersion": "0.5.15"
@@ -419,6 +741,13 @@
     "authors": [
       "HansJack"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/simplevoicechat",
     "latestVersion": "0.1.3"
   },
@@ -427,6 +756,13 @@
     "translation": "石烤炉",
     "authors": [
       "CaptainOats"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/stonebakeoven",
     "latestVersion": "1.3.5"
@@ -437,6 +773,13 @@
     "authors": [
       "Wulk"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/stonedoors",
     "latestVersion": "1.1.2"
   },
@@ -445,6 +788,13 @@
     "translation": "石材采石场",
     "authors": [
       "DArkHekRoMaNT"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/stonequarry",
     "latestVersion": "3.5.1"
@@ -455,6 +805,13 @@
     "authors": [
       "Trojan96"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/storagetweaks",
     "latestVersion": "1.3.3"
   },
@@ -463,6 +820,13 @@
     "translation": "协同",
     "authors": [
       "Zaldaryon"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/synergy",
     "latestVersion": "1.1.15"
@@ -473,6 +837,13 @@
     "authors": [
       "Dweomer"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/tailorsachet",
     "latestVersion": "1.2.0"
   },
@@ -481,6 +852,13 @@
     "translation": "余烬之座 - 职业",
     "authors": [
       "svanax"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/toeclasses",
     "latestVersion": "1.0.10"
@@ -491,6 +869,13 @@
     "authors": [
       "Garward"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/show/mod/8639",
     "latestVersion": "1.3.13"
   },
@@ -500,6 +885,13 @@
     "authors": [
       "Cecer"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/vintageriftclient",
     "latestVersion": "1.0.6"
   },
@@ -508,6 +900,13 @@
     "translation": "生态系统 - 植物",
     "authors": [
       "YourCreator"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/ecosystemflora",
     "latestVersion": "4.5.52"
@@ -519,6 +918,13 @@
       "Chronolegionaire",
       "TheInsanityGod"
     ],
+    "contributors": [
+      {
+        "name": "CaesinEachonson",
+        "url": "https://github.com/CaesinEachonson",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/hydrateordiedrate",
     "latestVersion": "2.4.14"
   },
@@ -529,6 +935,13 @@
       "Vinter_Nacht",
       "Huldra_Nacht"
     ],
+    "contributors": [
+      {
+        "name": "CaesinEachonson",
+        "url": "https://github.com/CaesinEachonson",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/indappledgroves",
     "latestVersion": "3.0.1-rc.5"
   },
@@ -537,6 +950,13 @@
     "translation": "VS 屋顶",
     "authors": [
       "tui_smuggler"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/show/mod/30143",
     "latestVersion": "1.6.3"
@@ -547,6 +967,13 @@
     "authors": [
       "Emblazing"
     ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/tankardsandgoblets",
     "latestVersion": "1.4.4"
   },
@@ -555,6 +982,13 @@
     "translation": "滚刀割草机",
     "authors": [
       "Mike"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/reelmower",
     "latestVersion": "1.5.8"
@@ -565,6 +999,13 @@
     "authors": [
       "Critcher"
     ],
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/cirno/summary",
+        "role": "Chinese Translator"
+      }
+    ],
     "homepage": "https://mods.vintagestory.at/cmicebox",
     "latestVersion": "2.0.1"
   },
@@ -573,6 +1014,13 @@
     "translation": "遥远的地平线",
     "authors": [
       "BiasHyperion"
+    ],
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://github.com/TGU-HansJack",
+        "role": "Chinese Translator"
+      }
     ],
     "homepage": "https://mods.vintagestory.at/chunklod",
     "latestVersion": "1.2.0-dev.2"

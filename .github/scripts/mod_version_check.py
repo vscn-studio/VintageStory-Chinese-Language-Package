@@ -34,12 +34,20 @@ class IndexLookupEntry:
     data: dict[str, Any]
 
 
+@dataclass(frozen=True)
+class Contributor:
+    name: str
+    url: str = ""
+    role: str = ""
+
+
 @dataclass
 class ModRecord:
     slug: str
     index_key: str
     chinese_name: str
     english_name: str
+    contributors: list[Contributor]
     homepage: str
     repository_modids: list[str]
     api_candidate_modids: list[str]
@@ -148,6 +156,7 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
 
         chinese_name = text_or_default(index_entry.get("translation"), slug)
         english_name = text_or_default(index_entry.get("name"), slug)
+        contributors = normalize_contributors(index_entry.get("contributors"))
         homepage = text_or_default(index_entry.get("homepage"), build_homepage_from_index(index_entry))
         status = STATUS_AUTHOR_BUILTIN if repository_latest.casefold() in builtin_versions else STATUS_REPOSITORY
 
@@ -157,6 +166,7 @@ def scan_repository(repo_root: Path, index_map: dict[str, dict[str, Any]]) -> li
                 index_key=index_lookup_entry.key,
                 chinese_name=chinese_name,
                 english_name=english_name,
+                contributors=contributors,
                 homepage=homepage,
                 repository_modids=unique_modids,
                 api_candidate_modids=api_candidate_modids,
@@ -541,14 +551,15 @@ def render_markdown(records: list[ModRecord]) -> str:
     lines.append("")
 
     if outdated:
-        lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
-        lines.append("| --- | --- | --- | --- | --- | --- |")
+        lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 贡献者 | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
+        lines.append("| --- | --- | --- | --- | --- | --- | --- |")
         for record in outdated:
             modids = "<br>".join(escape_cell(modid) for modid in record.repository_modids) if record.repository_modids else "未记录"
+            contributors = format_contributors(record.contributors)
             latest_version = escape_cell(record.official_latest) if record.official_latest else "未获取"
             updated_at = escape_cell(record.official_updated_at) if record.official_updated_at else "未获取"
             lines.append(
-                f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | "
+                f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | {contributors} | "
                 f"{escape_cell(record.repository_latest)} | {latest_version} | {updated_at} |"
             )
     else:
@@ -557,20 +568,66 @@ def render_markdown(records: list[ModRecord]) -> str:
     lines.append("")
     lines.append("## 模组版本表")
     lines.append("")
-    lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 状态 | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
-    lines.append("| --- | --- | --- | --- | --- | --- | --- |")
+    lines.append("| 模组中文名称 | 模组英文名称 | 模组ID | 状态 | 贡献者 | 仓库翻译版本 | 模组最新版本 | 模组更新时间 |")
+    lines.append("| --- | --- | --- | --- | --- | --- | --- | --- |")
 
     for record in records:
         modids = "<br>".join(escape_cell(modid) for modid in record.repository_modids) if record.repository_modids else "未记录"
+        contributors = format_contributors(record.contributors)
         repo_versions = "<br>".join(escape_cell(version) for version in record.repository_versions)
         latest_version = escape_cell(record.official_latest) if record.official_latest else "未获取"
         updated_at = escape_cell(record.official_updated_at) if record.official_updated_at else "未获取"
         lines.append(
-            f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | {escape_cell(record.status)} | {repo_versions} | {latest_version} | {updated_at} |"
+            f"| {format_link(record.chinese_name, record.homepage)} | {format_link(record.english_name, record.homepage)} | {modids} | {escape_cell(record.status)} | {contributors} | {repo_versions} | {latest_version} | {updated_at} |"
         )
 
     lines.append("")
     return "\n".join(lines)
+
+
+def normalize_contributors(value: Any) -> list[Contributor]:
+    if not isinstance(value, list):
+        return []
+
+    contributors: list[Contributor] = []
+    seen: set[tuple[str, str, str]] = set()
+    for item in value:
+        if isinstance(item, str):
+            contributor = Contributor(text_or_default(item, ""))
+        elif isinstance(item, dict):
+            contributor = Contributor(
+                text_or_default(item.get("name"), ""),
+                text_or_default(item.get("url"), ""),
+                text_or_default(item.get("role"), ""),
+            )
+        else:
+            continue
+
+        if not contributor.name:
+            continue
+
+        key = (contributor.name.casefold(), contributor.url.casefold(), contributor.role.casefold())
+        if key in seen:
+            continue
+
+        seen.add(key)
+        contributors.append(contributor)
+
+    return contributors
+
+
+def format_contributors(contributors: list[Contributor]) -> str:
+    if not contributors:
+        return "未记录"
+
+    return "<br>".join(format_contributor(contributor) for contributor in contributors)
+
+
+def format_contributor(contributor: Contributor) -> str:
+    label = format_link(contributor.name, contributor.url)
+    if contributor.role:
+        return f"{label} ({escape_cell(contributor.role)})"
+    return label
 
 
 def format_link(text: str, url: str) -> str:

@@ -8,15 +8,22 @@ public sealed record ModMetadata(
     string Name,
     string Translation,
     string[] Authors,
+    ModContributor[] Contributors,
     string Homepage,
     string LatestVersion);
+
+public sealed record ModContributor(
+    string Name,
+    string Url,
+    string Role);
 
 public sealed record ReleaseEntryMetadata(
     string ChineseName,
     string EnglishName,
     string ModId,
     string LatestVersion,
-    string Homepage);
+    string Homepage,
+    ModContributor[] Contributors);
 
 public static class ModMetadataProvider
 {
@@ -110,7 +117,8 @@ public static class ModMetadataProvider
             englishName,
             entry.RealModId,
             latestVersion,
-            FirstNonWhiteSpace(item?.Homepage, string.Empty));
+            FirstNonWhiteSpace(item?.Homepage, string.Empty),
+            NormalizeContributors(item?.Contributors));
     }
 
     private static async Task<IReadOnlyDictionary<string, ModMetadata>> LoadIndexAsync(
@@ -232,6 +240,7 @@ public static class ModMetadataProvider
             FirstNonWhiteSpace(mod.Name, string.Empty),
             string.Empty,
             NormalizeAuthors([mod.Author ?? string.Empty]),
+            [],
             BuildHomepage(mod),
             FirstNonWhiteSpace(latestRelease?.ModVersion, string.Empty)));
     }
@@ -296,6 +305,7 @@ public static class ModMetadataProvider
             NormalizeAuthors(indexMetadata?.Authors).Length > 0
                 ? NormalizeAuthors(indexMetadata?.Authors)
                 : NormalizeAuthors(apiMetadata?.Authors),
+            NormalizeContributors(indexMetadata?.Contributors),
             FirstNonWhiteSpace(indexMetadata?.Homepage, apiMetadata?.Homepage, string.Empty),
             FirstNonWhiteSpace(indexMetadata?.LatestVersion, apiMetadata?.LatestVersion, string.Empty)));
     }
@@ -306,6 +316,7 @@ public static class ModMetadataProvider
             FirstNonWhiteSpace(metadata?.Name, string.Empty),
             FirstNonWhiteSpace(metadata?.Translation, string.Empty),
             NormalizeAuthors(metadata?.Authors),
+            NormalizeContributors(metadata?.Contributors),
             FirstNonWhiteSpace(metadata?.Homepage, string.Empty),
             FirstNonWhiteSpace(metadata?.LatestVersion, string.Empty));
     }
@@ -316,6 +327,21 @@ public static class ModMetadataProvider
             .Where(author => !string.IsNullOrWhiteSpace(author))
             .Select(author => author.Trim())
             .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToArray()
+            ?? [];
+    }
+
+    private static ModContributor[] NormalizeContributors(IEnumerable<ModContributor>? contributors)
+    {
+        return contributors?
+            .Select(contributor => new ModContributor(
+                FirstNonWhiteSpace(contributor.Name, string.Empty),
+                FirstNonWhiteSpace(contributor.Url, string.Empty),
+                FirstNonWhiteSpace(contributor.Role, string.Empty)))
+            .Where(contributor => !string.IsNullOrWhiteSpace(contributor.Name))
+            .DistinctBy(
+                contributor => $"{contributor.Name}\n{contributor.Url}\n{contributor.Role}",
+                StringComparer.OrdinalIgnoreCase)
             .ToArray()
             ?? [];
     }
