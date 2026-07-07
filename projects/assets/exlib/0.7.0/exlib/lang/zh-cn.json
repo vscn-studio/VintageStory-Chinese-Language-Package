@@ -1,0 +1,51 @@
+{
+  "block-structurefiller": "装置",
+
+  "blockhelp-rotate": "旋转",
+
+  "blockname-suffixed": "{0} ({1})",
+  "blockname-listsep": "、",
+
+  "refractory-tier1": "耐火材料 等级1",
+  "refractory-tier2": "耐火材料 等级2",
+  "refractory-tier3": "耐火材料 等级3",
+
+  "command-exmod-desc-client": "Exlib 客户端基础命令 (.exmod)。本身仅支持网络高亮显示；其他模组会通过各自的客户端选项扩展它。",
+  "command-exmod-help-client": "客户端命令——在本地机器上运行。请使用子命令（参见 .help exmod）。可用选项取决于已安装的模组及其添加的子命令。",
+  "command-exmod-desc-server": "Exlib 服务端基础命令 (/exmod)。其他模组会在此共享根命令上扩展各自的服务端选项。",
+  "command-exmod-help-server": "服务端命令——在世界主机上运行。请使用子命令（参见 /help exmod）。可用选项取决于已安装的模组及其添加的子命令。",
+  "command-pref-current": "{0}：{1}",
+  "command-pref-set": "{0} 已设为 {1}。",
+  "command-pref-invalid": "未知值 '{0}'（针对 {1}）。可选值：{2}。",
+
+  "command-recipes-desc": "查看或设置模组的配方消耗等级（下次重载世界时生效）",
+  "command-recipes-list": "配方消耗等级（使用 /exmod recipes [mod] [level] 进行更改）：",
+  "command-recipes-none": "没有模组注册了配方消耗等级。",
+  "command-recipes-status": "{0} 的配方消耗等级为 {1}。",
+  "command-recipes-set": "{0} 的配方消耗等级已设为 '{1}'。将在下次重载世界时生效。",
+  "command-recipes-retain": "{0} 的配方消耗等级已经是 '{1}'。",
+  "command-recipes-unknown": "未知模组 '{0}'。已注册的模组：{1}。",
+  "command-recipes-invalid": "未知等级 '{0}'。可选值：{1}。",
+
+  "command-config-desc": "实时查看或更改模组的配置值（/exmod config [mod] [value] [new]）",
+  "command-config-list": "已注册的配置（使用 /exmod config [mod] 查看详情）：",
+  "command-config-none": "没有模组注册了可编辑的配置。",
+  "command-config-values": "{0} 的配置值（使用 /exmod config {0} [value] [new] 进行更改）：",
+  "command-config-unknown": "未知配置 '{0}'。已注册的配置：{1}。",
+  "command-config-novalue": "配置 '{1}' 中没有名为 '{0}' 的可编辑值。",
+  "command-config-current": "{0} = {1}",
+  "command-config-set": "{0} 已从 {1} 更改为 {2}。立即生效。",
+  "command-config-parsefail": "无法将 '{0}' 解析为 {1} 的值（期望类型为 {2}）。",
+  "command-config-range": "{0} 的值超出范围（允许范围：{1}）。",
+
+  "command-network-desc": "可视化方块网络（管道、熔融水渠……）",
+  "command-network-hi-desc": "高亮显示每个网络的所有方块，按网络着色",
+  "command-network-unhi-desc": "停止高亮显示网络方块",
+  "network-hi-on": "网络高亮已启用——每个网络拥有独立颜色，实时更新。",
+  "network-hi-off": "网络高亮已禁用。",
+
+  "command-heal-desc": "在已加载的区块中重新创建孤立的方块实体（已放置的方块丢失了实体数据）",
+  "command-heal-result": "已在已加载的区块中重新创建 {0} 个孤立的方块实体。",
+
+  "game:placefailure-exlib-noorientation": "无法连接到相邻方块——此处没有有效的朝向。"
+}

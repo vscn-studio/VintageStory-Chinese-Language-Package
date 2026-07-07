@@ -848,5 +848,85 @@
     ],
     "homepage": "https://mods.vintagestory.at/chunklod",
     "latestVersion": "1.2.0-dev.2"
+  },
+  "wolftaming": {
+    "name": "Wolf Taming",
+    "translation": "驯狼",
+    "authors": [
+      "Gerste"
+    ],
+    "homepage": "https://mods.vintagestory.at/wolftaming",
+    "latestVersion": "5.0.1",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "laboro-s-multi-tools": {
+    "name": "Laboro's Multi-Tools",
+    "translation": "Laboro的多功能工具",
+    "authors": [
+      "Ojao"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/57986",
+    "latestVersion": "1.0.0",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "ppex": {
+    "name": "Pipes and Power Expanded",
+    "translation": "管道与动力",
+    "authors": [
+      "fallenstar"
+    ],
+    "homepage": "https://mods.vintagestory.at/ppex",
+    "latestVersion": "0.6.4",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "smex": {
+    "name": "Steelmaking Expanded",
+    "translation": "钢铁冶炼扩展",
+    "authors": [
+      "fallenstar"
+    ],
+    "homepage": "https://mods.vintagestory.at/smex",
+    "latestVersion": "0.9.4",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "exlib": {
+    "name": "Expanded Library",
+    "translation": "拓展库",
+    "authors": [
+      "fallenstar"
+    ],
+    "homepage": "https://mods.vintagestory.at/exlib",
+    "latestVersion": "0.7.0",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
