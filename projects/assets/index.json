@@ -785,6 +785,22 @@
       }
     ]
   },
+  "customflowerpots": {
+    "name": "Custom Flowerpots",
+    "translation": "自定义花盆",
+    "authors": [
+      "xXx_Ape_xXx"
+    ],
+    "homepage": "https://mods.vintagestory.at/customflowerpots",
+    "latestVersion": "1.4.1",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
   "chunklod": {
     "name": "Chunk LOD",
     "translation": "遥远的地平线",
