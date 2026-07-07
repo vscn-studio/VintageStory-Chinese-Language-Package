@@ -928,5 +928,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "vintage-kinematics": {
+    "name": "Vintage Kinematics",
+    "translation": "复古运动学",
+    "authors": [
+      "Garward"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/49968",
+    "latestVersion": "1.3.22",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
