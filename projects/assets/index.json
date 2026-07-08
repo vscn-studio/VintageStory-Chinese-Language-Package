@@ -965,5 +965,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "hudclock": {
+    "name": "HUD Clock",
+    "translation": "季节时钟",
+    "authors": [
+      "Elocrypt"
+    ],
+    "homepage": "https://mods.vintagestory.at/hudclock",
+    "latestVersion": "4.4.1",
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
