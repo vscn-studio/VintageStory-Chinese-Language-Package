@@ -1013,5 +1013,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "tillerworks": {
+    "name": "Tillerworks",
+    "translation": "耕机工坊",
+    "authors": [
+      "TYLERRR"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/58661",
+    "latestVersion": "1.2.0",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
