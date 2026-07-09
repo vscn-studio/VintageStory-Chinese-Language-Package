@@ -203,7 +203,7 @@ dotnet test
 
 ## GitHub Actions
 
-Release 通过 `.github/workflows/release.yml` 手动触发，输入 `version` 和 `release_kind` 即可。
+Release 通过 `.github/workflows/release.yml` 手动触发，只需要选择 `release_kind`。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
 
 发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者，并生成贡献者翻译数量统计表。
 

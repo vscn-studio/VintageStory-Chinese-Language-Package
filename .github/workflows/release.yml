@@ -3,10 +3,6 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: Release version
-        required: true
-        type: string
       release_kind:
         description: Release kind
         required: true
@@ -38,20 +34,64 @@ jobs:
             8.0.x
             10.0.x
 
+      - name: Calculate release version
+        id: version
+        shell: bash
+        run: |
+          release_year="$(TZ=Asia/Shanghai date +'%y')"
+          release_month_padded="$(TZ=Asia/Shanghai date +'%m')"
+          release_month="$((10#${release_month_padded}))"
+          version_prefix="${release_year}.${release_month}"
+
+          latest_patch="$(
+            git tag --list "v${version_prefix}.*" "${version_prefix}.*" |
+              sed -nE "s/^v?${release_year}\.${release_month}\.([0-9]+)$/\1/p" |
+              sort -n |
+              tail -n 1
+          )"
+
+          if [ -z "${latest_patch}" ]; then
+            next_patch=1
+            latest_patch_text="none"
+          else
+            next_patch="$((latest_patch + 1))"
+            latest_patch_text="${latest_patch}"
+          fi
+
+          version="${version_prefix}.${next_patch}"
+          tag_name="v${version}"
+
+          if git rev-parse -q --verify "refs/tags/${tag_name}" >/dev/null; then
+            echo "Calculated tag ${tag_name} already exists." >&2
+            exit 1
+          fi
+
+          echo "VERSION=${version}" >> "${GITHUB_ENV}"
+          echo "TAG_NAME=${tag_name}" >> "${GITHUB_ENV}"
+          echo "version=${version}" >> "${GITHUB_OUTPUT}"
+          echo "tag_name=${tag_name}" >> "${GITHUB_OUTPUT}"
+
+          {
+            echo "### Release version"
+            echo
+            echo "- Time zone: UTC+8"
+            echo "- Version prefix: ${version_prefix}"
+            echo "- Latest patch in current month: ${latest_patch_text}"
+            echo "- New version: ${version}"
+            echo "- Tag: ${tag_name}"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
       - name: Run tests
         run: dotnet test
 
       - name: Build package
         shell: bash
-        env:
-          VERSION: ${{ inputs.version }}
         run: |
           dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version "${VERSION}"
 
       - name: Generate release notes
         shell: bash
         env:
-          VERSION: ${{ inputs.version }}
           RELEASE_KIND: ${{ inputs.release_kind }}
         run: |
           notes_path="build/release-notes-${VERSION}.md"
@@ -61,8 +101,6 @@ jobs:
 
       - name: Add README to package
         shell: bash
-        env:
-          VERSION: ${{ inputs.version }}
         run: |
           zip_path="build/VintageStory-Chinese-Language-Package-${VERSION}.zip"
           readme_path="build/README-${VERSION}.md"
@@ -97,8 +135,6 @@ jobs:
 
       - name: Stamp updater mod version
         shell: bash
-        env:
-          VERSION: ${{ inputs.version }}
         run: |
           python3 - <<'PY'
           import json
@@ -113,8 +149,6 @@ jobs:
 
       - name: Pack updater mod
         shell: bash
-        env:
-          VERSION: ${{ inputs.version }}
         run: |
           updater_zip="${GITHUB_WORKSPACE}/build/vscnlangpackupdater-${VERSION}.zip"
           mkdir -p build
@@ -125,10 +159,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_SHA: ${{ github.sha }}
-          VERSION: ${{ inputs.version }}
           RELEASE_KIND: ${{ inputs.release_kind }}
         run: |
-          gh release create "v${VERSION}" \
+          gh release create "${TAG_NAME}" \
             --target "${GITHUB_SHA}" \
             "build/VintageStory-Chinese-Language-Package-${VERSION}.zip" \
             "build/vscnlangpackupdater-${VERSION}.zip" \
