@@ -1045,5 +1045,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "modularbackpacks": {
+    "name": "Modular Backpacks",
+    "translation": "模块化背包",
+    "authors": [
+      "Niikelion"
+    ],
+    "homepage": "https://mods.vintagestory.at/modularbackpacks",
+    "latestVersion": "1.0.0",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }

@@ -1,0 +1,18 @@
+{
+  "immersivemodularbackpacks:item-pouch-normal": "袋子",
+  "immersivemodularbackpacks:item-pouch-sturdy": "坚固袋子",
+  "immersivemodularbackpacks:item-toolstrap": "工具绑带",
+  "immersivemodularbackpacks:block-backpack-placed-normal": "背包",
+  "immersivemodularbackpacks:block-backpack-placed-sturdy": "坚固背包",
+  "immersivemodularbackpacks:open-cargo": "打开存储空间",
+  "immersivemodularbackpacks:attach-item": "附加物品",
+  "immersivemodularbackpacks:remove-attachment": "移除附件",
+  "immersivemodularbackpacks:cargo-dialog-title": "背包存储空间",
+  "immersivemodularbackpacks:pouch-contents": "袋子内容物",
+  "immersivemodularbackpacks:handbook-backpack-title": "模块化背包",
+  "immersivemodularbackpacks:handbook-backpack-text": "这个背包可以安装附件——袋子、工具绑带和其他小装备——它们能扩展背包的承载量并挂在你的背上。<br><br>要安装附件，先把背包放在地上，然后手持附件，<hk>蹲下</hk>+<hk>右键</hk>点击其中一个附着点。<hk>右键</hk>点击背包以打开其存储空间，或者<hk>蹲下</hk>+<hk>右键</hk>点击已占用的附着点以取下附件。<br><br>破坏背包即可重新拾起——附件及其内容会随之带走——然后像平常一样穿戴。",
+  "immersivemodularbackpacks:handbook-backpack-addons-title": "附件",
+  "immersivemodularbackpacks:handbook-addon-title": "背包附件",
+  "immersivemodularbackpacks:handbook-addon-pouch-text": "袋子本身就是一个小包——将其放入角色的一个背包槽中，它就能像其他包包一样容纳物品。坚固袋子比普通袋子容纳更多。<br><br>它也可以作为附件安装到<a href=\"handbook://item-backpack-normal\">背包</a>上：把背包放下，手持袋子，<hk>蹲下</hk>+<hk>右键</hk>点击一个空闲的附着点。这样它的槽位就会加入背包的存储空间。",
+  "immersivemodularbackpacks:handbook-addon-toolstrap-text": "工具绑带可携带一件工具。将其放入角色的一个背包槽中即可单独使用。<br><br>它也可以作为附件安装到<a href=\"handbook://item-backpack-normal\">背包</a>上：把背包放下，手持绑带，<hk>蹲下</hk>+<hk>右键</hk>点击一个空闲的附着点。以这种方式安装后，它所携带的工具会可见地挂在你的背上。"
+}
