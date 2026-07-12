@@ -1077,5 +1077,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "particlesplus": {
+    "name": "Particles Plus",
+    "translation": "粒子增强",
+    "authors": [
+      "Louis_Vuitton"
+    ],
+    "homepage": "https://mods.vintagestory.at/particlesplus",
+    "latestVersion": "decompiled",
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
