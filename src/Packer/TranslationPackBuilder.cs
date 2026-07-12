@@ -6,6 +6,8 @@ namespace Packer;
 
 public static class TranslationPackBuilder
 {
+    private static readonly string[] NonPackableMarkerNames = ["builtin", "source", "decompiled"];
+
     private static readonly JsonDocumentOptions TranslationJsonOptions = new()
     {
         CommentHandling = JsonCommentHandling.Skip,
@@ -127,14 +129,14 @@ public static class TranslationPackBuilder
         var excludedProjects = config.GetExcludedProjectsSet();
         var excludedModIds = config.GetExcludedModIdsSet();
         var excludedVersions = config.GetExcludedVersionsSet();
-        var builtinProjects = LoadIndexBuiltinProjects(contentRoot);
+        var specialStatusProjects = LoadIndexSpecialStatusProjects(contentRoot);
         var candidates = new List<TranslationCandidate>();
         var skippedDirectoryCount = 0;
 
         foreach (var projectDirectory in Directory.EnumerateDirectories(contentRoot).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
         {
             var projectSlug = Path.GetFileName(projectDirectory);
-            if (excludedProjects.Contains(projectSlug) || builtinProjects.Contains(projectSlug))
+            if (excludedProjects.Contains(projectSlug) || specialStatusProjects.Contains(projectSlug))
             {
                 continue;
             }
@@ -156,16 +158,15 @@ public static class TranslationPackBuilder
                     }
 
                     var languageDirectory = Path.Combine(modIdDirectory, "lang");
-                    var builtinMarkerPath = Path.Combine(languageDirectory, "builtin");
-                    if (File.Exists(builtinMarkerPath))
+                    if (TryGetNonPackableMarker(languageDirectory, out var markerPath, out var markerKind))
                     {
                         candidates.Add(new TranslationCandidate(
                             projectSlug,
                             targetModVersion,
                             realModId,
                             modIdDirectory,
-                            builtinMarkerPath,
-                            CandidateKind.AuthorBuiltin));
+                            markerPath,
+                            markerKind));
                         continue;
                     }
 
@@ -190,7 +191,7 @@ public static class TranslationPackBuilder
         return new ScanResult(candidates, skippedDirectoryCount);
     }
 
-    private static HashSet<string> LoadIndexBuiltinProjects(string contentRoot)
+    private static HashSet<string> LoadIndexSpecialStatusProjects(string contentRoot)
     {
         var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var indexPath = Path.Combine(contentRoot, "index.json");
@@ -212,7 +213,7 @@ public static class TranslationPackBuilder
                 if (project.Value.ValueKind != JsonValueKind.Object ||
                     !project.Value.TryGetProperty("latestVersion", out var latestVersion) ||
                     latestVersion.ValueKind != JsonValueKind.String ||
-                    !string.Equals(latestVersion.GetString()?.Trim(), "builtin", StringComparison.OrdinalIgnoreCase))
+                    !IsNonPackableMarker(latestVersion.GetString()))
                 {
                     continue;
                 }
@@ -276,7 +277,7 @@ public static class TranslationPackBuilder
                 .OrderByDescending(item => item.Version, VersionComparer.VersionReleaseMetadata)
                 .First();
 
-            if (winner.Candidate.Kind == CandidateKind.AuthorBuiltin)
+            if (winner.Candidate.Kind != CandidateKind.CommunityTranslation)
             {
                 continue;
             }
@@ -387,10 +388,53 @@ public static class TranslationPackBuilder
             candidates.Select(candidate => $"- {candidate.SourceDirectory}"));
     }
 
+    private static bool TryGetNonPackableMarker(
+        string languageDirectory,
+        out string markerPath,
+        out CandidateKind markerKind)
+    {
+        markerPath = string.Empty;
+        markerKind = CandidateKind.CommunityTranslation;
+
+        var foundMarkers = NonPackableMarkerNames
+            .Select(name => (Name: name, Path: Path.Combine(languageDirectory, name)))
+            .Where(item => File.Exists(item.Path))
+            .ToArray();
+
+        if (foundMarkers.Length <= 0)
+        {
+            return false;
+        }
+
+        if (foundMarkers.Length > 1)
+        {
+            throw new PackerException(
+                $"Found multiple non-packable markers in '{languageDirectory}': {string.Join(", ", foundMarkers.Select(item => item.Name))}");
+        }
+
+        markerPath = foundMarkers[0].Path;
+        markerKind = foundMarkers[0].Name switch
+        {
+            "builtin" => CandidateKind.AuthorBuiltin,
+            "source" => CandidateKind.SourceTranslation,
+            "decompiled" => CandidateKind.DecompiledTranslation,
+            _ => CandidateKind.CommunityTranslation
+        };
+
+        return markerKind != CandidateKind.CommunityTranslation;
+    }
+
+    private static bool IsNonPackableMarker(string? value)
+    {
+        return NonPackableMarkerNames.Contains(value?.Trim() ?? string.Empty, StringComparer.OrdinalIgnoreCase);
+    }
+
     private enum CandidateKind
     {
         CommunityTranslation,
-        AuthorBuiltin
+        AuthorBuiltin,
+        SourceTranslation,
+        DecompiledTranslation
     }
 
     private sealed record TranslationCandidate(

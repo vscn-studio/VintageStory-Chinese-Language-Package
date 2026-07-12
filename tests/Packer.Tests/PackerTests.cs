@@ -86,8 +86,11 @@ public sealed class PackerTests
         Assert.Equal(1, result.SkippedDirectoryCount);
     }
 
-    [Fact]
-    public async Task BuildAsync_SkipsAuthorBuiltinLatestVersionWithoutFallingBack()
+    [Theory]
+    [InlineData("builtin")]
+    [InlineData("source")]
+    [InlineData("decompiled")]
+    public async Task BuildAsync_SkipsNonPackableMarkerLatestVersionWithoutFallingBack(string markerName)
     {
         using var workspace = new TestWorkspace();
         workspace.WriteText(
@@ -97,7 +100,7 @@ public sealed class PackerTests
               "item.name": "旧社区翻译"
             }
             """);
-        workspace.WriteText("projects/assets/example/1.1.0/examplemod/lang/builtin", string.Empty);
+        workspace.WriteText($"projects/assets/example/1.1.0/examplemod/lang/{markerName}", string.Empty);
 
         var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
 
@@ -112,11 +115,14 @@ public sealed class PackerTests
         Assert.Equal(["modinfo.json"], entryNames);
     }
 
-    [Fact]
-    public async Task BuildAsync_UsesCommunityTranslationWhenItIsNewerThanAuthorBuiltin()
+    [Theory]
+    [InlineData("builtin")]
+    [InlineData("source")]
+    [InlineData("decompiled")]
+    public async Task BuildAsync_UsesCommunityTranslationWhenItIsNewerThanNonPackableMarker(string markerName)
     {
         using var workspace = new TestWorkspace();
-        workspace.WriteText("projects/assets/example/1.0.0/examplemod/lang/builtin", string.Empty);
+        workspace.WriteText($"projects/assets/example/1.0.0/examplemod/lang/{markerName}", string.Empty);
         workspace.WriteText(
             "projects/assets/example/1.1.0/examplemod/lang/zh-cn.json",
             """
@@ -133,8 +139,11 @@ public sealed class PackerTests
         Assert.NotNull(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
     }
 
-    [Fact]
-    public async Task BuildAsync_SkipsProjectWhenIndexLatestVersionIsBuiltin()
+    [Theory]
+    [InlineData("builtin")]
+    [InlineData("source")]
+    [InlineData("decompiled")]
+    public async Task BuildAsync_SkipsProjectWhenIndexLatestVersionIsMarker(string markerValue)
     {
         using var workspace = new TestWorkspace();
         workspace.WriteText(
@@ -144,10 +153,10 @@ public sealed class PackerTests
               "example": {
                 "name": "Example",
                 "translation": "示例",
-                "latestVersion": "builtin"
+                "latestVersion": "__MARKER__"
               }
             }
-            """);
+            """.Replace("__MARKER__", markerValue, StringComparison.Ordinal));
         workspace.WriteText(
             "projects/assets/example/9.9.9/examplemod/lang/zh-cn.json",
             """
