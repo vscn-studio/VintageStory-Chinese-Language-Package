@@ -1061,5 +1061,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "extrainfo": {
+    "name": "Extra Info",
+    "translation": "额外信息",
+    "authors": [
+      "DanaCraluminum"
+    ],
+    "homepage": "https://mods.vintagestory.at/extrainfo",
+    "latestVersion": "2.2.1",
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
