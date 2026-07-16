@@ -1157,5 +1157,85 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "eternalstew": {
+    "name": "Eternal Stew",
+    "translation": "永续炖羹",
+    "authors": [
+      "Paxus"
+    ],
+    "homepage": "https://mods.vintagestory.at/eternalstew",
+    "latestVersion": "1.4.2",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "vsairshipmod": {
+    "name": "VS AIRSHIP MOD",
+    "translation": "飞艇",
+    "authors": [
+      "RIVVION"
+    ],
+    "homepage": "https://mods.vintagestory.at/vsairshipmod",
+    "latestVersion": "1.1.4",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "fowlmod": {
+    "name": "Sonya's Quality Fowl",
+    "translation": "索尼娅优质家禽",
+    "authors": [
+      "LedyanayaSonya"
+    ],
+    "homepage": "https://mods.vintagestory.at/fowlmod",
+    "latestVersion": "1.0.1",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "longtermfood": {
+    "name": "Long term food",
+    "translation": "耐储食品",
+    "authors": [
+      "MrFlame"
+    ],
+    "homepage": "https://mods.vintagestory.at/longtermfood",
+    "latestVersion": "0.7.1",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "the-critters-pack-1.22": {
+    "name": "The Critters Pack 1.22",
+    "translation": "小小生灵",
+    "authors": [
+      "Coral"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/48465",
+    "latestVersion": "1.4.3",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }

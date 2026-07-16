@@ -1,0 +1,49 @@
+{
+	"game:tabname-fowlmod": "索尼娅优质家禽",
+
+	"fowlmod:item-creature-duck-mallard-drake": "公绿头鸭",
+	"fowlmod:item-dead-creature-duck-mallard-drake": "公绿头鸭尸体",
+	"fowlmod:item-creature-duck-mallard-hen": "母绿头鸭",
+	"fowlmod:item-dead-creature-duck-mallard-hen": "母绿头鸭尸体",
+	"fowlmod:item-creature-duck-mallard-baby": "绿头鸭幼崽",
+	"fowlmod:item-dead-creature-duck-mallard-baby": "绿头鸭幼崽尸体",
+
+	"fowlmod:item-creature-duck-pekin-drake": "公北京鸭",
+	"fowlmod:item-dead-creature-duck-pekin-drake": "公北京鸭尸体",
+	"fowlmod:item-creature-duck-pekin-hen": "母北京鸭",
+	"fowlmod:item-dead-creature-duck-pekin-hen": "母北京鸭尸体",
+	"fowlmod:item-creature-duck-pekin-baby": "北京鸭幼崽",
+	"fowlmod:item-dead-creature-duck-pekin-baby": "北京鸭幼崽尸体",
+
+	"fowlmod:item-creature-duck-blue-drake": "公蓝羽鸭",
+	"fowlmod:item-dead-creature-duck-blue-drake": "公蓝羽鸭尸体",
+	"fowlmod:item-creature-duck-blue-hen": "母蓝羽鸭",
+	"fowlmod:item-dead-creature-duck-blue-hen": "母蓝羽鸭尸体",
+	"fowlmod:item-creature-duck-blue-baby": "蓝羽鸭幼崽",
+	"fowlmod:item-dead-creature-duck-blue-baby": "蓝羽鸭幼崽尸体",
+
+	"item-creature-fowlmod:duck-mallard-drake": "公绿头鸭",
+	"item-creature-fowlmod:duck-mallard-hen": "母绿头鸭",
+	"item-creature-fowlmod:duck-mallard-baby": "绿头鸭幼崽",
+	"item-creature-fowlmod:duck-pekin-drake": "公北京鸭",
+	"item-creature-fowlmod:duck-pekin-hen": "母北京鸭",
+	"item-creature-fowlmod:duck-pekin-baby": "北京鸭幼崽",
+	"item-creature-fowlmod:duck-blue-drake": "公蓝羽鸭",
+	"item-creature-fowlmod:duck-blue-hen": "母蓝羽鸭",
+	"item-creature-fowlmod:duck-blue-baby": "蓝羽鸭幼崽",
+
+	"fowlmod:creaturegroup-duck": "鸭",
+	"fowlmod:itemdesc-creature-duck-*-hen": "鸭",
+	"fowlmod:itemdesc-creature-duck-*-drake": "鸭",
+	"fowlmod:itemdesc-creature-duck-*-baby": "鸭",
+
+	"fowlmod:item-egg-duck-raw": "生鸭蛋",
+	"fowlmod:block-egg-duck-1": "鸭蛋",
+
+	"fowlmod:recipeingredient-item-egg-duck-raw": "鸭蛋",
+	"recipeingredient-item-egg-duck-raw-insturmentalcase": "鸭蛋",
+	"game:meal-ingredient-soup-primary-egg-duck-raw": "蛋",
+	"game:meal-ingredient-soup-secondary-egg-duck-raw": "蛋",
+	"game:meal-ingredient-stew-primary-egg-duck-raw": "蛋",
+	"game:meal-ingredient-stew-primary-egg-duck-raw": "蛋"
+}

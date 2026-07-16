@@ -1,0 +1,345 @@
+{
+    "thecritterpack:item-creature-mallard-duck-male": "Mallard Duck (Male)",
+    "thecritterpack:item-creature-mallard-duck-female": "Mallard Duck (Female)",
+    "thecritterpack:item-creature-mallard-duck-baby": "Mallard Duck (Duckling)",
+    "thecritterpack:item-dead-creature-mallard-duck-male": "Dead Mallard (Male)",
+    "thecritterpack:item-dead-creature-mallard-duck-female": "Dead Mallard (Female)",
+    "thecritterpack:item-dead-creature-mallard-duck-baby": "Dead Mallard (Duckling)",
+    "thecritterpack:item-creature-pekin-duck-male-young": "Pekin Duck (Young Female)",
+    "thecritterpack:item-creature-pekin-duck-female-young": "Pekin Duck (Young Male)",
+    "thecritterpack:item-dead-creature-pekin-duck-female-young": "Dead Pekin Duck (Young Female)",
+    "thecritterpack:item-dead-creature-pekin-duck-male-young": "Dead Pekin Duck (Young Male)",
+    "thecritterpack:item-creature-pekin-duck-male-adult": "Pekin Duck (Male)",
+    "thecritterpack:item-creature-pekin-duck-female-adult": "Pekin Duck (Female)",
+    "thecritterpack:item-dead-creature-pekin-duck-male-adult": "Dead Pekin Duck (Male)",
+    "thecritterpack:item-dead-creature-pekin-duck-female-adult": "Dead Pekin Duck (Female)",
+    "thecritterpack:item-dead-creature-pekin-duck-baby": "Dead Pekin Duck (Duckling)",
+    "thecritterpack:item-creature-pekin-duck-baby": "Pekin Duck (Duckling)",
+    "thecritterpack:item-creature-call-duck-egg": "Call Duck Egg",
+    "thecritterpack:item-dead-creature-call-duck-egg": "Broken Call Duck Egg",
+    "thecritterpack:item-creature-call-duck-male-young": "Call Duck (Young Female)",
+    "thecritterpack:item-creature-call-duck-female-young": "Call Duck (Young Male)",
+    "thecritterpack:item-dead-creature-call-duck-female-young": "Dead Call Duck (Young Female)",
+    "thecritterpack:item-dead-creature-call-duck-male-young": "Dead Call Duck (Young Male)",
+    "thecritterpack:item-creature-call-duck-male-adult": "Call Duck (Male)",
+    "thecritterpack:item-creature-call-duck-female-adult": "Call Duck (Female)",
+    "thecritterpack:item-dead-creature-call-duck-male-adult": "Dead Call Duck (Male)",
+    "thecritterpack:item-dead-creature-call-duck-female-adult": "Dead Call Duck (Female)",
+    "thecritterpack:item-dead-creature-call-duck-baby": "Dead Call Duck (Duckling)",
+    "thecritterpack:item-creature-call-duck-baby": "Call Duck (Duckling)",
+    "thecritterpack:creaturegroup-mallardduck": "Wild Mallard Duck",
+    "thecritterpack:creaturegroup-pekinduck": "Pekin Duck",
+    "thecritterpack:creaturegroup-callduck": "Call Duck",
+    "thecritterpack:creaturegroup-hedgehog": "Woodland Hedgehog",
+    "thecritterpack:creaturegroup-yak": "Yak",
+    "thecritterpack:creaturegroup-chipmunk": "Chipmunk",
+    "thecritterpack:creaturegroup-squirrel": "Squirrel",
+    "thecritterpack:creaturegroup-waxwing": "Bohemian Waxwing",
+    "thecritterpack:creaturegroup-crow": "Crow",
+    "thecritterpack:creaturegroup-fieldmouse": "Field Mouse",
+    "thecritterpack:creaturegroup-isopods": "Isopods",
+    "thecritterpack:item-creature-hedgehog-male": "Woodland Hedgehog (male)",
+    "thecritterpack:item-creature-hedgehog-female": "Woodland Hedgehog (female)",
+    "thecritterpack:item-creature-hedgehog-baby": "Woodland Hedgehog (baby)",
+    "thecritterpack:item-dead-creature-hedgehog-male": "Dead Woodland Hedgehog (male)",
+    "thecritterpack:item-dead-creature-hedgehog-female": "Dead Woodland Hedgehog (female)",
+    "thecritterpack:item-dead-creature-hedgehog-baby": "Dead Woodland Hedgehog (baby)",
+    "thecritterpack:item-dead-creature-duck-male": "Dead Mallard Duck (male)",
+    "thecritterpack:item-dead-creature-duck-female": "Dead Mallard Duck (female)",
+    "thecritterpack:item-dead-creature-duck-baby": "Dead Mallard Duckling (baby)",
+    "thecritterpack:item-creature-yak-male": "Yak (bull)",
+    "thecritterpack:item-creature-yak-female": "Yak (cow)",
+    "thecritterpack:item-creature-yak-calf": "Yak (calf)",
+    "thecritterpack:item-dead-creature-yak-male": "Dead Yak (bull)",
+    "thecritterpack:item-dead-creature-yak-female": "Dead Yak (cow)",
+    "thecritterpack:item-dead-creature-yak-calf": "Dead Yak (calf)",
+    "thecritterpack:item-creature-waxwing_g": "Bohemian Waxwing",
+    "thecritterpack:item-dead-creature-waxwing_g": "Dead Bohemian Waxwing",
+    "thecritterpack:item-creature-house-sparrow_f": "House Sparrow (flying)",
+    "thecritterpack:item-creature-bird-crow-adult": "Crow",
+    "thecritterpack:item-dead-creature-bird-crow-adult": "Dead Crow",
+    "thecritterpack:item-creature-crab-both": "Crab",
+    "thecritterpack:item-creature-crab-baby": "Crab (baby)",
+    "thecritterpack:item-dead-creature-crab-both": "Dead Crab",
+    "thecritterpack:item-dead-creature-crab-baby": "Dead Crab (baby)",
+    "thecritterpack:item-creature-isopod-woodlouse": "Woodlouse (Isopod)",
+    "thecritterpack:item-dead-creature-isopod-woodlouse": "Dead Woodlouse (Isopod)",
+    "thecritterpack:item-creature-isopod-rubberducky": "Rubberducky (Isopod)",
+    "thecritterpack:item-dead-creature-isopod-rubberducky": "Dead Rubberducky (Isopod)",
+    "thecritterpack:item-creature-robin_flying": "European Robin (flying)",
+    "thecritterpack:item-creature-crow_flying": "Crow (flying)",
+    "thecritterpack:item-creature-waxwing_f": "Bohemian Waxwing (flying)",
+    "thecritterpack:item-creature-snail-default": "Snail",
+    "thecritterpack:item-dead-creature-snail-default": "Dead Snail",
+    "thecritterpack:item-creature-fieldmus": "Field Mouse",
+    "thecritterpack:item-dead-creature-fieldmus": "Dead Field Mouse",
+    "thecritterpack:item-creature-squirrel-male-brown": "Brown Squirrel (male)",
+    "thecritterpack:item-creature-squirrel-female-brown": "Brown Squirrel (female)",
+    "thecritterpack:item-creature-squirrel-baby-brown": "Brown Squirrel (baby)",
+    "thecritterpack:item-dead-creature-squirrel-male-brown": "Dead Brown Squirrel (male)",
+    "thecritterpack:item-dead-creature-squirrel-female-brown": "Dead Brown Squirrel (female)",
+    "thecritterpack:item-dead-creature-squirrel-baby-brown": "Dead Brown Squirrel (baby)",
+    "thecritterpack:item-creature-squirrel-male-black": "Black Squirrel (male)",
+    "thecritterpack:item-creature-squirrel-female-black": "Black Squirrel (female)",
+    "thecritterpack:item-creature-squirrel-baby-black": "Black Squirrel (baby)",
+    "thecritterpack:item-dead-creature-squirrel-male-black": "Dead Black Squirrel (male)",
+    "thecritterpack:item-dead-creature-squirrel-female-black": "Dead Black Squirrel (female)",
+    "thecritterpack:item-dead-creature-squirrel-baby-black": "Dead Black Squirrel (baby)",
+    "thecritterpack:item-creature-squirrel-male-darkbrown": "Dark Brown Squirrel (male)",
+    "thecritterpack:item-creature-squirrel-female-darkbrown": "Dark Brown Squirrel (female)",
+    "thecritterpack:item-creature-squirrel-baby-darkbrown": "Dark Brown Squirrel (baby)",
+    "thecritterpack:item-dead-creature-squirrel-male-darkbrown": "Dead Dark Brown Squirrel (male)",
+    "thecritterpack:item-dead-creature-squirrel-female-darkbrown": "Dead Dark Brown Squirrel (female)",
+    "thecritterpack:item-dead-creature-squirrel-baby-darkbrown": "Dead Dark Brown Squirrel (baby)",
+    "thecritterpack:item-creature-squirrel-male-red": "Red Squirrel (male)",
+    "thecritterpack:item-creature-squirrel-female-red": "Red Squirrel (female)",
+    "thecritterpack:item-creature-squirrel-baby-red": "Red Squirrel (baby)",
+    "thecritterpack:item-dead-creature-squirrel-male-red": "Dead Red Squirrel (male)",
+    "thecritterpack:item-dead-creature-squirrel-female-red": "Dead Red Squirrel (female)",
+    "thecritterpack:item-dead-creature-squirrel-baby-red": "Dead Red Squirrel (baby)",
+    "thecritterpack:item-creature-chipmunk-male": "Chipmunk (male)",
+    "thecritterpack:item-creature-chipmunk-female": "Chipmunk (female)",
+    "thecritterpack:item-creature-chipmunk-baby": "Chipmunk (baby)",
+    "thecritterpack:item-dead-creature-chipmunk-male": "Dead Chipmunk (male)",
+    "thecritterpack:item-dead-creature-chipmunk-female": "Dead Chipmunk (female)",
+    "thecritterpack:item-dead-creature-chipmunk-baby": "Dead Chipmunk (baby)",
+    "thecritterpack:item-creature-owl-brown-f": "Brown Owl (flying)",
+    "thecritterpack:item-dead-creature-owl-brown-f": "Dead Brown Owl",
+
+	"thecritterpack:item-creature-mute-swan-female-adult": "Mute Swan (female)",
+	"thecritterpack:item-creature-mute-swan-male-adult": "Mute Swan (male)",
+	"thecritterpack:item-creature-mute-swan-baby-old": "Mute Swan Cygnet (old)",
+	"thecritterpack:item-creature-mute-swan-baby-young": "Mute Swan Cygnet (young)",
+	
+    "thecritterpack:item-dead-creature-mute-swan-male-adult": "Dead Mute Swan",
+    "thecritterpack:item-dead-creature-mute-swan-female-adult": "Dead Mute Swan",
+    "thecritterpack:item-dead-creature-mute-swan-baby-young": "Dead Mute Swan Cygnet",
+    "thecritterpack:item-dead-creature-mute-swan-baby-old": "Dead Mute Swan Cygnet",	
+	
+	"thecritterpack:item-creature-trumpeter-swan-female-adult": "trumpeter Swan (female)",
+	"thecritterpack:item-creature-trumpeter-swan-male-adult": "trumpeter Swan (male)",
+	"thecritterpack:item-creature-trumpeter-swan-baby-old": "trumpeter Swan Cygnet (old)",
+	"thecritterpack:item-creature-trumpeter-swan-baby-young": "trumpeter Swan Cygnet (young)",
+	
+    "thecritterpack:item-dead-creature-trumpeter-swan-male-adult": "Dead trumpeter Swan",
+    "thecritterpack:item-dead-creature-trumpeter-swan-female-adult": "Dead trumpeter Swan",
+    "thecritterpack:item-dead-creature-trumpeter-swan-baby-young": "Dead trumpeter Swan Cygnet",
+    "thecritterpack:item-dead-creature-trumpeter-swan-baby-old": "Dead trumpeter Swan Cygnet",	
+	
+	
+	"thecritterpack:item-creature-blackswan-female-adult": "Black Swan (female)",
+	"thecritterpack:item-creature-blackswan-male-adult": "Black Swan (male)",
+	"thecritterpack:item-creature-blackswan-baby-old": "Black Swan Cygnet (old)",
+	"thecritterpack:item-creature-blackswan-baby-young": "Black Swan Cygnet (young)",	
+	
+    "thecritterpack:item-dead-creature-blackswan-male-adult": "Dead Black Swan",
+    "thecritterpack:item-dead-creature-blackswan-female-adult": "Dead Black Swan",
+    "thecritterpack:item-dead-creature-blackswan-baby-young": "Dead Black Swan Cygnet",
+    "thecritterpack:item-dead-creature-blackswan-baby-old": "Dead Black Swan Cygnet",	
+	
+    "thecritterpack:creaturegroup-trumpeterswan": "Trumpeter Swan",	
+    "thecritterpack:creaturegroup-muteswan": "Mute Swan",
+    "thecritterpack:creaturegroup-blackswan": "Black Swan",
+	
+    "thecritterpack:item-creature-bird-crow-baby": "Crow (Young)",
+    "thecritterpack:item-dead-creature-bird-crow-baby": "Dead Crow (Young)",	
+	
+    "thecritterpack:item-snail-snail-default": "Snail",
+    "thecritterpack:item-creature-snail-helix": "Helix Snail",	
+    "thecritterpack:item-snail-snail-helix": "Helix Snail",
+    "thecritterpack:item-dead-creature-snail-helix": "Helix Snail",
+
+	// 			food & etc
+
+    "block-egg-mallard-1": "Mallard duck egg",
+    "block-egg-mallard-2": "Mallard duck eggs (2)",
+    "block-egg-mallard-3": "Mallard duck eggs (3)",
+    "block-egg-mallard-broken": "Broken Mallard duck egg",
+    "block-egg-call-1": "Call duck egg",
+    "block-egg-call-2": "Call duck eggs (2)",
+    "block-egg-call-3": "Call duck eggs (3)",
+    "block-egg-call-broken": "Broken Call duck egg",
+    "block-egg-pekin-1": "Pekin duck egg",
+    "block-egg-pekin-2": "Pekin duck eggs (2)",
+    "block-egg-pekin-3": "Pekin duck eggs (3)",
+    "block-egg-pekin-broken": "Broken Pekin duck egg",
+	
+
+	
+    "item-egg-mallard-raw": "Raw Mallard duck egg",
+    "item-egg-call-raw": "Raw Call duck egg",
+    "item-egg-pekin-raw": "Raw Pekin duck egg",
+    "item-egg-crow-raw": "Raw Crow egg",	
+	"game:meal-ingredient-soup-primary-snail": "Escargot",
+	"thecritterpack:recipeingredient-item-snail-insturmentalcase": "Snails",
+	"thecritterpack:recipeingredient-item-snail": "Snails",
+	
+	"thecritterpack:block-crafted-wildducknest": "Crafted Duck Nest",		
+	"thecritterpack:block-big-wildducknest": "Wild Duck Nest",	
+	"thecritterpack:handbooktitle-nestpoint": "Use",
+	"thecritterpack:handbooktext-nestpoint": "Place nest down in a spot your female ducks have access to. The ducks will lay eggs in a nest by preference, not on the ground. Once the nest has 5 eggs, a broody duck will sit incubating those eggs until they hatch.<br><br>For viable eggs, ducks must have access to a male duck! ducks must be <a href=\"handbook://block-trough-genericwood-small-ns\">well fed</a> to lay! A broody duck needs to have a full belly before it will sit for a day!<br><br>If every nest is occupied, ducks may lay eggs on the ground, which can then be picked up. The player can also collect eggs from a nest, by <hk>rightmouse</hk>-clicking.",
+	
+	
+	//		Trapped Animals
+	"item-creature-thecritterpack:bird-crow-adult": "Crow (adult)",
+	"item-creature-thecritterpack:bird-crow-baby": "Crow (baby)",
+    "item-creature-thecritterpack:fieldmus": "Fieldmouse",
+    "item-creature-thecritterpack:mallard-duck-male": "Mallard duck(male)",
+    "item-creature-thecritterpack:mallard-duck-female": "Mallard duck(female)",
+    "item-creature-thecritterpack:mallard-duck-baby": "Mallard duck(duckling)",
+    "item-creature-thecritterpack:pekin-duck-male": "Pekin duck(male)",
+    "item-creature-thecritterpack:pekin-duck-female": "Pekin duck(female)",
+    "item-creature-thecritterpack:pekin-duck-baby": "Pekin duck(duckling)",
+    "item-creature-thecritterpack:call-duck-male": "Call duck(male)",
+    "item-creature-thecritterpack:call-duck-female": "Call duck(female)",
+    "item-creature-thecritterpack:call-duck-baby": "Call duck(duckling)",
+    "item-creature-thecritterpack:hedgehog-male": "Hedgehog (male)",
+    "item-creature-thecritterpack:hedgehog-female": "Hedgehog (female)",
+    "item-creature-thecritterpack:hedgehog-baby": "Hedgehog (baby)",
+	"item-creature-thecritterpack:trumpeter-swan-baby-old": "trumpeter Swan Cygnet (old)",
+	"item-creature-thecritterpack:trumpeter-swan-baby-young": "trumpeter Swan Cygnet (young)",
+	"item-creature-thecritterpack:mute-swan-baby-old": "mute Swan Cygnet (old)",
+	"item-creature-thecritterpack:mute-swan-baby-young": "mute Swan Cygnet (young)",
+	
+	"item-creature-thecritterpack:blackswan-baby-old": "black Swan Cygnet (old)",
+	"item-creature-thecritterpack:blackswan-baby-young": "black Swan Cygnet (young)",
+	
+	//		Butchering Support
+	
+    "thecritterpack:item-deadcreature-yak-calf-dead": "Dead Yak Calf",
+    "thecritterpack:item-deadcreature-yak-calf-rotten": "Dead Yak Calf (Rotten)",
+    "thecritterpack:item-deadcreature-yak-calf-skinned": "Dead Yak Calf (Skinned)",
+    "thecritterpack:item-deadcreature-yak-calf-bledout": "Dead Yak Calf (Bled)",
+	
+    "thecritterpack:item-deadcreature-yak-male-dead": "Dead Yak Male",
+    "thecritterpack:item-deadcreature-yak-male-rotten": "Dead Yak Male (Rotten)",
+    "thecritterpack:item-deadcreature-yak-male-skinned": "Dead Yak Male (Skinned)",
+    "thecritterpack:item-deadcreature-yak-male-bledout": "Dead Yak Male (Bled)",
+	
+    "thecritterpack:item-deadcreature-yak-female-dead": "Dead Yak Female",
+    "thecritterpack:item-deadcreature-yak-female-rotten": "Dead Yak Female (Rotten)",
+    "thecritterpack:item-deadcreature-yak-female-skinned": "Dead Yak Female (Skinned)",
+    "thecritterpack:item-deadcreature-yak-female-bledout": "Dead Yak Female (Bled)",
+	
+    "thecritterpack:item-deadcreature-duck-dead": "Dead Duck",
+    "thecritterpack:item-deadcreature-duck-rotten": "Dead Duck (Rotten)",
+    "thecritterpack:item-deadcreature-duck-skinned": "Dead Duck (Skinned)",
+    "thecritterpack:item-deadcreature-duck-bledout": "Dead Duck (Bled)",
+	
+    "thecritterpack:item-deadcreature-squirrel-dead": "Dead Squirrel",
+    "thecritterpack:item-deadcreature-squirrel-rotten": "Dead Squirrel (Rotten)",
+    "thecritterpack:item-deadcreature-squirrel-skinned": "Dead Squirrel (Skinned)",
+    "thecritterpack:item-deadcreature-squirrel-bledout": "Dead Squirrel (Bled)",
+	
+    "thecritterpack:item-deadcreature-swan-dead": "Dead Swan",
+    "thecritterpack:item-deadcreature-swan-rotten": "Dead Swan (Rotten)",
+    "thecritterpack:item-deadcreature-swan-skinned": "Dead Swan (Skinned)",
+    "thecritterpack:item-deadcreature-swan-bledout": "Dead Swan (Bled)",
+	
+    "thecritterpack:item-deadcreature-owl-brown-f-dead": "Dead Owl",
+    "thecritterpack:item-deadcreature-owl-brown-f-rotten": "Dead Owl (Rotten)",
+    "thecritterpack:item-deadcreature-owl-brown-f-skinned": "Dead Owl (Skinned)",
+    "thecritterpack:item-deadcreature-owl-brown-f-bledout": "Dead Owl (Bled)",
+
+
+
+
+// Expanded Foods Support 
+
+
+  "thecritterpack:item-egg-pekin-raw":    "Pekin Duck Egg (Raw)",
+  "thecritterpack:item-egg-pekin-boiled": "Pekin Duck Egg (Boiled)",
+  "thecritterpack:item-egg-pekin-pickled":"Pekin Duck Egg (Pickled)",
+
+  "thecritterpack:item-egg-mallard-raw":    "Mallard Duck Egg (Raw)",
+  "thecritterpack:item-egg-mallard-boiled": "Mallard Duck Egg (Boiled)",
+  "thecritterpack:item-egg-mallard-pickled":"Mallard Duck Egg (Pickled)",
+
+  "thecritterpack:item-egg-call-raw":    "Call Duck Egg (Raw)",
+  "thecritterpack:item-egg-call-boiled": "Call Duck Egg (Boiled)",
+  "thecritterpack:item-egg-call-pickled":"Call Duck Egg (Pickled)",
+
+  "thecritterpack:item-egg-crow-raw":    "Crow Egg (Raw)",
+  "thecritterpack:item-egg-crow-boiled": "Crow Egg (Boiled)",
+  "thecritterpack:item-egg-crow-pickled":"Crow Egg (Pickled)",
+
+  "expandedfoods:item-limeegg-pekin":   "Water-Glassed Pekin Duck Egg",
+  "expandedfoods:item-limeegg-mallard": "Water-Glassed Mallard Duck Egg",
+  "expandedfoods:item-limeegg-call":    "Water-Glassed Call Duck Egg",
+  "expandedfoods:item-limeegg-crow":    "Water-Glassed Crow Egg",
+
+  "aculinaryartillery:item-eggyolk-pekin":           "Cracked Pekin Duck Egg",
+  "aculinaryartillery:item-eggyolkportion-pekin":    "Pekin Duck egg yolk portion",
+  "aculinaryartillery:item-eggyolkfullportion-pekin":"Pekin Duck egg portion",
+
+  "aculinaryartillery:item-eggyolk-mallard":           "Cracked Mallard Duck Egg",
+  "aculinaryartillery:item-eggyolkportion-mallard":    "Mallard Duck egg yolk portion",
+  "aculinaryartillery:item-eggyolkfullportion-mallard":"Mallard Duck egg portion",
+
+  "aculinaryartillery:item-eggyolk-call":           "Cracked Call Duck Egg",
+  "aculinaryartillery:item-eggyolkportion-call":    "Call Duck egg yolk portion",
+  "aculinaryartillery:item-eggyolkfullportion-call":"Call Duck egg portion",
+
+  "aculinaryartillery:item-eggyolk-crow":           "Cracked Crow Egg",
+  "aculinaryartillery:item-eggyolkportion-crow":    "Crow egg yolk portion",
+  "aculinaryartillery:item-eggyolkfullportion-crow":"Crow egg portion",
+  
+  "aculinaryartillery:incontainer-item-eggyolkportion-pekin":"Pekin egg portion",
+  "aculinaryartillery:incontainer-item-eggyolkfullportion-pekin":"Pekin egg portion",
+
+    "aculinaryartillery:incontainer-item-eggyolkportion-mallard":"Mallard egg portion",
+  "aculinaryartillery:incontainer-item-eggyolkfullportion-mallard":"Mallard egg portion",
+
+    "aculinaryartillery:incontainer-item-eggyolkportion-call":"Call egg portion",
+  "aculinaryartillery:incontainer-item-eggyolkfullportion-call":"Call egg portion",
+
+    "aculinaryartillery:incontainer-item-eggyolkportion-crow":"Crow egg portion",
+  "aculinaryartillery:incontainer-item-eggyolkfullportion-crow":"Crow egg portion",
+
+ 
+  
+  "game:recipe-barrel-limeegg-pekin":   "Lime-Cure Pekin Duck Egg",
+  "game:recipe-barrel-limeegg-mallard": "Lime-Cure Mallard Duck Egg",
+  "game:recipe-barrel-limeegg-call":    "Lime-Cure Call Duck Egg",
+  "game:recipe-barrel-limeegg-crow":    "Lime-Cure Crow Egg",
+  "game:recipe-barrel-pickledegg-critter-duck": "Pickle Critter Pack Duck Egg",
+
+  "recipeingredient-item-thecritterpack:egg-pekin-raw":    "pekin duck egg",
+  "recipeingredient-item-thecritterpack:egg-pekin-boiled": "boiled pekin duck egg",
+  "recipeingredient-item-thecritterpack:egg-pekin-pickled":"pickled pekin duck egg",
+
+  "recipeingredient-item-thecritterpack:egg-mallard-raw":    "mallard duck egg",
+  "recipeingredient-item-thecritterpack:egg-mallard-boiled": "boiled mallard duck egg",
+  "recipeingredient-item-thecritterpack:egg-mallard-pickled":"pickled mallard duck egg",
+
+  "recipeingredient-item-thecritterpack:egg-call-raw":    "call duck egg",
+  "recipeingredient-item-thecritterpack:egg-call-boiled": "boiled call duck egg",
+  "recipeingredient-item-thecritterpack:egg-call-pickled":"pickled call duck egg",
+
+  "recipeingredient-item-thecritterpack:egg-crow-raw":    "crow egg",
+  "recipeingredient-item-thecritterpack:egg-crow-boiled": "boiled crow egg",
+  "recipeingredient-item-thecritterpack:egg-crow-pickled":"pickled crow egg",
+
+  "recipeingredient-item-aculinaryartillery:eggyolkportion-pekin":    "pekin duck egg yolk portion",
+  "recipeingredient-item-aculinaryartillery:eggyolkfullportion-pekin":"pekin duck egg portion",
+
+  "recipeingredient-item-aculinaryartillery:eggyolkportion-mallard":    "mallard duck egg yolk portion",
+  "recipeingredient-item-aculinaryartillery:eggyolkfullportion-mallard":"mallard duck egg portion",
+
+  "recipeingredient-item-aculinaryartillery:eggyolkportion-call":    "call duck egg yolk portion",
+  "recipeingredient-item-aculinaryartillery:eggyolkfullportion-call":"call duck egg portion",
+
+  "recipeingredient-item-aculinaryartillery:eggyolkportion-crow":    "crow egg yolk portion",
+  "recipeingredient-item-aculinaryartillery:eggyolkfullportion-crow":"crow egg portion",
+
+  "game:recipeingredient-item-eggyolkfullportion-pekin": "liquid chicken egg",
+  "game:recipeingredient-item-eggyolkfullportion-mallard": "liquid chicken egg",
+  "game:recipeingredient-item-eggyolkfullportion-call": "liquid chicken egg",
+  "game:recipeingredient-item-eggyolkfullportion-crow": "liquid chicken egg",
+
+
+
+
+  "aculinaryartillery:recipeingredient-item-eggyolkfullportion-pekin-insturmentalcase": "liquid chicken egg"
+
+}

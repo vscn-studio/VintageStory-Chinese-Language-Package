@@ -1,0 +1,49 @@
+{
+	"game:tabname-fowlmod": "Sonya's Quality Fowl",
+
+	"fowlmod:item-creature-duck-mallard-drake": "Mallard drake",
+	"fowlmod:item-dead-creature-duck-mallard-drake": "Dead mallard drake",
+	"fowlmod:item-creature-duck-mallard-hen": "Mallard duck",
+	"fowlmod:item-dead-creature-duck-mallard-hen": "Dead mallard duck",
+	"fowlmod:item-creature-duck-mallard-baby": "Mallard duckling",
+	"fowlmod:item-dead-creature-duck-mallard-baby": "Dead mallard duckling",
+
+	"fowlmod:item-creature-duck-pekin-drake": "Pekin drake",
+	"fowlmod:item-dead-creature-duck-pekin-drake": "Dead pekin drake",
+	"fowlmod:item-creature-duck-pekin-hen": "Pekin duck",
+	"fowlmod:item-dead-creature-duck-pekin-hen": "Dead pekin duck",
+	"fowlmod:item-creature-duck-pekin-baby": "Pekin duckling",
+	"fowlmod:item-dead-creature-duck-pekin-baby": "Dead pekin duckling",
+
+	"fowlmod:item-creature-duck-blue-drake": "Blue drake",
+	"fowlmod:item-dead-creature-duck-blue-drake": "Dead blue drake",
+	"fowlmod:item-creature-duck-blue-hen": "Blue duck",
+	"fowlmod:item-dead-creature-duck-blue-hen": "Dead blue duck",
+	"fowlmod:item-creature-duck-blue-baby": "Blue duckling",
+	"fowlmod:item-dead-creature-duck-blue-baby": "Dead blue duckling",
+
+	"item-creature-fowlmod:duck-mallard-drake": "mallard drake",
+	"item-creature-fowlmod:duck-mallard-hen": "mallard duck",
+	"item-creature-fowlmod:duck-mallard-baby": "mallard duckling",
+	"item-creature-fowlmod:duck-pekin-drake": "pekin drake",
+	"item-creature-fowlmod:duck-pekin-hen": "pekin duck",
+	"item-creature-fowlmod:duck-pekin-baby": "pekin duckling",
+	"item-creature-fowlmod:duck-blue-drake": "blue drake",
+	"item-creature-fowlmod:duck-blue-hen": "blue duck",
+	"item-creature-fowlmod:duck-blue-baby": "blue duckling",
+
+	"fowlmod:creaturegroup-duck": "Duck",
+	"fowlmod:itemdesc-creature-duck-*-hen": "Duck",
+	"fowlmod:itemdesc-creature-duck-*-drake": "Duck",
+	"fowlmod:itemdesc-creature-duck-*-baby": "Duck",
+
+	"fowlmod:item-egg-duck-raw": "Raw duck egg",
+	"fowlmod:block-egg-duck-1": "Duck egg",
+
+	"fowlmod:recipeingredient-item-egg-duck-raw": "duck egg",
+	"recipeingredient-item-egg-duck-raw-insturmentalcase": "duck egg",
+	"game:meal-ingredient-soup-primary-egg-duck-raw": "egg",
+	"game:meal-ingredient-soup-secondary-egg-duck-raw": "egg",
+	"game:meal-ingredient-stew-primary-egg-duck-raw": "egg",
+	"game:meal-ingredient-stew-primary-egg-duck-raw": "egg",
+}
