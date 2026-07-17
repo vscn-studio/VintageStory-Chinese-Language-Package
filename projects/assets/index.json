@@ -1301,5 +1301,69 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "purposefulstorage": {
+    "name": "Purposeful Storage",
+    "translation": "专项收纳",
+    "authors": [
+      "SONZINA"
+    ],
+    "homepage": "https://mods.vintagestory.at/purposefulstorage",
+    "latestVersion": "2.0.1",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "realgrapes": {
+    "name": "Real Grapes",
+    "translation": "真实的葡萄",
+    "authors": [
+      "xXx_Ape_xXx"
+    ],
+    "homepage": "https://mods.vintagestory.at/realgrapes",
+    "latestVersion": "1.4.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "steepandbrew": {
+    "name": "Steep and Brew",
+    "translation": "浸泡与萃取",
+    "authors": [
+      "BlindCaesar"
+    ],
+    "homepage": "https://mods.vintagestory.at/steepandbrew",
+    "latestVersion": "0.7.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "substrate": {
+    "name": "Substrate",
+    "translation": "基质",
+    "authors": [
+      "queerty"
+    ],
+    "homepage": "https://mods.vintagestory.at/substrate",
+    "latestVersion": "2.0.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
