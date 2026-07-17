@@ -6,6 +6,7 @@ const state = {
     { file: "creatures-and-entities.json", label: "生物与实体" },
     { file: "rocks-minerals-and-metals.json", label: "岩石、矿物与金属" },
     { file: "food-farming-and-cooking.json", label: "食物、农业与烹饪" },
+    { file: "mushroom.json", label: "蘑菇" },
     { file: "crafting-and-processing.json", label: "工艺与加工" },
     { file: "mechanical-power.json", label: "机械动力" },
     { file: "environment-and-worldgen.json", label: "环境与世界生成" },

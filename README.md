@@ -156,6 +156,7 @@ items.json                        物品
 creatures-and-entities.json       生物与实体
 rocks-minerals-and-metals.json    岩石、矿物与金属
 food-farming-and-cooking.json     食物、农业与烹饪
+mushroom.json                     蘑菇
 crafting-and-processing.json      工艺与加工
 mechanical-power.json             机械动力
 environment-and-worldgen.json     环境与世界生成
