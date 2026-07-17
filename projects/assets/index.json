@@ -1237,5 +1237,69 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "moreinventorys": {
+    "name": "MoreInventorys",
+    "translation": "更多库存",
+    "authors": [
+      "InfantryMan"
+    ],
+    "homepage": "https://mods.vintagestory.at/moreinventorys",
+    "latestVersion": "1.0.1",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "overhaulliblegacycompat": {
+    "name": "Overhaul lib legacy compatibility",
+    "translation": "大修旧版兼容库",
+    "authors": [
+      "Alodh"
+    ],
+    "homepage": "https://mods.vintagestory.at/overhaulliblegacycompat",
+    "latestVersion": "1.2.4",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "seraphgirls": {
+    "name": "Seraph Girls",
+    "translation": "炽天使女孩们",
+    "authors": [
+      "Sorcelaine"
+    ],
+    "homepage": "https://mods.vintagestory.at/seraphgirls",
+    "latestVersion": "1.2.0",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "vanillamoremolds": {
+    "name": "Vanilla More Molds 2.1.0",
+    "translation": "更多原版模具",
+    "authors": [
+      "Zack_a_Riz"
+    ],
+    "homepage": "https://mods.vintagestory.at/vanillamoremolds",
+    "latestVersion": "2.1.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
