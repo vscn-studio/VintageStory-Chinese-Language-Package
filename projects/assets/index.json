@@ -1270,22 +1270,6 @@
       }
     ]
   },
-  "seraphgirls": {
-    "name": "Seraph Girls",
-    "translation": "炽天使女孩们",
-    "authors": [
-      "Sorcelaine"
-    ],
-    "homepage": "https://mods.vintagestory.at/seraphgirls",
-    "latestVersion": "1.2.0",
-    "contributors": [
-      {
-        "name": "Cirno",
-        "url": "https://vintagestory.top/u/Cirno",
-        "role": "Chinese Translator"
-      }
-    ]
-  },
   "vanillamoremolds": {
     "name": "Vanilla More Molds 2.1.0",
     "translation": "更多原版模具",
