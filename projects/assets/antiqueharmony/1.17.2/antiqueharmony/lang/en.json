@@ -1,0 +1,56 @@
+{
+  "antiqueharmony:music-default-key": "Unknown Music from Antique Harmony",
+  "antiqueharmony:music-antiquity": "Antiquity",
+  "antiqueharmony:music-cogwork": "Cogwork",
+  "antiqueharmony:music-dawn": "Dawn",
+  "antiqueharmony:music-depth": "Depth",
+  "antiqueharmony:music-echoes": "Deseert Echoes",
+  "antiqueharmony:music-glow": "Morning Glow",
+  "antiqueharmony:music-grove": "Grove",
+  "antiqueharmony:music-midnightchime": "Midnight Chime",
+  "antiqueharmony:music-rain": "As the Rain Fall Through the Trees",
+  "antiqueharmony:music-red": "Red Leaves",
+  "antiqueharmony:music-sight": "Sight",
+  "antiqueharmony:music-summer": "Summer Sun",
+  "antiqueharmony:music-winter": "Winter Wind",
+  "antiqueharmony:music-river": "Candlewick Creek",
+  "antiqueharmony:music-gentlesnow": "Gentle Snow",
+  
+  "temporalsymphony:sounds-music-stormmusicA": "Tempest",
+  "temporalsymphony:sounds-music-stormmusicB": "Tempest",
+  
+
+  "antiqueharmony:music-itbegins": "It begins...",
+  "antiqueharmony:music-itsenses": "It senses...",
+  "antiqueharmony:music-itremembers": "It remembers...",
+  "antiqueharmony:music-allthatcamebefore": "all that came before...",
+  "antiqueharmony:music-thecenterunfolding": "The center unfolding...",
+  "antiqueharmony:music-thecarvedmountains": "...The carved mountains",
+  "antiqueharmony:music-therollinghills": "...The rolling hills",
+  "antiqueharmony:music-theendlessplains": "...The endless plains",
+  "antiqueharmony:music-tunnelsdeepbelow": "...Tunnels Deep Below",
+  "antiqueharmony:music-theluccioustrees": "...The lucious Trees",
+  "antiqueharmony:music-thefregrantflowers": "...The Fregrant Flowers",
+  "antiqueharmony:music-theroamingcreatures": "...The roaming creatures",
+  "antiqueharmony:music-burningsparks": "Burning Sparks...",
+  "antiqueharmony:music-moldedforms": "Molded forms...",
+  "antiqueharmony:music-simpletools": "Simple tools...",
+  "antiqueharmony:music-glimmersinthesoil": "Glimmers in the soil...",
+  "antiqueharmony:music-tasteandsmell": "Taste and smell...",
+  "antiqueharmony:music-aworldunbroken": "A world unbroken...",
+  "antiqueharmony:music-grandinventions": "Grand inventions...",
+  "antiqueharmony:music-itcallstoyou": "...and calls to you.",
+  "antiqueharmony:music-returnagain": "Return again.",
+  
+  
+  "antiqueharmony:music-drone": "Drone",
+  "antiqueharmony:music-moon": "Moon",
+  "antiqueharmony:music-moonlight": "Moonlight",
+  "antiqueharmony:music-midnightchime": "Midnight Chime",
+  
+  
+  "setting-tracks-toggle": "Uncheck to replace music",
+  "hint-tracks-toggle": "Checked = Add Antique Harmony tracks to the Vanilla tracks. (Default)\r\nUnchecked = Replace Vanilla tracks with Antique Harmony tracks.",
+  "setting-tracks-ambient": "Uncheck to disable ambient (filler) tracks",
+  "hint-tracks-ambient": "Checked = Ambient tracks are included in the playlist. (Default)\r\nUnchecked = Ambient tracks will not play."
+}

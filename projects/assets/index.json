@@ -1245,7 +1245,7 @@
       "InfantryMan"
     ],
     "homepage": "https://mods.vintagestory.at/moreinventorys",
-    "latestVersion": "1.0.1",
+    "latestVersion": "1.0.6",
     "contributors": [
       {
         "name": "Cirno",
@@ -1362,6 +1362,38 @@
       {
         "name": "Ch44",
         "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "antiqueharmony": {
+    "name": "Antique Harmony | Music Additions / Alternative Soundtrack",
+    "translation": "古韵和声",
+    "authors": [
+      "Garlicc"
+    ],
+    "homepage": "https://mods.vintagestory.at/antiqueharmony",
+    "latestVersion": "1.17.2",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "seraphatelier": {
+    "name": "Seraph Atelier - Player Model Lib",
+    "translation": "炽天使工坊",
+    "authors": [
+      "Sorcelaine"
+    ],
+    "homepage": "https://mods.vintagestory.at/seraphatelier",
+    "latestVersion": "1.5.5",
+    "contributors": [
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
         "role": "Chinese Translator"
       }
     ]
