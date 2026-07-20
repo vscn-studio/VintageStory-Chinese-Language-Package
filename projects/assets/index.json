@@ -367,6 +367,22 @@
     "homepage": "https://mods.vintagestory.at/icecycle",
     "latestVersion": "1.0.2"
   },
+  "immersivewoodworking": {
+    "name": "Immersive Woodworking",
+    "translation": "",
+    "authors": [
+      "Bobrik00"
+    ],
+    "homepage": "https://mods.vintagestory.at/immersivewoodworking",
+    "latestVersion": "1.2.0",
+    "contributors": [
+      {
+        "name": "zfms4188",
+        "url": "https://vintagestory.top/u/zfms4188",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
   "justtofu": {
     "name": "Just Tofu",
     "translation": "纯豆腐",
@@ -398,6 +414,38 @@
     ],
     "homepage": "https://mods.vintagestory.at/kscartographytable",
     "latestVersion": "2.0.4"
+  },
+  "materialneeds": {
+    "name": "Material Needs",
+    "translation": "材料需求",
+    "authors": [
+      "Nephelangelo"
+    ],
+    "homepage": "https://mods.vintagestory.at/materialneeds",
+    "latestVersion": "2.0.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "materialneedsflowers": {
+    "name": "Material Needs: Flowers",
+    "translation": "材料需求：花朵",
+    "authors": [
+      "Nephelangelo"
+    ],
+    "homepage": "https://mods.vintagestory.at/materialneedsflowers",
+    "latestVersion": "2.0.0",
+    "contributors": [
+      {
+        "name": "Ch44",
+        "url": "https://vintagestory.top/u/Ch44",
+        "role": "Chinese Translator"
+      }
+    ]
   },
   "mealrevariation": {
     "name": "Variations on a Meal - Revaried",
