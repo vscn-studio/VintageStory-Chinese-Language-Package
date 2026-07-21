@@ -1429,5 +1429,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "statushudcont": {
+    "name": "Status Hud Continued",
+    "translation": "状态HUD续作",
+    "authors": [
+      "Gravydigger"
+    ],
+    "homepage": "https://mods.vintagestory.at/statushudcont",
+    "latestVersion": "4.3.2",
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
