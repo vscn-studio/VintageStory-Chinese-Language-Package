@@ -1445,5 +1445,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "composttweak": {
+    "name": "CompostTweak",
+    "translation": "堆肥调整",
+    "authors": [
+      "RolledTaco"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/21752",
+    "latestVersion": "2.3.1",
+    "contributors": [
+      {
+        "name": "zfms4188",
+        "url": "https://vintagestory.top/u/zfms4188",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
