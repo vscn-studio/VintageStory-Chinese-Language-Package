@@ -1461,5 +1461,37 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "adventurer-s-walking-stick": {
+    "name": "Adventurer's Walking Stick",
+    "translation": "冒险家手杖",
+    "authors": [
+      "JeanPierre"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/34545",
+    "latestVersion": "3.0.10",
+    "contributors": [
+      {
+        "name": "zfms4188",
+        "url": "https://vintagestory.top/u/zfms4188",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "earthfed": {
+    "name": "Earthfed - More Fertilizers",
+    "translation": "养料扩展",
+    "authors": [
+      "Faeldray"
+    ],
+    "homepage": "https://mods.vintagestory.at/earthfed",
+    "latestVersion": "1.1.0",
+    "contributors": [
+      {
+        "name": "live66",
+        "url": "https://vintagestory.top/u/live66",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }

@@ -1,0 +1,129 @@
+{
+
+  "item-walkingstick": "手杖",
+  "item-walkingstick-fine": "精制手杖",
+  "item-walkingstick-crude": "粗制手杖",
+  "item-walkingstick-cowskull": "牛头骨手杖",
+  "item-walkingstick-reinforced": "加固手杖",
+
+
+  "item-walkingstick-survivalist-copper": "求生手杖（铜刀）",
+  "item-walkingstick-survivalist-blackbronze": "求生手杖（黑铜刀）",
+  "item-walkingstick-survivalist-bismuth": "求生手杖（铋刀）",
+  "item-walkingstick-survivalist-tinbronze": "求生手杖（锡铜刀）",
+  "item-walkingstick-survivalist-bismuthbronze": "求生手杖（铋铜刀）",
+  "item-walkingstick-survivalist-iron": "求生手杖（铁刀）",
+  "item-walkingstick-survivalist-silver": "求生手杖（银刀）",
+  "item-walkingstick-survivalist-gold": "求生手杖（金刀）",
+  "item-walkingstick-survivalist-steel": "求生手杖（钢刀）",
+  "item-walkingstick-survivalist-meteoriciron": "求生手杖（陨铁刀）",
+
+  "item-walkingstick-lantern-copper": "铜提灯手杖",
+  "item-walkingstick-lantern-brass": "黄铜提灯手杖",
+  "item-walkingstick-lantern-blackbronze": "黑铜提灯手杖",
+  "item-walkingstick-lantern-bismuth": "铋提灯手杖",
+  "item-walkingstick-lantern-tinbronze": "锡铜提灯手杖",
+  "item-walkingstick-lantern-bismuthbronze": "铋铜提灯手杖",
+  "item-walkingstick-lantern-iron": "铁提灯手杖",
+  "item-walkingstick-lantern-molybdochalkos": "铅铜提灯手杖",
+  "item-walkingstick-lantern-silver": "银提灯手杖",
+  "item-walkingstick-lantern-gold": "金提灯手杖",
+  "item-walkingstick-lantern-steel": "钢提灯手杖",
+  "item-walkingstick-lantern-meteoriciron": "陨铁提灯手杖",
+  "item-walkingstick-lantern-electrum": "琥珀金提灯手杖",
+
+  "item-walkingstick-shepherds": "牧羊人手斧",
+  "item-walkingstick-architect": "建筑师手杖",
+  "item-walkingstick-pathfinder": "探路者手杖",
+  "item-walkingstick-leap": "牧羊人跃击杖",
+  "item-walkingstick-blackthorn": "黑刺李手杖",
+  "item-walkingstick-witch": "女巫手杖",
+  "item-walkingstick-sling": "杖式投石索",
+  "item-walkingstick-sling-packed": "收纳杖式投石索",
+  "item-walkingstick-jonas": "约纳斯喷灰器",
+  "item-walkingstick-blackguard": "黑卫士矛杖",
+  "item-walkingstick-forlorn": "绝境者矛杖",
+  "item-walkingstick-gas": "瓦斯灯手杖",
+
+  "item-walkingstick-sheathed": "藏刃手杖",
+  "item-walkingstick-sheath": "手杖鞘套",
+  "item-hidden-blade": "暗藏铁刃",
+  "item-walkingstick-gun-sheathed": "藏枪手杖",
+  "item-walkingstick-gun-sheath": "手杖枪套",
+  "item-hidden-gun": "暗藏齿轮枪",
+
+  "item-paper-cartridge": "纸弹药筒",
+  "item-paper-cylinder": "纸卷筒",
+
+  "item-flintlock-mechanism-iron": "铁制齿轮枪机构",
+  "item-hiddenblade-head-iron": "铁制暗刃头",
+
+  "item-schematic-flintlock": "齿轮枪图纸",
+
+
+  "itemdesc-walkingstick-sheathed": "一根坚固的行走助力工具，暗藏锋锐秘密。\n<font color=\"#B3FFFFFF\"><i>组装方法：副手持<a href=\"handbook://item-walkingstick:walkingstick-sheath\">手杖鞘套</a>，主手持<a href=\"handbook://item-walkingstick:hidden-blade\">暗刃</a>，然后按F键</i></font>",
+  "itemdesc-walkingstick-sheath": "可藏匿<a href=\"handbook://item-walkingstick:hidden-blade\">暗刃</a>的手杖鞘套",
+  "itemdesc-hidden-blade": "可藏于<a href=\"handbook://item-walkingstick:walkingstick-sheath\">手杖鞘套</a>中的铁刃",
+  "itemdesc-walkingstick-gun-sheathed": "一根优雅的行走助力工具，暗藏致命秘密。\n<font color=\"#B3FFFFFF\"><i>组装方法：副手持<a href=\"handbook://item-walkingstick:walkingstick-gun-sheath\">手杖枪套</a>，主手持<a href=\"handbook://item-walkingstick:hidden-gun\">齿轮枪</a>，然后按F键</i></font>",
+  "itemdesc-walkingstick-gun-sheath": "可藏匿<a href=\"handbook://item-walkingstick:hidden-gun\">齿轮枪</a>的手杖枪套",
+  "itemdesc-hidden-gun": "可藏于<a href=\"handbook://item-walkingstick:walkingstick-gun-sheath\">手杖枪套</a>中的齿轮枪。\n<font color=\"#B3FFFFFF\"><i>按Alt+R装填，需要工具栏中有纸弹药筒和亚麻纤维</i></font>",
+
+  "itemdesc-paper-cartridge": "\n<font color=\"#B3FFFFFF\"><i>用于装填暗藏齿轮枪机构</i></font>",
+  "itemdesc-paper-cylinder": "\n<font color=\"#B3FFFFFF\"><i>用于制作纸弹药筒</i></font>",
+
+  "itemdesc-flintlock-mechanism-iron": "一种曾常用于火器的奇特机构，制作暗藏齿轮枪所需。",
+  "itemdesc-hiddenblade-head-iron": "细薄的铁刃头，制作暗刃所需。",
+
+  "itemdesc-schematic-flintlock": "制作齿轮枪机构所需的图纸。",
+
+
+
+
+  "itemdesc-walkingstick": "实用的行走助力工具，行走时节省体力。",
+  "itemdesc-walkingstick-fine": "做工精良的实用行走助力工具，行走时节省体力。",
+  "itemdesc-walkingstick-crude": "简陋的行走助力工具，行走时略微节省体力。",
+  "itemdesc-walkingstick-cowskull": "装饰过的行走助力工具，行走时节省体力。",
+  "itemdesc-walkingstick-reinforced": "加固的行走助力工具，挥击力道十足。",
+  "itemdesc-walkingstick-lantern-copper": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-brass": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-blackbronze": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-bismuth": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-tinbronze": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-bismuthbronze": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-iron": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-molybdochalkos": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-silver": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-gold": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-steel": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-meteoriciron": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+  "itemdesc-walkingstick-lantern-electrum": "明亮的行走助力工具，照亮前方道路，行走时节省体力。",
+
+  "itemdesc-walkingstick-survivalist-copper": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-blackbronze": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-bismuth": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-tinbronze": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-bismuthbronze": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-iron": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-silver": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-gold": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-steel": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+  "itemdesc-walkingstick-survivalist-meteoriciron": "锋利的行走助力工具，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>可用于割除高草</i></font>",
+
+  "item-axehead-shepherds-iron": "铁制牧羊人手斧头",
+
+  "game:walkingstick-guide-text": "<strong>手杖</strong>\n<font color=\"#B3FFFFFF\"><i>你老寒腿的忠实伴侣。</i></font>\n\n手杖是手持物品，装备后提供被动增益。每根手杖都能提升行走速度、减少饱腹度消耗，部分变体还附带与其用途相关的独特能力。\n\n所有手杖均配有自定义行走动画和自动跨步功能，无需跳跃即可穿越不平坦的地形。\n\n各种变体从可随时简易制作的<a href=\"handbook://item-walkingstick:walkingstick-crude\">粗制手杖</a>，到更为独特的选项，如可投掷并在长途行军中提供急需助力的<a href=\"handbook://item-walkingstick:walkingstick-blackguard\">黑卫士矛杖</a>，或者能洒下温暖柔和光芒、还可用于生火的惬意<a href=\"handbook://item-walkingstick:walkingstick-witch\">女巫手杖</a>。说到火，以时之齿轮为燃料的恐怖<a href=\"handbook://item-walkingstick:walkingstick-jonas\">约纳斯喷灰器</a>火焰喷射器也任你使用。\n\n部分手杖支持附件。例如，<a href=\"handbook://item-walkingstick:walkingstick\">基础手杖</a>可挂载任意金属制成的提灯（需无衬里的石英玻璃），或替代地挂载牛头骨；而<a href=\"handbook://item-walkingstick:walkingstick-fine\">精制手杖</a>可用于制作<a href=\"handbook://item-walkingstick:walkingstick-pathfinder\">探路者手杖</a>、<a href=\"handbook://item-walkingstick:walkingstick-gas\">瓦斯灯手杖</a>变体、<a href=\"handbook://item-walkingstick:walkingstick-shepherds\">牧羊人手斧</a>或<a href=\"handbook://item-walkingstick:walkingstick-architect\">建筑师手杖</a>。\n\n那些希望隐藏自身，或者心怀不轨之人，可能会对<a href=\"handbook://item-walkingstick:walkingstick-sheathed\">藏刃手杖</a>或<a href=\"handbook://item-walkingstick:walkingstick-gun-sheathed\">藏枪手杖</a>感兴趣。部分手杖还可挂在你的驼鹿身侧。\n\n请查看每种变体的手册条目以获取详细属性和合成配方。\n\n<font color=\"#B3FFFFFF\"><i>愿道路迎合你的脚步，旅者。</i></font>",
+  "game:walkingstick-guide-title": "手杖指南",
+
+  "itemdesc-walkingstick-gas": "极为明亮的行走助力工具，照亮前方道路，行走时节省体力。\n<font color=\"#B3FFFFFF\"><i>长按右键放大灯焰光芒</i></font>",
+  "itemdesc-walkingstick-blackguard": "锋利而又坚固，在长途行军中减轻重甲带来的负担，同时让敌人不敢靠近。",
+  "itemdesc-walkingstick-forlorn": "精良可靠，为漫漫征途与最后防线而生。",
+  "itemdesc-walkingstick-jonas": "能熔化面前的一切，顺便也是根手杖。",
+  "itemdesc-walkingstick-shepherds": "在山地地区也被称为ciupaga、valaška或fokos。集手杖与林间多功能工具—副武器于一身，有助于清除前方灌木并在需要时提供防护。",
+  "itemdesc-walkingstick-architect": "兼具测量功能的手杖，可测量方块之间的距离。",
+  "itemdesc-walkingstick-pathfinder": "内置瞄准镜的手杖，适合喜欢观察前方或上方情况的人。",
+  "itemdesc-walkingstick-leap": "在火山群岛也被称为garrote，有助于穿越崎岖地形。",
+  "itemdesc-walkingstick-blackthorn": "在翡翠岛也被称为shillelagh。行走时节省体力，挥舞时凶猛无比。",
+  "itemdesc-walkingstick-witch": "一根迷人的行走助力工具，洒下温暖柔和的光芒，旅者的每一步负担都随之减轻。\n<font color=\"#B3FFFFFF\"><i>可用于生火。</i></font>",
+  "itemdesc-walkingstick-sling": "手杖与重型投石索的结合体，用于远程战斗。\n<font color=\"#B3FFFFFF\"><i>使用普通石头作为弹药。</i></font>"
+
+}

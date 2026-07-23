@@ -1,0 +1,25 @@
+{
+		"game:tabname-earthfed": "Earthfed",
+
+		"item-bloodchunks-solid": "Blood Chunks",
+		"item-bloodchunks-dried": "Dried Blood Chunks",
+		"item-bloodmeal": "Bloodmeal",
+		"item-feathersboiled": "Boiled Feathers",
+		"item-feathermeal-wet": "Wet Feathermeal",
+		"item-feathermeal-dried": "Feathermeal",
+		"item-seaweedmeal-wet": "Wet Seaweedmeal",
+		"item-seaweedmeal-dried": "Seaweedmeal",
+		"item-fishmeal-wet": "Wet Fishmeal",
+		"item-fishmeal-dried": "Fishmeal",
+
+		"itemdesc-bloodchunks-solid": "Blood that has been boiled to reduce it to chunks. Needs to be dried for further use.",
+		"itemdesc-bloodchunks-dried": "Blood chunks that have been air-dried. Need to be ground to turn into bloodmeal.",
+		"itemdesc-bloodmeal": "Blood that has been dried and ground into a fine powder. It is a fertilizer with moderate amounts of nitrogen.",
+		"itemdesc-feathersboiled": "Feathers that have been boiled to break down the keratin in them. Needs to be ground for further use.",
+		"itemdesc-feathermeal-wet": "Boiled feathers that have been ground into a paste. Needs to be dried for further use.",
+		"itemdesc-feathermeal-dried": "A fine powder made from boiled and ground feathers. It is a fertilizer with moderate amounts of nitrogen.",
+		"itemdesc-seaweedmeal-wet": "Ground seaweed. Needs to be dried for further use.",
+		"itemdesc-seaweedmeal-dried": "A fine powder made of ground and dried seaweed. It is a fertilizer with small amounts of potassium and nitrogen.",
+		"itemdesc-fishmeal-wet": "Whole fish that have been ground into a paste. Needs to be dried for further use.",
+		"itemdesc-fishmeal-dried": "A fine powder made of ground and dried fish. It is a fertilizer with moderate amounts of nitrogen and phosphorus."
+	}
