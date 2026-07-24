@@ -1493,5 +1493,37 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "immersivebackpacks": {
+    "name": "Immersive Backpacks",
+    "translation": "沉浸式背包",
+    "authors": [
+      "Deven"
+    ],
+    "homepage": "https://mods.vintagestory.at/immersivebackpacks",
+    "latestVersion": "1.3.2",
+    "contributors": [
+      {
+        "name": "live66",
+        "url": "https://vintagestory.top/u/live66",
+        "role": "Chinese Translator"
+      }
+    ]
+  },
+  "mightybamboo": {
+    "name": "MightyBamboo",
+    "translation": "强化竹子",
+    "authors": [
+      "MIghtyGooga"
+    ],
+    "homepage": "https://mods.vintagestory.at/mightybamboo",
+    "latestVersion": "1.5.7",
+    "contributors": [
+      {
+        "name": "live66",
+        "url": "https://vintagestory.top/u/live66",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
