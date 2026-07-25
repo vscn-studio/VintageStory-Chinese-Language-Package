@@ -1,0 +1,82 @@
+{
+"vintagecanvas:block-easel-": "小型画架",
+"vintagecanvas:block-heasel-": "大型画架",
+"vintagecanvas:block-paintjar-": "颜料罐",
+"vintagecanvas": "调色盘",
+"vintagecanvas:block-canvas-square-": "小型方形画布",
+"vintagecanvas:block-canvas-portrait-": "小型竖版肖像画布",
+"vintagecanvas:block-canvas-landscape-": "小型横版风景画布",
+"vintagecanvas:block-largecanvas-square-": "大型方形画布",
+"vintagecanvas:block-largecanvas-portrait-": "大型竖版肖像画布",
+"vintagecanvas:block-largecanvas-landscape-*": "大型横版风景画布",
+
+"vintagecanvas": "小号画笔",
+"vintagecanvas": "中号画笔",
+"vintagecanvas": "大号画笔",
+"vintagecanvas": "艺术家贝雷帽",
+
+"vintagecanvas:item-paintjar-*-raw": "空颜料罐",
+
+"vintagecanvas": "朱砂红颜料",
+"vintagecanvas": "红赭石颜料",
+"vintagecanvas": "群青颜料",
+"vintagecanvas": "黄赭石颜料",
+"vintagecanvas": "菘蓝颜料",
+"vintagecanvas": "铅锡黄颜料",
+"vintagecanvas": "有机绿颜料",
+"vintagecanvas": "孔雀石颜料",
+"vintagecanvas": "铅白颜料",
+"vintagecanvas": "白垩颜料",
+"vintagecanvas": "炭黑颜料",
+"vintagecanvas": "松节油",
+"vintagecanvas": "坦培拉媒介",
+
+"vintagecanvas": "朱砂粉",
+"vintagecanvas": "红赭石粉",
+"vintagecanvas": "群青粉",
+"vintagecanvas": "黄赭石粉",
+"vintagecanvas": "菘蓝粉",
+"vintagecanvas": "铅锡黄粉",
+"vintagecanvas": "有机绿粉",
+"vintagecanvas": "孔雀石粉",
+"vintagecanvas": "铅白粉",
+"vintagecanvas": "白垩粉",
+"vintagecanvas": "炭黑粉",
+
+"vintagecanvas": "朱砂红涂料",
+"vintagecanvas": "红赭石涂料",
+"vintagecanvas": "群青涂料",
+"vintagecanvas": "黄赭石涂料",
+"vintagecanvas": "菘蓝涂料",
+"vintagecanvas": "铅锡黄涂料",
+"vintagecanvas": "有机绿涂料",
+"vintagecanvas": "孔雀石涂料",
+"vintagecanvas": "铅白涂料",
+"vintagecanvas": "白垩涂料",
+"vintagecanvas": "炭黑涂料",
+"vintagecanvas": "松节油",
+
+"vintagecanvas": "犊皮纸",
+"vintagecanvas": "壁画石膏底",
+
+"game": "复古画布",
+
+"vintagecanvas": "该尺寸的画布无法适配当前画架",
+
+"game: handbook-category-vintagecanvas": "复古画布",
+"handbook-category-vintagecanvas:category": "复古画布",
+"vintagecanvas": "复古画布入门指南",
+"vintagecanvas": "<i>开启复古画布的创作之旅</i>\n\n欢迎使用复古画布模组！想要开始创作，你至少需要准备这几样物品：一个画架、任意尺寸的画布，以及一块炭条。\n\n将画架放置在世界中，最好选在光线良好的位置。使用<icon>鼠标右键</icon>将画布放到画架上。之后拿上炭条，就可以随心所欲地打草稿绘制了！\n\n如果想要展示你的作品，空手右键点击画架就能取下画布，之后可以把它挂在任意墙面上想要更有氛围感的话，你可以拿任意类型的木板，在悬挂的画布上右键就能给它装上画框！\n\n<i>笔触晕染</i>\n如果你觉得草稿线条太粗糙，可以制作一支<a href="handbooksearch://brush">画笔</a>。未蘸取颜料的画笔可以作为晕染工具，帮你画出柔和的渐变效果和浅色调。",
+
+"vintagecanvas": "绘制墙面壁画",
+"vintagecanvas": "<i>最简单的绘画方式</i>\n\n除了常规画布绘画之外，复古画布模组还支持湿壁画创作。想要制作壁画，先合成一些<a href="handbooksearch://fresco plaster">壁画石膏底</a>，将它涂抹在经过凿刻的方块表面上（暂不支持未凿刻的方块），之后使用任意绘画工具就能直接在墙面上大展画技。\n\n注意：湿壁画属于易碎物品，拆除方块时壁画会直接损毁，无法拾取回收。如果想要制作可携带的画作，还是需要使用普通画布来创作。",
+
+"vintagecanvas": "创作画布油画",
+"vintagecanvas": "<i>颜料绘制进阶</i>\n当你准备好迎接更高难度的挑战，就可以开始制作颜料了。先制作几个<a href="handbooksearch://paint jar">颜料罐</a>，往罐中倒入<a href="handbooksearch://oil">油料</a>，之后加入任意色粉——比如磨碎的青金石、朱砂、炭末，或是复古画布模组新增的各类色粉——就能调配出对应颜色的颜料。如果手头没有油料，你也可以往装满清水的颜料罐里加入一枚鸡蛋，制作出名为「坦培拉」的替代绘画媒介。\n\n接下来合成一支或是全套<a href="handbooksearch://brush">画笔</a>。右键点击颜料罐就能蘸取颜料，之后就可以开始自由绘制了。\n\n如果不满足于色粉本身的平涂效果，你可以尝试两种进阶技巧：颜料稀释与颜料混合。\n\n<i>颜料稀释</i>\n想要降低颜料的不透明度，可以把蘸满颜料的画笔伸进装着<a href="handbooksearch://turpentine">松节油</a>的罐子里。蘸取松节油的次数越多，颜料就会变得越通透，非常适合用来绘制晕染过渡效果！\n\n<i>颜料混合</i>\n手头的颜色还是不够用？你可以制作一个<a href="handbooksearch://palette">调色盘</a>！把调色盘放在地面上，这个小小的木板会提供9个调色槽，用来调配各类基础颜料。拿着颜料罐右键点击任意调色槽，就能把颜料倒进槽中，不断添加不同颜色的颜料直到调出你想要的理想色调。之后拿画笔右键点击调好颜色的调色槽，就能正常蘸取颜料使用，和直接蘸颜料罐的操作完全一致。想要清空调色槽的话，拿着松节油罐子右键点击对应槽位即可。\n\n<i>笔触晕染</i>\n你可以拿一支未蘸取颜料的干净画笔，在画布上直接晕开相邻的颜色。想要清洁画笔的话，按住潜行键后拿着画笔右键点击松节油罐子就能洗笔。",
+
+"vintagecanvas": "大型画布创作",
+"vintagecanvas": "<i>大幅面画作创作</i>\n想要绘制大型画布，你需要准备一个<a href="handbooksearch://large easel">大型画架</a>。将大型画架安置好之后，你可以把任意两个同类型的小型画布合成对应款式的大尺寸画布——仅消耗两倍材料，就能获得四倍大小的创作面积，性价比非常高。",
+
+"vintagecanvas": "无限颜料与其他设置选项",
+"vintagecanvas": "模组默认规则下，画笔、调色盘、颜料罐使用过程中会缓慢消耗罐内的颜料。如果你想要不受打断地专注创作，可以在模组配置文件中将「PaintDepletion」选项设置为false（关闭），关闭颜料消耗机制。你也可以调整配置数值，提升单份颜料的可绘制面积上限。"
+}

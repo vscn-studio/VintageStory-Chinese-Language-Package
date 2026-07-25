@@ -1525,5 +1525,21 @@
         "role": "Chinese Translator"
       }
     ]
+  },
+  "vintagecanvas": {
+    "name": "Vintage Canvas",
+    "translation": "复古画布",
+    "authors": [
+      "TonyMurchison"
+    ],
+    "homepage": "https://mods.vintagestory.at/vintagecanvas",
+    "latestVersion": "1.2.1",
+    "contributors": [
+      {
+        "name": "live66",
+        "url": "https://vintagestory.top/u/live66",
+        "role": "Chinese Translator"
+      }
+    ]
   }
 }
