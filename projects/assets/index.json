@@ -1293,7 +1293,7 @@
       "InfantryMan"
     ],
     "homepage": "https://mods.vintagestory.at/moreinventorys",
-    "latestVersion": "1.0.6",
+    "latestVersion": "1.0.15",
     "contributors": [
       {
         "name": "Cirno",
@@ -1405,7 +1405,7 @@
       "Garlicc"
     ],
     "homepage": "https://mods.vintagestory.at/antiqueharmony",
-    "latestVersion": "1.17.2",
+    "latestVersion": "1.17.4",
     "contributors": [
       {
         "name": "Cirno",
@@ -1437,11 +1437,16 @@
       "Gravydigger"
     ],
     "homepage": "https://mods.vintagestory.at/statushudcont",
-    "latestVersion": "4.3.2",
+    "latestVersion": "4.4.0",
     "contributors": [
       {
         "name": "HansJack",
         "url": "https://vintagestory.top/u/HansJack",
+        "role": "Chinese Translator"
+      },
+      {
+        "name": "Cirno",
+        "url": "https://vintagestory.top/u/Cirno",
         "role": "Chinese Translator"
       }
     ]
