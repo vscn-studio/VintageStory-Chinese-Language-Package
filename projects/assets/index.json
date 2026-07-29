@@ -610,7 +610,7 @@
       }
     ],
     "homepage": "https://mods.vintagestory.at/simplevoicechat",
-    "latestVersion": "0.1.3"
+    "latestVersion": "builtin"
   },
   "stonebakeoven": {
     "name": "Stone Bake Oven",
@@ -623,10 +623,15 @@
         "name": "HansJack",
         "url": "https://vintagestory.top/u/HansJack",
         "role": "Chinese Translator"
-      }
+      },
+      {
+        "name": "Bug",
+        "url": "https://vintagestory.top/u/1532958836",
+        "role": "Chinese Translator"
+      }      
     ],
     "homepage": "https://mods.vintagestory.at/stonebakeoven",
-    "latestVersion": "1.3.5"
+    "latestVersion": "1.3.8"
   },
   "stonedoors": {
     "name": "Stone Doors",

@@ -1,5 +1,5 @@
 {
-  "year-month-day": "{0}月{1}日，第{2}年",
+  "year-month-day": "第{2}年{1}{0}日",
   "block-airthermo-ns": "自动记录温度计",
   "blockdesc-airthermo*": "安置在百叶箱中的自动记录温度计。",
   "game:ingameerror-airthermomod-nosrcpos": "未找到源方块坐标信息",
