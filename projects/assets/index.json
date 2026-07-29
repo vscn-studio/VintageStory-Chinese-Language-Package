@@ -1547,4 +1547,19 @@
       }
     ]
   }
+    "ghaelentweaks": {
+    "name": "Ghaelen's Tweaks",
+    "translation": "Ghaelen的修改包",
+    "authors": [
+      "Ghaelen"
+    ],
+    "homepage": "https://mods.vintagestory.at/show/mod/56372",
+    "latestVersion": "0.3.4",
+    "contributors": [
+      {
+        "name": "Bug-jj",
+        "role": "Chinese Translator"
+      }
+    ]
+  }
 }
