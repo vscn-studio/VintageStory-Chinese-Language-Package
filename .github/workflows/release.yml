@@ -10,12 +10,22 @@ on:
         options:
           - release
           - pre-release
+      game_version:
+        description: Vintage Story version used for the updater build and optional game translation
+        required: true
+        default: "1.22.3"
+        type: string
+      include_game_translation:
+        description: Include projects/game/<game_version>/assets/game/lang/zh-cn.json in the language pack
+        required: true
+        default: false
+        type: boolean
 
 permissions:
   contents: write
 
 env:
-  VINTAGE_STORY_BUILD_VERSION: 1.22.3
+  VINTAGE_STORY_BUILD_VERSION: ${{ inputs.game_version }}
 
 jobs:
   release:
@@ -83,6 +93,45 @@ jobs:
 
       - name: Run tests
         run: dotnet test
+
+      - name: Configure game translation
+        shell: bash
+        env:
+          INCLUDE_GAME_TRANSLATION: ${{ inputs.include_game_translation }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          config_path = Path("config/packer/default.json")
+          config = json.loads(config_path.read_text(encoding="utf-8"))
+          game_version = os.environ["VINTAGE_STORY_BUILD_VERSION"].strip()
+          include_game_translation = os.environ["INCLUDE_GAME_TRANSLATION"].strip().lower() == "true"
+
+          if include_game_translation:
+              translation_path = Path("projects/game") / game_version / "assets/game/lang/zh-cn.json"
+              if not translation_path.is_file():
+                  raise SystemExit(f"Game translation file does not exist: {translation_path}")
+              config["gameTranslation"] = {
+                  "contentRoot": "projects/game",
+                  "targetVersion": game_version,
+              }
+          else:
+              config["gameTranslation"] = None
+
+          config_path.write_text(
+              json.dumps(config, ensure_ascii=False, indent=2) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+          {
+            echo "### Game translation"
+            echo
+            echo "- Game version: ${VINTAGE_STORY_BUILD_VERSION}"
+            echo "- Included: ${INCLUDE_GAME_TRANSLATION}"
+          } >> "${GITHUB_STEP_SUMMARY}"
 
       - name: Build package
         shell: bash

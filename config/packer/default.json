@@ -1,13 +1,14 @@
 {
   "packageName": "VSCN Vintage Story 汉化包",
   "packageVersion": "0.0.0",
-  "description": "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。",
+  "description": "聚合简体中文语言包，覆盖 Vintage Story 游戏本体和已安装的受支持模组。",
   "authors": [
     "VSCN-Studio"
   ],
   "modId": "vscnlangpack",
   "targetLanguage": "zh-cn",
   "contentRoot": "projects/assets",
+  "gameTranslation": null,
   "outputDirectory": "build",
   "outputFileNameTemplate": "VintageStory-Chinese-Language-Package-{version}.zip",
   "excludedProjects": [],

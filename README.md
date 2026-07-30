@@ -1,8 +1,8 @@
 # VSCN Vintage Story 汉化包
 
-这是一个面向 Vintage Story 模组汉化的聚合语言包仓库。
+这是一个面向 Vintage Story 游戏本体与模组汉化的聚合语言包仓库。
 
-仓库中的翻译资源按模组名、目标模组版本和真实 `modid` 组织，最终由本地打包器生成一个可直接放入 Vintage Story `Mods` 目录的聚合包 zip。
+模组翻译资源按模组名、目标模组版本和真实 `modid` 组织；游戏本体翻译按游戏版本独立保存。最终由本地打包器生成一个可直接放入 Vintage Story `Mods` 目录的聚合包 zip。
 
 ## 相关页面
 
@@ -26,6 +26,8 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/builtin
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/source
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/decompiled
 projects/assets/index.json
+projects/game/<game-version>/assets/game/lang/zh-cn.json
+projects/game/<game-version>/assets/game/lang/en.json
 projects/translation-terminology/<language>/*.json
 projects/dictionaries/vs-wiki/zh-cn.dictionary.json
 src/Packer
@@ -39,6 +41,7 @@ tests/Packer.Tests
 - `<mod-version>` 表示目标模组版本，不表示游戏版本。
 - `<modid>` 必须使用被汉化模组的真实 `modid`。
 - `projects/assets/index.json` 用于维护模组展示元数据，键名为 `<mod-name>`。
+- `projects/game` 存放游戏本体翻译；它与模组翻译分开管理，不参与模组站版本检查和模组数量统计。
 - `projects/translation-terminology/<language>/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
 - `projects/dictionaries/vs-wiki/zh-cn.dictionary.json` 是从 Vintage Story Wiki 抽取的来源字典，供生成或校对术语表时参考。
 - `src/Updater` 是独立的客户端代码模组 `vscnlangpackupdater`，游戏内名称为“VSCN 汉化包自动更新器”，用于通过 GitHub 加速通道自动检查并下载最新版汉化包。
@@ -120,6 +123,45 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 
 如果最高版本目录中存在 `lang/builtin`、`lang/source` 或 `lang/decompiled` 标记，打包器会跳过该模组，不会回退打包旧版本社区翻译。
 
+## 游戏本体翻译
+
+游戏本体翻译使用独立目录，并与最终包中的资源路径保持一致：
+
+```text
+projects/game/<game-version>/assets/game/lang/zh-cn.json
+```
+
+可选地，在同一目录中保留官方英文源文件：
+
+```text
+projects/game/<game-version>/assets/game/lang/en.json
+```
+
+`en.json` 不会进入语言包，用于版本比对和翻译校对。`zh-cn.json` 应为该游戏版本的完整翻译快照；更新游戏时新增版本目录，不要覆盖已发布版本的源文件。
+
+要启用本体翻译，在 `config/packer/default.json` 中设置 `gameTranslation`：
+
+```json
+"gameTranslation": {
+  "contentRoot": "projects/game",
+  "targetVersion": "1.22.3"
+}
+```
+
+`targetVersion` 是精确选择，不会自动改用目录中的更高版本。打包器会读取：
+
+```text
+projects/game/1.22.3/assets/game/lang/zh-cn.json
+```
+
+并输出为：
+
+```text
+assets/game/lang/zh-cn.json
+```
+
+同时，生成的 `modinfo.json` 会声明 `game: 1.22.3` 依赖。本体翻译不计入模组翻译数量，也不会出现在模组清单和模组站版本检查中。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
+
 ## 译名标准化术语表
 
 术语表网页展示入口：
@@ -199,6 +241,7 @@ build/VintageStory-Chinese-Language-Package-<version>.zip
 
 ```text
 modinfo.json
+assets/game/lang/zh-cn.json             （启用游戏本体翻译时）
 assets/<真实modid>/lang/zh-cn.json
 ```
 
@@ -212,9 +255,9 @@ dotnet test
 
 ## GitHub Actions
 
-Release 通过 `.github/workflows/release.yml` 手动触发，只需要选择 `release_kind`。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
+Release 通过 `.github/workflows/release.yml` 手动触发。除 `release_kind` 外，还需要填写 `game_version`，它同时决定 Updater 的构建 API 版本；当仓库已有 `projects/game/<game_version>/assets/game/lang/zh-cn.json` 时，勾选 `include_game_translation` 即可将该版本的本体翻译加入语言包。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
 
-发布说明会显示全部入包模组列表，包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者，并生成贡献者翻译数量统计表。
+发布说明会显示游戏本体翻译的目标版本、全部入包模组列表（包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者），并生成贡献者翻译数量统计表。
 
 Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
 

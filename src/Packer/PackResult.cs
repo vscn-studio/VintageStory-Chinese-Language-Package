@@ -3,4 +3,6 @@ namespace Packer;
 public sealed record PackResult(
     string OutputZipPath,
     int SelectedTranslationCount,
-    int SkippedDirectoryCount);
+    int SkippedDirectoryCount,
+    bool GameTranslationIncluded,
+    string? TargetGameVersion);

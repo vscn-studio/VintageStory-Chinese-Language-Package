@@ -28,7 +28,9 @@ public static class TranslationPackBuilder
             selectedTranslationCount,
             prepared.ScanResult.SkippedDirectoryCount,
             selectedTranslationCount / 10 * 10,
-            PackageVersionCalculator.GetReleasePackageVersion(selectedTranslationCount));
+            PackageVersionCalculator.GetReleasePackageVersion(selectedTranslationCount),
+            prepared.GameTranslation is not null,
+            prepared.GameTranslation?.TargetModVersion);
     }
 
     public static async Task<PackResult> BuildAsync(
@@ -40,7 +42,12 @@ public static class TranslationPackBuilder
         ArgumentException.ThrowIfNullOrWhiteSpace(repositoryRoot);
 
         var prepared = PrepareBuild(config, repositoryRoot);
-        var validated = await ValidateSelectedTranslationsAsync(prepared.SelectedTranslations, cancellationToken);
+        var translations = new List<SelectedTranslation>(prepared.SelectedTranslations);
+        if (prepared.GameTranslation is not null)
+        {
+            translations.Add(prepared.GameTranslation);
+        }
+        var validated = await ValidateSelectedTranslationsAsync(translations, cancellationToken);
 
         var outputDirectory = PackerConfigLoader.ResolvePath(config.OutputDirectory, repositoryRoot);
         Directory.CreateDirectory(outputDirectory);
@@ -63,7 +70,12 @@ public static class TranslationPackBuilder
             throw;
         }
 
-        return new PackResult(outputZipPath, validated.Count, prepared.ScanResult.SkippedDirectoryCount);
+        return new PackResult(
+            outputZipPath,
+            prepared.SelectedTranslations.Count,
+            prepared.ScanResult.SkippedDirectoryCount,
+            prepared.GameTranslation is not null,
+            prepared.GameTranslation?.TargetModVersion);
     }
 
     public static ReleasePackageDescription DescribeReleasePackage(
@@ -94,6 +106,12 @@ public static class TranslationPackBuilder
             entries.Length,
             prepared.ScanResult.SkippedDirectoryCount,
             packageVersion.Trim(),
+            prepared.GameTranslation is null
+                ? null
+                : new GameTranslationEntry(
+                    prepared.GameTranslation.TargetModVersion,
+                    prepared.GameTranslation.SourceFilePath,
+                    prepared.GameTranslation.DestinationPath),
             entries);
     }
 
@@ -110,7 +128,60 @@ public static class TranslationPackBuilder
 
         var scanResult = ScanCandidates(contentRoot, config);
         var selected = SelectCandidates(scanResult.Candidates, config);
-        return new PreparedBuild(scanResult, selected);
+        var gameTranslation = SelectGameTranslation(config, repositoryRoot, selected);
+        return new PreparedBuild(scanResult, selected, gameTranslation);
+    }
+
+    private static SelectedTranslation? SelectGameTranslation(
+        PackerConfig config,
+        string repositoryRoot,
+        IReadOnlyCollection<SelectedTranslation> selectedModTranslations)
+    {
+        if (config.GameTranslation is null)
+        {
+            return null;
+        }
+
+        var gameContentRoot = PackerConfigLoader.ResolvePath(config.GameTranslation.ContentRoot, repositoryRoot);
+        if (!Directory.Exists(gameContentRoot))
+        {
+            throw new PackerException($"Game translation content root does not exist: {gameContentRoot}");
+        }
+
+        var versionDirectory = Path.Combine(gameContentRoot, config.GameTranslation.TargetVersion);
+        if (!Directory.Exists(versionDirectory))
+        {
+            throw new PackerException(
+                $"Game translation target version directory does not exist: {versionDirectory}");
+        }
+
+        var sourceFilePath = Path.Combine(
+            versionDirectory,
+            "assets",
+            "game",
+            "lang",
+            $"{config.TargetLanguage}.json");
+        if (!File.Exists(sourceFilePath))
+        {
+            throw new PackerException($"Game translation file does not exist: {sourceFilePath}");
+        }
+
+        var destinationPath = $"assets/game/lang/{config.TargetLanguage}.json";
+        var conflictingTranslation = selectedModTranslations.FirstOrDefault(
+            item => string.Equals(item.DestinationPath, destinationPath, StringComparison.OrdinalIgnoreCase));
+        if (conflictingTranslation is not null)
+        {
+            throw new PackerException(
+                $"Game translation output '{destinationPath}' conflicts with mod translation source '{conflictingTranslation.SourceFilePath}'.");
+        }
+
+        return new SelectedTranslation(
+            "game",
+            config.GameTranslation.TargetVersion,
+            "game",
+            versionDirectory,
+            sourceFilePath,
+            destinationPath);
     }
 
     private static void ReplaceOutputAtomically(string tempZipPath, string outputZipPath)
@@ -471,7 +542,8 @@ public static class TranslationPackBuilder
 
     private sealed record PreparedBuild(
         ScanResult ScanResult,
-        List<SelectedTranslation> SelectedTranslations);
+        List<SelectedTranslation> SelectedTranslations,
+        SelectedTranslation? GameTranslation);
 
     private sealed class ModInfo
     {
@@ -486,6 +558,12 @@ public static class TranslationPackBuilder
             Side = "client";
             RequiredOnClient = true;
             RequiredOnServer = false;
+            Dependencies = config.GameTranslation is null
+                ? null
+                : new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    ["game"] = config.GameTranslation.TargetVersion
+                };
         }
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
@@ -514,5 +592,10 @@ public static class TranslationPackBuilder
 
         [System.Text.Json.Serialization.JsonPropertyName("requiredOnServer")]
         public bool RequiredOnServer { get; }
+
+        [System.Text.Json.Serialization.JsonPropertyName("dependencies")]
+        [System.Text.Json.Serialization.JsonIgnore(
+            Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
+        public IReadOnlyDictionary<string, string>? Dependencies { get; }
     }
 }

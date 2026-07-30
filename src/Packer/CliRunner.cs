@@ -30,6 +30,11 @@ public static class CliRunner
                 await stdout.WriteLineAsync($"skipped_directory_count={inspection.SkippedDirectoryCount}");
                 await stdout.WriteLineAsync($"release_milestone_count={inspection.ReleaseMilestoneCount}");
                 await stdout.WriteLineAsync($"recommended_package_version={inspection.RecommendedPackageVersion}");
+                await stdout.WriteLineAsync($"game_translation_included={inspection.GameTranslationIncluded.ToString().ToLowerInvariant()}");
+                if (inspection.TargetGameVersion is not null)
+                {
+                    await stdout.WriteLineAsync($"target_game_version={inspection.TargetGameVersion}");
+                }
                 return 0;
             }
 
@@ -66,6 +71,12 @@ public static class CliRunner
 
             await stdout.WriteLineAsync(
                 $"Packed {result.SelectedTranslationCount} translation file(s) to {relativeOutputPath}.");
+
+            if (result.GameTranslationIncluded)
+            {
+                await stdout.WriteLineAsync(
+                    $"Included Vintage Story {result.TargetGameVersion} game translation.");
+            }
 
             if (result.SkippedDirectoryCount > 0)
             {
@@ -253,7 +264,8 @@ public static class CliRunner
         builder.AppendLine($"语言包版本：{description.PackageVersion}");
         builder.AppendLine($"发布类型：{releaseKind}");
         builder.AppendLine();
-        builder.AppendLine($"入包翻译数量：{description.SelectedTranslationCount}");
+        builder.AppendLine($"游戏本体翻译：{FormatGameTranslation(description.GameTranslation)}");
+        builder.AppendLine($"入包模组翻译数量：{description.SelectedTranslationCount}");
         builder.AppendLine($"跳过缺少 zh-cn.json 的目录：{description.SkippedDirectoryCount}");
         builder.AppendLine();
         builder.AppendLine("## 模组清单");
@@ -265,6 +277,13 @@ public static class CliRunner
         AppendContributorStatsTable(builder, description.Entries, metadata);
 
         return builder.ToString();
+    }
+
+    private static string FormatGameTranslation(GameTranslationEntry? gameTranslation)
+    {
+        return gameTranslation is null
+            ? "未启用"
+            : $"Vintage Story {EscapeMarkdownTableCell(gameTranslation.TargetGameVersion)}";
     }
 
     private static void AppendEntriesTable(

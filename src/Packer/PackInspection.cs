@@ -4,4 +4,6 @@ public sealed record PackInspection(
     int SelectedTranslationCount,
     int SkippedDirectoryCount,
     int ReleaseMilestoneCount,
-    string RecommendedPackageVersion);
+    string RecommendedPackageVersion,
+    bool GameTranslationIncluded,
+    string? TargetGameVersion);

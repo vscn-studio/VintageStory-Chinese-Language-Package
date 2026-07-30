@@ -62,6 +62,145 @@ public sealed class PackerTests
     }
 
     [Fact]
+    public async Task BuildAsync_IncludesConfiguredGameTranslationAndDependency()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "模组翻译"
+            }
+            """);
+        workspace.WriteText(
+            "projects/game/1.22.3/assets/game/lang/zh-cn.json",
+            """
+            {
+              "mainmenu-singleplayer": "单人游戏"
+            }
+            """);
+
+        var config = workspace.CreateConfig();
+        config.GameTranslation = new GameTranslationConfig
+        {
+            ContentRoot = "projects/game",
+            TargetVersion = "1.22.3"
+        };
+
+        var result = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
+
+        Assert.Equal(1, result.SelectedTranslationCount);
+        Assert.True(result.GameTranslationIncluded);
+        Assert.Equal("1.22.3", result.TargetGameVersion);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        using var gameTranslationReader = new StreamReader(
+            archive.GetEntry("assets/game/lang/zh-cn.json")!.Open());
+        Assert.Contains("单人游戏", await gameTranslationReader.ReadToEndAsync(), StringComparison.Ordinal);
+        Assert.NotNull(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
+
+        using var modInfoReader = new StreamReader(archive.GetEntry("modinfo.json")!.Open());
+        using var modInfoDocument = JsonDocument.Parse(await modInfoReader.ReadToEndAsync());
+        Assert.Equal(
+            "1.22.3",
+            modInfoDocument.RootElement.GetProperty("dependencies").GetProperty("game").GetString());
+
+        var description = TranslationPackBuilder.DescribeReleasePackage(config, workspace.RootPath, "0.0.1");
+        Assert.Equal(1, description.SelectedTranslationCount);
+        Assert.Single(description.Entries);
+        Assert.Equal("1.22.3", description.GameTranslation?.TargetGameVersion);
+    }
+
+    [Fact]
+    public async Task BuildAsync_UsesConfiguredGameVersionInsteadOfHighestVersion()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/game/1.22.3/assets/game/lang/zh-cn.json",
+            """
+            {
+              "version": "目标版本"
+            }
+            """);
+        workspace.WriteText(
+            "projects/game/1.23.0/assets/game/lang/zh-cn.json",
+            """
+            {
+              "version": "未来草稿"
+            }
+            """);
+
+        var config = workspace.CreateConfig();
+        config.GameTranslation = new GameTranslationConfig
+        {
+            ContentRoot = "projects/game",
+            TargetVersion = "1.22.3"
+        };
+
+        var result = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
+
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        using var translationReader = new StreamReader(
+            archive.GetEntry("assets/game/lang/zh-cn.json")!.Open());
+        var content = await translationReader.ReadToEndAsync();
+        Assert.Contains("目标版本", content, StringComparison.Ordinal);
+        Assert.DoesNotContain("未来草稿", content, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task BuildAsync_ThrowsWhenConfiguredGameTranslationIsMissing()
+    {
+        using var workspace = new TestWorkspace();
+        Directory.CreateDirectory(Path.Combine(workspace.RootPath, "projects", "game", "1.22.3"));
+
+        var config = workspace.CreateConfig();
+        config.GameTranslation = new GameTranslationConfig
+        {
+            ContentRoot = "projects/game",
+            TargetVersion = "1.22.3"
+        };
+
+        var ex = await Assert.ThrowsAsync<PackerException>(
+            () => TranslationPackBuilder.BuildAsync(config, workspace.RootPath));
+
+        Assert.Contains("Game translation file does not exist", ex.Message, StringComparison.Ordinal);
+        Assert.Contains("1.22.3", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task BuildAsync_ThrowsWhenModTranslationConflictsWithGameDomain()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/game/lang/zh-cn.json",
+            """
+            {
+              "source": "模组项目"
+            }
+            """);
+        workspace.WriteText(
+            "projects/game/1.22.3/assets/game/lang/zh-cn.json",
+            """
+            {
+              "source": "本体项目"
+            }
+            """);
+
+        var config = workspace.CreateConfig();
+        config.GameTranslation = new GameTranslationConfig
+        {
+            ContentRoot = "projects/game",
+            TargetVersion = "1.22.3"
+        };
+
+        var ex = await Assert.ThrowsAsync<PackerException>(
+            () => TranslationPackBuilder.BuildAsync(config, workspace.RootPath));
+
+        Assert.Contains("conflicts with mod translation source", ex.Message, StringComparison.Ordinal);
+        Assert.Contains("assets/game/lang/zh-cn.json", ex.Message, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task BuildAsync_IgnoresDirectoriesWithoutTargetLanguage()
     {
         using var workspace = new TestWorkspace();
@@ -534,6 +673,46 @@ public sealed class PackerTests
     }
 
     [Fact]
+    public async Task CliRunner_DescribePackageCommand_ReportsGameTranslationSeparately()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText(
+            "projects/assets/example/1.0.0/examplemod/lang/zh-cn.json",
+            """
+            {
+              "item.name": "模组翻译"
+            }
+            """);
+        workspace.WriteText(
+            "projects/game/1.22.3/assets/game/lang/zh-cn.json",
+            """
+            {
+              "mainmenu-singleplayer": "单人游戏"
+            }
+            """);
+
+        var configPath = workspace.WriteConfigFile(new GameTranslationConfig
+        {
+            ContentRoot = "projects/game",
+            TargetVersion = "1.22.3"
+        });
+        var stdout = new StringWriter();
+        var stderr = new StringWriter();
+
+        var exitCode = await CliRunner.RunAsync(
+            ["describe-package", "--config", configPath, "--package-version", "0.0.1"],
+            stdout,
+            stderr,
+            workspace.RootPath);
+
+        Assert.Equal(0, exitCode);
+        Assert.Equal(string.Empty, stderr.ToString());
+        Assert.Contains("游戏本体翻译：Vintage Story 1.22.3", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("入包模组翻译数量：1", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| example | example | examplemod | 未记录 | 1.0.0 |", stdout.ToString(), StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task CliRunner_DescribePackageCommand_UsesIndexMetadata()
     {
         using var workspace = new TestWorkspace();
@@ -601,29 +780,15 @@ public sealed class PackerTests
 
         public PackerConfig CreateConfig() => new();
 
-        public string WriteConfigFile()
+        public string WriteConfigFile(GameTranslationConfig? gameTranslation = null)
         {
             var path = Path.Combine(RootPath, "config", "packer", "default.json");
             Directory.CreateDirectory(Path.GetDirectoryName(path)!);
+            var config = CreateConfig();
+            config.GameTranslation = gameTranslation;
             File.WriteAllText(
                 path,
-                """
-                {
-                  "packageName": "VSCN Vintage Story 汉化包",
-                  "packageVersion": "0.0.0",
-                  "description": "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。",
-                  "authors": ["VSCN-Studio"],
-                  "modId": "vscnlangpack",
-                  "targetLanguage": "zh-cn",
-                  "contentRoot": "projects/assets",
-                  "outputDirectory": "build",
-                  "outputFileNameTemplate": "VintageStory-Chinese-Language-Package-{version}.zip",
-                  "excludedProjects": [],
-                  "excludedModIds": [],
-                  "excludedVersions": [],
-                  "versionSelectionStrategy": "highest-semver"
-                }
-                """);
+                JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true }));
             return path;
         }
 

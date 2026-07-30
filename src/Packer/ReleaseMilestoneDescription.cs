@@ -13,7 +13,13 @@ public sealed record ReleasePackageDescription(
     int SelectedTranslationCount,
     int SkippedDirectoryCount,
     string PackageVersion,
+    GameTranslationEntry? GameTranslation,
     IReadOnlyList<ReleaseMilestoneEntry> Entries);
+
+public sealed record GameTranslationEntry(
+    string TargetGameVersion,
+    string SourceFilePath,
+    string DestinationPath);
 
 public sealed record ReleaseMilestoneEntry(
     string ProjectSlug,

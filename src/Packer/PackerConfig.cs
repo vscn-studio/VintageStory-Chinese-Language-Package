@@ -11,7 +11,7 @@ public sealed class PackerConfig
     public string PackageVersion { get; set; } = "0.0.0";
 
     [JsonPropertyName("description")]
-    public string Description { get; set; } = "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。";
+    public string Description { get; set; } = "聚合简体中文语言包，覆盖 Vintage Story 游戏本体和已安装的受支持模组。";
 
     [JsonPropertyName("authors")]
     public string[] Authors { get; set; } = ["VSCN-Studio"];
@@ -24,6 +24,9 @@ public sealed class PackerConfig
 
     [JsonPropertyName("contentRoot")]
     public string ContentRoot { get; set; } = "projects/assets";
+
+    [JsonPropertyName("gameTranslation")]
+    public GameTranslationConfig? GameTranslation { get; set; }
 
     [JsonPropertyName("outputDirectory")]
     public string OutputDirectory { get; set; } = "build";
@@ -47,11 +50,12 @@ public sealed class PackerConfig
     {
         PackageName = NormalizeOrDefault(PackageName, "VSCN Vintage Story 汉化包");
         PackageVersion = NormalizeOrDefault(PackageVersion, "0.0.0");
-        Description = NormalizeOrDefault(Description, "聚合简体中文语言包，覆盖已安装的受支持 Vintage Story 模组。");
+        Description = NormalizeOrDefault(Description, "聚合简体中文语言包，覆盖 Vintage Story 游戏本体和已安装的受支持模组。");
         Authors = NormalizeList(Authors, "VSCN-Studio");
         ModId = NormalizeOrDefault(ModId, "vscnlangpack");
         TargetLanguage = NormalizeOrDefault(TargetLanguage, "zh-cn");
         ContentRoot = NormalizeOrDefault(ContentRoot, "projects/assets");
+        GameTranslation?.ApplyDefaults();
         OutputDirectory = NormalizeOrDefault(OutputDirectory, "build");
         OutputFileNameTemplate = NormalizeOrDefault(OutputFileNameTemplate, "VintageStory-Chinese-Language-Package-{version}.zip");
         ExcludedProjects = NormalizeList(ExcludedProjects);
@@ -97,6 +101,8 @@ public sealed class PackerConfig
         {
             throw new PackerException("contentRoot must not be empty.");
         }
+
+        GameTranslation?.Validate();
 
         if (string.IsNullOrWhiteSpace(OutputDirectory))
         {
