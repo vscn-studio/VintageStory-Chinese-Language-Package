@@ -45,7 +45,12 @@ public static class CliRunner
                     repositoryRoot,
                     packageVersion!);
                 var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, releaseKind!));
+                var gameMetadata = await LoadGameTranslationMetadataAsync(
+                    config,
+                    repositoryRoot,
+                    description.GameTranslation,
+                    cancellationToken);
+                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, gameMetadata, releaseKind!));
                 return 0;
             }
 
@@ -56,7 +61,12 @@ public static class CliRunner
                     repositoryRoot,
                     packageVersion!);
                 var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, "release"));
+                var gameMetadata = await LoadGameTranslationMetadataAsync(
+                    config,
+                    repositoryRoot,
+                    description.GameTranslation,
+                    cancellationToken);
+                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, gameMetadata, "release"));
                 return 0;
             }
 
@@ -253,9 +263,28 @@ public static class CliRunner
         return await ModMetadataProvider.LoadAsync(contentRoot, projectSlugs, projectModIds, fetchApi, cancellationToken);
     }
 
+    private static async Task<GameTranslationMetadata?> LoadGameTranslationMetadataAsync(
+        PackerConfig config,
+        string repositoryRoot,
+        GameTranslationEntry? gameTranslation,
+        CancellationToken cancellationToken)
+    {
+        if (gameTranslation is null || config.GameTranslation is null)
+        {
+            return null;
+        }
+
+        var contentRoot = PackerConfigLoader.ResolvePath(config.GameTranslation.ContentRoot, repositoryRoot);
+        return await GameTranslationMetadataProvider.LoadAsync(
+            contentRoot,
+            gameTranslation.TargetGameVersion,
+            cancellationToken);
+    }
+
     private static string FormatReleasePackageDescription(
         ReleasePackageDescription description,
         IReadOnlyDictionary<string, ModMetadata> metadata,
+        GameTranslationMetadata? gameMetadata,
         string releaseKind)
     {
         var builder = new StringBuilder();
@@ -264,7 +293,10 @@ public static class CliRunner
         builder.AppendLine($"语言包版本：{description.PackageVersion}");
         builder.AppendLine($"发布类型：{releaseKind}");
         builder.AppendLine();
-        builder.AppendLine($"游戏本体翻译：{FormatGameTranslation(description.GameTranslation)}");
+        builder.AppendLine("## 游戏本体翻译");
+        builder.AppendLine();
+        AppendGameTranslationTable(builder, description.GameTranslation, gameMetadata);
+        builder.AppendLine();
         builder.AppendLine($"入包模组翻译数量：{description.SelectedTranslationCount}");
         builder.AppendLine($"跳过缺少 zh-cn.json 的目录：{description.SkippedDirectoryCount}");
         builder.AppendLine();
@@ -274,16 +306,27 @@ public static class CliRunner
         builder.AppendLine();
         builder.AppendLine("## 贡献者统计");
         builder.AppendLine();
-        AppendContributorStatsTable(builder, description.Entries, metadata);
+        AppendContributorStatsTable(builder, description.Entries, metadata, description.GameTranslation, gameMetadata);
 
         return builder.ToString();
     }
 
-    private static string FormatGameTranslation(GameTranslationEntry? gameTranslation)
+    private static void AppendGameTranslationTable(
+        StringBuilder builder,
+        GameTranslationEntry? gameTranslation,
+        GameTranslationMetadata? gameMetadata)
     {
-        return gameTranslation is null
-            ? "未启用"
-            : $"Vintage Story {EscapeMarkdownTableCell(gameTranslation.TargetGameVersion)}";
+        if (gameTranslation is null)
+        {
+            builder.AppendLine("未启用");
+            return;
+        }
+
+        builder.AppendLine("| 游戏版本 | 贡献者 |");
+        builder.AppendLine("| --- | --- |");
+        builder.AppendLine(
+            $"| Vintage Story {EscapeMarkdownTableCell(gameTranslation.TargetGameVersion)} | " +
+            $"{FormatContributors(gameMetadata?.Contributors ?? Array.Empty<ModContributor>())} |");
     }
 
     private static void AppendEntriesTable(
@@ -305,33 +348,21 @@ public static class CliRunner
     private static void AppendContributorStatsTable(
         StringBuilder builder,
         IReadOnlyList<ReleaseMilestoneEntry> entries,
-        IReadOnlyDictionary<string, ModMetadata> metadata)
+        IReadOnlyDictionary<string, ModMetadata> metadata,
+        GameTranslationEntry? gameTranslation,
+        GameTranslationMetadata? gameMetadata)
     {
         var stats = new Dictionary<string, ContributorStat>(StringComparer.OrdinalIgnoreCase);
 
         foreach (var entry in entries)
         {
             var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
-            foreach (var contributor in item.Contributors)
-            {
-                if (string.IsNullOrWhiteSpace(contributor.Name))
-                {
-                    continue;
-                }
+            AddContributorStats(stats, item.Contributors);
+        }
 
-                var key = $"{contributor.Name}\n{contributor.Url}";
-                if (!stats.TryGetValue(key, out var stat))
-                {
-                    stat = new ContributorStat(contributor.Name, contributor.Url);
-                    stats[key] = stat;
-                }
-
-                stat.Count++;
-                if (!string.IsNullOrWhiteSpace(contributor.Role))
-                {
-                    stat.Roles.Add(contributor.Role.Trim());
-                }
-            }
+        if (gameTranslation is not null && gameMetadata is not null)
+        {
+            AddContributorStats(stats, gameMetadata.Contributors);
         }
 
         if (stats.Count == 0)
@@ -352,6 +383,32 @@ public static class CliRunner
                 : "未记录";
             builder.AppendLine(
                 $"| {FormatLinkedName(stat.Name, stat.Url)} | {roles} | {stat.Count} |");
+        }
+    }
+
+    private static void AddContributorStats(
+        IDictionary<string, ContributorStat> stats,
+        IEnumerable<ModContributor> contributors)
+    {
+        foreach (var contributor in contributors)
+        {
+            if (string.IsNullOrWhiteSpace(contributor.Name))
+            {
+                continue;
+            }
+
+            var key = $"{contributor.Name}\n{contributor.Url}";
+            if (!stats.TryGetValue(key, out var stat))
+            {
+                stat = new ContributorStat(contributor.Name, contributor.Url);
+                stats[key] = stat;
+            }
+
+            stat.Count++;
+            if (!string.IsNullOrWhiteSpace(contributor.Role))
+            {
+                stat.Roles.Add(contributor.Role.Trim());
+            }
         }
     }
 

@@ -690,6 +690,21 @@ public sealed class PackerTests
               "mainmenu-singleplayer": "单人游戏"
             }
             """);
+        workspace.WriteText(
+            "projects/game/index.json",
+            """
+            {
+              "1.22.3": {
+                "contributors": [
+                  {
+                    "name": "GameTranslator",
+                    "url": "https://example.com/game-translator",
+                    "role": "游戏本体翻译"
+                  }
+                ]
+              }
+            }
+            """);
 
         var configPath = workspace.WriteConfigFile(new GameTranslationConfig
         {
@@ -707,9 +722,33 @@ public sealed class PackerTests
 
         Assert.Equal(0, exitCode);
         Assert.Equal(string.Empty, stderr.ToString());
-        Assert.Contains("游戏本体翻译：Vintage Story 1.22.3", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("## 游戏本体翻译", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| 游戏版本 | 贡献者 |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains(
+            "| Vintage Story 1.22.3 | [GameTranslator](https://example.com/game-translator) (游戏本体翻译) |",
+            stdout.ToString(),
+            StringComparison.Ordinal);
         Assert.Contains("入包模组翻译数量：1", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("| example | example | examplemod | 未记录 | 1.0.0 |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains(
+            "| [GameTranslator](https://example.com/game-translator) | 游戏本体翻译 | 1 |",
+            stdout.ToString(),
+            StringComparison.Ordinal);
+
+        var releaseStdout = new StringWriter();
+        var releaseStderr = new StringWriter();
+        var releaseExitCode = await CliRunner.RunAsync(
+            ["describe-release", "--config", configPath, "--package-version", "0.0.1", "--release-kind", "release"],
+            releaseStdout,
+            releaseStderr,
+            workspace.RootPath);
+
+        Assert.Equal(0, releaseExitCode);
+        Assert.Equal(string.Empty, releaseStderr.ToString());
+        Assert.Contains(
+            "| Vintage Story 1.22.3 | [GameTranslator](https://example.com/game-translator) (游戏本体翻译) |",
+            releaseStdout.ToString(),
+            StringComparison.Ordinal);
     }
 
     [Fact]

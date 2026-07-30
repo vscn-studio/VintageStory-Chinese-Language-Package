@@ -7,6 +7,24 @@
 <game-version>/assets/game/lang/en.json
 ```
 
+`projects/game/index.json` 按游戏版本维护贡献者信息：
+
+```json
+{
+  "1.22.3": {
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "游戏本体翻译"
+      }
+    ]
+  }
+}
+```
+
+发布 Release 时，Packer 会将选中版本的贡献者写入发布说明和包内 `README.md`，并纳入贡献者统计。
+
 例如，游戏版本 `1.22.3` 的简体中文翻译文件路径为：
 
 ```text

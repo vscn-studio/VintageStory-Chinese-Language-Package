@@ -26,6 +26,7 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/builtin
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/source
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/decompiled
 projects/assets/index.json
+projects/game/index.json
 projects/game/<game-version>/assets/game/lang/zh-cn.json
 projects/game/<game-version>/assets/game/lang/en.json
 projects/translation-terminology/<language>/*.json
@@ -41,6 +42,7 @@ tests/Packer.Tests
 - `<mod-version>` 表示目标模组版本，不表示游戏版本。
 - `<modid>` 必须使用被汉化模组的真实 `modid`。
 - `projects/assets/index.json` 用于维护模组展示元数据，键名为 `<mod-name>`。
+- `projects/game/index.json` 用于维护游戏本体翻译的版本化贡献者信息，键名为 `<game-version>`。
 - `projects/game` 存放游戏本体翻译；它与模组翻译分开管理，不参与模组站版本检查和模组数量统计。
 - `projects/translation-terminology/<language>/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
 - `projects/dictionaries/vs-wiki/zh-cn.dictionary.json` 是从 Vintage Story Wiki 抽取的来源字典，供生成或校对术语表时参考。
@@ -138,6 +140,24 @@ projects/game/<game-version>/assets/game/lang/en.json
 ```
 
 `en.json` 不会进入语言包，用于版本比对和翻译校对。`zh-cn.json` 应为该游戏版本的完整翻译快照；更新游戏时新增版本目录，不要覆盖已发布版本的源文件。
+
+在 `projects/game/index.json` 中按游戏版本登记本体翻译贡献者：
+
+```json
+{
+  "1.22.3": {
+    "contributors": [
+      {
+        "name": "HansJack",
+        "url": "https://vintagestory.top/u/HansJack",
+        "role": "游戏本体翻译"
+      }
+    ]
+  }
+}
+```
+
+`contributors` 的 `name` 必填，`url` 和 `role` 可选。该文件与 `projects/assets/index.json` 分别维护；前者用于游戏本体，后者仅用于模组。发布时会按 `targetVersion` 读取本体贡献者，并写入 Release 说明、Release README 和贡献者统计。
 
 要启用本体翻译，在 `config/packer/default.json` 中设置 `gameTranslation`：
 
@@ -257,7 +277,7 @@ dotnet test
 
 Release 通过 `.github/workflows/release.yml` 手动触发。除 `release_kind` 外，还需要填写 `game_version`，它同时决定 Updater 的构建 API 版本；当仓库已有 `projects/game/<game_version>/assets/game/lang/zh-cn.json` 时，勾选 `include_game_translation` 即可将该版本的本体翻译加入语言包。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
 
-发布说明会显示游戏本体翻译的目标版本、全部入包模组列表（包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者），并生成贡献者翻译数量统计表。
+发布说明会以表格显示游戏本体翻译的目标版本和贡献者，以及全部入包模组列表（包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者），并生成包含本体与模组翻译的贡献者数量统计表。
 
 Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
 
