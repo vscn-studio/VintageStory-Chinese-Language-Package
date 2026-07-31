@@ -1,1 +1,11 @@
-{}
+{
+  "1.22.3": {
+    "contributors": [
+      {
+        "name": "Hansan",
+        "url": "https://vintagestory.top/u/hansan",
+        "role": "Base game localization"
+      }
+    ]
+  }
+}
