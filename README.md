@@ -1,5 +1,10 @@
 # VSCN Vintage Story 汉化包
 
+[![GitHub Release](https://img.shields.io/github/v/release/vscn-studio/VintageStory-Chinese-Language-Package?display_name=tag&sort=semver)](https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/releases/latest)
+[![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/vscn-studio/VintageStory-Chinese-Language-Package/total)](https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/releases)
+[![GitHub Downloads (latest release)](https://img.shields.io/github/downloads/vscn-studio/VintageStory-Chinese-Language-Package/latest/total)](https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/releases/latest)
+[![GitHub Repo stars](https://img.shields.io/github/stars/vscn-studio/VintageStory-Chinese-Language-Package)](https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/stargazers)
+
 这是一个面向 Vintage Story 游戏本体与模组汉化的聚合语言包仓库。
 
 模组翻译资源按模组名、目标模组版本和真实 `modid` 组织；游戏本体翻译按游戏版本独立保存。最终由本地打包器生成一个可直接放入 Vintage Story `Mods` 目录的聚合包 zip。
