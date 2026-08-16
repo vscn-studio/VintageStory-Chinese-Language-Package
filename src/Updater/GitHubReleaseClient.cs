@@ -95,7 +95,7 @@ internal sealed class GitHubReleaseClient : IDisposable
         response.EnsureSuccessStatusCode();
 
         var payload = await ReadContentBytesAsync(response, MaxMetadataBytes, cancellationToken);
-        return ParseReleaseJson(payload);
+        return ParseReleaseJson(payload, safeResponse.FinalUri.AbsoluteUri);
     }
 
     private async Task<GitHubRelease> GetLatestReleaseFromRedirectAsync(
@@ -111,7 +111,7 @@ internal sealed class GitHubReleaseClient : IDisposable
         var firstContentByte = payload.FirstOrDefault(value => !char.IsWhiteSpace((char)value));
         if (firstContentByte == (byte)'{')
         {
-            return ParseReleaseJson(payload);
+            return ParseReleaseJson(payload, safeResponse.FinalUri.AbsoluteUri);
         }
 
         var finalUrl = safeResponse.FinalUri.AbsoluteUri;
@@ -124,10 +124,10 @@ internal sealed class GitHubReleaseClient : IDisposable
             throw new InvalidOperationException($"Could not infer release assets from tag '{tagName}'.");
         }
 
-        return new GitHubRelease(tagName, assets);
+        return new GitHubRelease(tagName, assets, finalUrl);
     }
 
-    private static GitHubRelease ParseReleaseJson(byte[] payload)
+    private static GitHubRelease ParseReleaseJson(byte[] payload, string sourceUrl)
     {
         using var document = JsonDocument.Parse(payload);
         var root = document.RootElement;
@@ -155,7 +155,7 @@ internal sealed class GitHubReleaseClient : IDisposable
             }
         }
 
-        return new GitHubRelease(tagName, assets);
+        return new GitHubRelease(tagName, assets, sourceUrl);
     }
 
     public async Task<string> DownloadFileAsync(
@@ -426,7 +426,10 @@ internal sealed class GitHubReleaseClient : IDisposable
     }
 }
 
-internal sealed record GitHubRelease(string TagName, IReadOnlyList<GitHubReleaseAsset> Assets);
+internal sealed record GitHubRelease(
+    string TagName,
+    IReadOnlyList<GitHubReleaseAsset> Assets,
+    string SourceUrl = "");
 
 internal sealed record GitHubReleaseAsset(string Name, string DownloadUrl, string? Sha256 = null);
 

@@ -88,6 +88,10 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
                 tagName => CreateFallbackReleaseAssets(tagName, config),
                 (url, message) => LogChannelFailure("获取发布信息", url, message),
                 cancellationToken);
+            api.Logger.Notification(
+                "[VSCN 汉化包更新器] Release 信息获取成功：{0}，来源：{1}。",
+                latestRelease.TagName,
+                DescribeChannel(latestRelease.SourceUrl));
 
             if (!PackageVersion.TryParse(latestRelease.TagName, out var latestVersion) || latestVersion is null)
             {
@@ -157,7 +161,7 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
             }
 
             var previousText = currentVersion is null ? "未安装" : currentVersion.ToString();
-            PostChatMessage($"[VSCN] 汉化包已更新：{previousText} -> {latestVersion}，请重启游戏生效。");
+            PostChatMessage($"[VSCN] 汉化包已从 {previousText} 更新到 {latestVersion}，请重启游戏生效。");
             api.Logger.Notification(
                 "[VSCN 汉化包更新器] 汉化包已从 {0} 更新到 {1}，下载通道：{2}。",
                 previousText,
