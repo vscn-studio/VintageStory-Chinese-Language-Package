@@ -78,13 +78,20 @@ public sealed class UpdaterConfig
         }
 
         var normalizedOriginalUrl = originalUrl.Trim();
+        if (!IsTrustedGithubSourceUrl(normalizedOriginalUrl))
+        {
+            return [];
+        }
+
         var urls = GithubUrlTemplates
             .Select(template => CreateGitHubUrl(template, normalizedOriginalUrl))
             .Where(IsSupportedAbsoluteUrl)
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToArray();
 
-        return urls.Length == 0 ? [normalizedOriginalUrl] : urls;
+        return urls.Length == 0 && IsSupportedAbsoluteUrl(normalizedOriginalUrl)
+            ? [normalizedOriginalUrl]
+            : urls;
     }
 
     public string CreateReleaseAssetDownloadUrl(string tagName, string assetName)
@@ -117,8 +124,24 @@ public sealed class UpdaterConfig
     private static bool IsSupportedAbsoluteUrl(string url)
     {
         return Uri.TryCreate(url, UriKind.Absolute, out var uri) &&
-            (string.Equals(uri.Scheme, Uri.UriSchemeHttp, StringComparison.OrdinalIgnoreCase) ||
-             string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase));
+            string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase) &&
+            string.IsNullOrEmpty(uri.UserInfo) &&
+            uri.IsDefaultPort;
+    }
+
+    private static bool IsTrustedGithubSourceUrl(string url)
+    {
+        return Uri.TryCreate(url, UriKind.Absolute, out var uri) &&
+            string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase) &&
+            string.IsNullOrEmpty(uri.UserInfo) &&
+            uri.IsDefaultPort &&
+            (string.Equals(uri.Host, "api.github.com", StringComparison.OrdinalIgnoreCase) ||
+             string.Equals(uri.Host, "github.com", StringComparison.OrdinalIgnoreCase) ||
+             (string.Equals(uri.Host, "vscn.studio", StringComparison.OrdinalIgnoreCase) &&
+              string.Equals(
+                  uri.AbsolutePath,
+                  "/VintageStory-Chinese-Language-Package/releases/latest",
+                  StringComparison.OrdinalIgnoreCase)));
     }
 
     private static string[] NormalizeList(IEnumerable<string>? values, params string[] fallback)

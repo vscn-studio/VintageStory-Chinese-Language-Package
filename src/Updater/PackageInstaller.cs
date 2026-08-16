@@ -6,12 +6,35 @@ namespace VscnLanguagePackUpdater;
 
 internal static class PackageInstaller
 {
+    private const int MaxArchiveEntries = 4096;
+    private const long MaxArchiveUncompressedBytes = 256L * 1024 * 1024;
+    private const long MaxEntryUncompressedBytes = 64L * 1024 * 1024;
+    private const long MaxModInfoBytes = 1024 * 1024;
+
     public static string ModsPath => GamePaths.DataPathMods;
 
     public static string ResolvePackagePath(string assetName)
     {
-        var safeName = string.Join("_", assetName.Split(Path.GetInvalidFileNameChars(), StringSplitOptions.RemoveEmptyEntries));
-        return Path.Combine(ModsPath, safeName);
+        if (string.IsNullOrWhiteSpace(assetName) ||
+            !string.Equals(assetName, Path.GetFileName(assetName), StringComparison.Ordinal) ||
+            assetName.IndexOfAny(['/', '\\']) >= 0 ||
+            assetName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0 ||
+            string.Equals(assetName, ".", StringComparison.Ordinal) ||
+            string.Equals(assetName, "..", StringComparison.Ordinal))
+        {
+            throw new InvalidOperationException("发布文件名包含不安全的路径字符。");
+        }
+
+        return EnsurePathInsideMods(Path.Combine(ModsPath, assetName));
+    }
+
+    public static string CreateTemporaryPackagePath(string assetName)
+    {
+        var targetPath = ResolvePackagePath(assetName);
+        var directory = Path.GetDirectoryName(targetPath)!;
+        return EnsurePathInsideMods(Path.Combine(
+            directory,
+            $".{Path.GetFileName(targetPath)}.{Guid.NewGuid():N}.download"));
     }
 
     public static void EnsureModsDirectory()
@@ -21,9 +44,14 @@ internal static class PackageInstaller
 
     public static void InstallDownloadedPackage(string downloadedPath, string targetPath)
     {
+        downloadedPath = EnsurePathInsideMods(downloadedPath);
+        targetPath = EnsurePathInsideMods(targetPath);
+        EnsureRegularFile(downloadedPath);
         if (File.Exists(targetPath))
         {
-            File.Delete(targetPath);
+            EnsureRegularFile(targetPath);
+            File.Move(downloadedPath, targetPath, overwrite: true);
+            return;
         }
 
         File.Move(downloadedPath, targetPath);
@@ -31,13 +59,79 @@ internal static class PackageInstaller
 
     public static void ValidateLanguagePackZip(string zipPath, PackageVersion expectedVersion)
     {
+        zipPath = EnsurePathInsideMods(zipPath);
+        EnsureRegularFile(zipPath);
+        if (new FileInfo(zipPath).Length > 128L * 1024 * 1024)
+        {
+            throw new InvalidOperationException("汉化包文件超过允许的大小限制。");
+        }
+
         using var archive = ZipFile.OpenRead(zipPath);
-        var modInfoEntry = archive.GetEntry("modinfo.json")
-            ?? throw new InvalidOperationException("Downloaded package does not contain modinfo.json.");
+        if (archive.Entries.Count > MaxArchiveEntries)
+        {
+            throw new InvalidOperationException("汉化包包含过多 ZIP 条目。");
+        }
+
+        var entryNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        long totalUncompressedBytes = 0;
+        ZipArchiveEntry? modInfoEntry = null;
+        foreach (var entry in archive.Entries)
+        {
+            var entryName = entry.FullName;
+            if (string.IsNullOrWhiteSpace(entryName) ||
+                entryName.Contains('\\') ||
+                entryName.StartsWith("/", StringComparison.Ordinal) ||
+                Path.IsPathRooted(entryName) ||
+                IsSymbolicLinkEntry(entry) ||
+                (!string.Equals(entryName, "modinfo.json", StringComparison.Ordinal) &&
+                 !entryName.StartsWith("assets/", StringComparison.Ordinal)) ||
+                entryName.Split('/', StringSplitOptions.RemoveEmptyEntries)
+                    .Any(part => string.Equals(part, "..", StringComparison.Ordinal)))
+            {
+                throw new InvalidOperationException("汉化包包含不安全的 ZIP 路径。");
+            }
+
+            if (!entryNames.Add(entryName))
+            {
+                throw new InvalidOperationException("汉化包包含重复的 ZIP 条目。");
+            }
+
+            if (entry.Length > MaxEntryUncompressedBytes ||
+                (totalUncompressedBytes += entry.Length) > MaxArchiveUncompressedBytes)
+            {
+                throw new InvalidOperationException("汉化包解压后大小超过允许的限制。");
+            }
+
+            if (string.Equals(entryName, "modinfo.json", StringComparison.Ordinal))
+            {
+                modInfoEntry = entry;
+            }
+
+            if (!entry.FullName.EndsWith("/", StringComparison.Ordinal))
+            {
+                using var entryStream = entry.Open();
+                entryStream.CopyTo(Stream.Null);
+            }
+        }
+
+        if (modInfoEntry is null)
+        {
+            throw new InvalidOperationException("Downloaded package does not contain modinfo.json.");
+        }
+        if (modInfoEntry.Length > MaxModInfoBytes)
+        {
+            throw new InvalidOperationException("汉化包 modinfo.json 过大。");
+        }
 
         using var stream = modInfoEntry.Open();
         using var document = JsonDocument.Parse(stream);
         var root = document.RootElement;
+
+        var type = GetString(root, "type");
+        if (!string.Equals(type, "content", StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("汉化包必须是 content 类型模组。");
+        }
 
         var modId = GetString(root, "modid");
         if (!string.Equals(modId, UpdaterConstants.LanguagePackModId, StringComparison.OrdinalIgnoreCase))
@@ -110,5 +204,38 @@ internal static class PackageInstaller
         }
 
         throw new InvalidOperationException($"Downloaded package modinfo.json did not contain '{propertyName}'.");
+    }
+
+    private static string EnsurePathInsideMods(string path)
+    {
+        var modsRoot = Path.GetFullPath(ModsPath)
+            .TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
+        var fullPath = Path.GetFullPath(path);
+        if (!fullPath.StartsWith(modsRoot, StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException("汉化包路径不在游戏 Mods 目录内。");
+        }
+
+        return fullPath;
+    }
+
+    private static void EnsureRegularFile(string path)
+    {
+        if (!File.Exists(path))
+        {
+            throw new FileNotFoundException("汉化包文件不存在。", path);
+        }
+
+        if ((File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
+        {
+            throw new InvalidOperationException("拒绝使用符号链接或重解析点作为汉化包文件。");
+        }
+    }
+
+    private static bool IsSymbolicLinkEntry(ZipArchiveEntry entry)
+    {
+        const int UnixFileTypeMask = 0xF000;
+        const int UnixSymbolicLink = 0xA000;
+        return ((entry.ExternalAttributes >> 16) & UnixFileTypeMask) == UnixSymbolicLink;
     }
 }

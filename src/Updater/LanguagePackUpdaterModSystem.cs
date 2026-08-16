@@ -78,9 +78,13 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
         {
             var currentVersion = DetectInstalledVersion(config);
             using var releaseClient = new GitHubReleaseClient(TimeSpan.FromSeconds(config.HttpTimeoutSeconds));
+            var latestReleaseUrls = config.CreateGithubUrls(config.ReleasesLatestUrl)
+                .Concat(config.CreateGithubUrls(UpdaterConstants.VscnStudioLatestUrl))
+                .Distinct(StringComparer.OrdinalIgnoreCase)
+                .ToArray();
             var latestRelease = await releaseClient.GetLatestReleaseAsync(
                 config.CreateGithubUrls(config.ReleasesApiUrl),
-                config.CreateGithubUrls(config.ReleasesLatestUrl),
+                latestReleaseUrls,
                 tagName => CreateFallbackReleaseAssets(tagName, config),
                 (url, message) => LogChannelFailure("获取发布信息", url, message),
                 cancellationToken);
@@ -120,19 +124,32 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
                 return;
             }
 
-            var tempPath = targetPath + ".download";
-            if (File.Exists(tempPath))
+            var tempPath = PackageInstaller.CreateTemporaryPackagePath(asset.Name);
+            string? usedDownloadUrl = null;
+            try
             {
-                File.Delete(tempPath);
+                usedDownloadUrl = await releaseClient.DownloadFileAsync(
+                    config.CreateGithubUrls(asset.DownloadUrl),
+                    tempPath,
+                    asset.Sha256,
+                    (url, message) => LogChannelFailure("下载汉化包", url, message),
+                    cancellationToken);
+                PackageInstaller.ValidateLanguagePackZip(tempPath, latestVersion);
+                PackageInstaller.InstallDownloadedPackage(tempPath, targetPath);
             }
-
-            var usedDownloadUrl = await releaseClient.DownloadFileAsync(
-                config.CreateGithubUrls(asset.DownloadUrl),
-                tempPath,
-                (url, message) => LogChannelFailure("下载汉化包", url, message),
-                cancellationToken);
-            PackageInstaller.ValidateLanguagePackZip(tempPath, latestVersion);
-            PackageInstaller.InstallDownloadedPackage(tempPath, targetPath);
+            finally
+            {
+                try
+                {
+                    if (File.Exists(tempPath))
+                    {
+                        File.Delete(tempPath);
+                    }
+                }
+                catch
+                {
+                }
+            }
 
             if (config.DeleteOldPackages)
             {
@@ -145,7 +162,7 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
                 "[VSCN 汉化包更新器] 汉化包已从 {0} 更新到 {1}，下载通道：{2}。",
                 previousText,
                 latestVersion,
-                DescribeChannel(usedDownloadUrl));
+                DescribeChannel(usedDownloadUrl!));
         }
         catch (OperationCanceledException)
         {
@@ -188,7 +205,9 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
     private static GitHubReleaseAsset? SelectLanguagePackAsset(GitHubRelease release, PackageVersion latestVersion, UpdaterConfig config)
     {
         var expectedName = config.AssetFilePrefix + latestVersion + config.AssetFileSuffix;
-        var exact = release.Assets.FirstOrDefault(asset => string.Equals(asset.Name, expectedName, StringComparison.OrdinalIgnoreCase));
+        var exact = release.Assets.FirstOrDefault(asset =>
+            string.Equals(asset.Name, expectedName, StringComparison.OrdinalIgnoreCase) &&
+            IsTrustedReleaseAssetUrl(asset.DownloadUrl));
         if (exact is not null)
         {
             return exact;
@@ -201,6 +220,7 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
                 Version = PackageInstaller.TryGetPackageVersionFromFileName(asset.Name, config.AssetFilePrefix, config.AssetFileSuffix)
             })
             .Where(item => item.Version is not null && item.Version.CompareTo(latestVersion) == 0)
+            .Where(item => IsTrustedReleaseAssetUrl(item.Asset.DownloadUrl))
             .OrderByDescending(item => item.Version)
             .Select(item => item.Asset)
             .FirstOrDefault();
@@ -216,6 +236,18 @@ public sealed class LanguagePackUpdaterModSystem : ModSystem
         var assetName = config.AssetFilePrefix + latestVersion + config.AssetFileSuffix;
         var downloadUrl = config.CreateReleaseAssetDownloadUrl(tagName, assetName);
         return [new GitHubReleaseAsset(assetName, downloadUrl)];
+    }
+
+    private static bool IsTrustedReleaseAssetUrl(string url)
+    {
+        return Uri.TryCreate(url, UriKind.Absolute, out var uri) &&
+            string.Equals(uri.Scheme, Uri.UriSchemeHttps, StringComparison.OrdinalIgnoreCase) &&
+            string.Equals(uri.Host, "github.com", StringComparison.OrdinalIgnoreCase) &&
+            uri.IsDefaultPort &&
+            string.IsNullOrEmpty(uri.UserInfo) &&
+            uri.AbsolutePath.StartsWith(
+                "/vscn-studio/VintageStory-Chinese-Language-Package/releases/download/",
+                StringComparison.OrdinalIgnoreCase);
     }
 
     private void PostChatMessage(string message)

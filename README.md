@@ -302,6 +302,10 @@ https://api.github.com/repos/vscn-studio/VintageStory-Chinese-Language-Package/r
 "releaseAssetDownloadUrlTemplate": "https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/releases/download/{tag}/{asset}",
 "githubUrlTemplates": [
   "https://ghproxy.net/{url}",
+  "https://gh-proxy.org/{url}",
+  "https://v4.gh-proxy.org/{url}",
+  "https://v6.gh-proxy.org/{url}",
+  "https://axisnow.gh-proxy.org/{url}",
   "https://v6.gh-proxy.com/{url}",
   "https://hk.gh-proxy.com/{url}",
   "https://cdn.gh-proxy.com/{url}",
@@ -310,7 +314,7 @@ https://api.github.com/repos/vscn-studio/VintageStory-Chinese-Language-Package/r
 ]
 ```
 
-`{url}` 表示原始 GitHub 地址，`{escapedUrl}` 表示 URL 编码后的原始地址。玩家可以按自己的网络情况替换或增删加速源，建议保留 `{url}` 作为最后兜底通道。如果 GitHub API 无法访问，更新器会退回到 `releasesLatestUrl` 的跳转地址解析最新标签，再用 `releaseAssetDownloadUrlTemplate` 拼出语言包下载地址。默认通道优先使用 `ghproxy.net`，并参考 MVL 增加了 `v6`、`hk`、`cdn`、`edgeone` 四条 `gh-proxy.com` 子线路作为下载备用。
+`{url}` 表示原始 GitHub 地址，`{escapedUrl}` 表示 URL 编码后的原始地址。候选地址仅接受 HTTPS，重定向也必须继续指向受信任的 GitHub、GitHub CDN 或已知代理主机。玩家可以按自己的网络情况调整或移除已列出的加速源，建议保留 `{url}` 作为最后兜底通道；未知主机会被安全检查拒绝。如果 GitHub API 超时或返回错误，更新器会依次请求 `https://github.com/vscn-studio/VintageStory-Chinese-Language-Package/releases/latest` 和 `https://vscn.studio/VintageStory-Chinese-Language-Package/releases/latest`；两者都支持 Release JSON 或页面跳转解析，随后用 `releaseAssetDownloadUrlTemplate` 拼出语言包下载地址。默认通道包含 `ghproxy.net`、`gh-proxy.org`、`v4.gh-proxy.org`、`v6.gh-proxy.org`、`axisnow.gh-proxy.org` 以及现有的 `gh-proxy.com` 子线路。下载结果还会限制大小、校验 Release 提供的 SHA-256（如果有），并在安装前检查 ZIP 路径、条目数量、解压大小、modid 和版本。
 
 构建 updater 时需要将 `VINTAGE_STORY` 指向包含 `VintagestoryAPI.dll` 的游戏安装目录：
 
