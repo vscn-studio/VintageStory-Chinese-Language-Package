@@ -83,7 +83,7 @@ internal static class PackageInstaller
                 entryName.StartsWith("/", StringComparison.Ordinal) ||
                 Path.IsPathRooted(entryName) ||
                 IsSymbolicLinkEntry(entry) ||
-                (!string.Equals(entryName, "modinfo.json", StringComparison.Ordinal) &&
+                (!IsAllowedPackageEntry(entryName) &&
                  !entryName.StartsWith("assets/", StringComparison.Ordinal)) ||
                 entryName.Split('/', StringSplitOptions.RemoveEmptyEntries)
                     .Any(part => string.Equals(part, "..", StringComparison.Ordinal)))
@@ -237,5 +237,11 @@ internal static class PackageInstaller
         const int UnixFileTypeMask = 0xF000;
         const int UnixSymbolicLink = 0xA000;
         return ((entry.ExternalAttributes >> 16) & UnixFileTypeMask) == UnixSymbolicLink;
+    }
+
+    private static bool IsAllowedPackageEntry(string entryName)
+    {
+        return string.Equals(entryName, "modinfo.json", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(entryName, "README.md", StringComparison.OrdinalIgnoreCase);
     }
 }
