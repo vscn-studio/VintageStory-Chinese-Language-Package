@@ -1,0 +1,8 @@
+{
+  "block-wellpulley-*": "Well pulley",
+  "wellpulley-handbook-help-title": "How to use",
+  "wellpulley-handbook-help-text": "A well pulley uses <a href=\"handbooksearch://Coil of rope\">rope</a> and a <a href=\"handbooksearch://Wooden bucket\">bucket</a> to draw salt or fresh water from below. <br>They let you quickly fill up buckets from water far below you, without you needing to climb down. <br><br><strong>Setting it up:</strong> To use the pulley, first rightclick with rope to spool it, then attach the rope to somewhere else, like another pulley or a fence. <br>After the rope is connected, put a bucket on the pulley with rightclick. <br><br><strong>Drawing water:</strong> Now the pulley is spooled with a bucket, you can use control+rightclick to drop and pull up the bucket. If the bucket finds water on the way down before its maximum depth, it will replace its contents with the fresh or salty water. <br><br>See also: <a href=\"handbook://gamemechanicinfo-wells\">Wells</a>",
+  "wellpulley-raisebucketfirst": "Raise the bucket first",
+  "wellpulley-waitbucketstop": "Wait for the bucket to stop moving",
+  "wellpulley-finishraising": "Finish raising the bucket first"
+}

@@ -1,0 +1,5 @@
+{
+  "block-temporaltempforecaster": "Temporal Temp Forecaster",
+  "blockdesc-temporaltempforecaster": "A clever device that forecasts long-term climate anomalies. Right-click it to see which months of the current year will run above or below average temperature.",
+  "game:tabname-dynamicseasonaltemperature": "Dynamic Seasonal Temperature"
+}

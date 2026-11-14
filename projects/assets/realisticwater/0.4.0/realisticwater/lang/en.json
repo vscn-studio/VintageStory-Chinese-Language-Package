@@ -1,0 +1,10 @@
+{
+  "game:worldconfig-category-realisticwater": "Realistic Water",
+  "game:worldattribute-RWEnableRivulets": "Enable rivulets",
+  "game:worldattribute-RWEnableRivulets-desc": "Enable or disable mountainside rivulets (rapids are always enabled)",
+  "game:worldattribute-RWEnableLakeExtension": "Enable lake extension",
+  "game:worldattribute-RWEnableLakeExtension-desc": "If enabled, new water sources will be created when digging at the border of a lake, allowing the creation of navigable canals",
+  "game:worldattribute-RWFlowSearchDistance": "Flow search distance",
+  "game:worldattribute-RWFlowSearchDistance-desc": "The maximum distance water looks ahead when seeking downward paths. Smaller numbers produce more wetlands, bigger numbers produce more flowing streams",
+  "game:worldattribute-RWFlowSearchDistance-unit": "{0} blocks"
+}

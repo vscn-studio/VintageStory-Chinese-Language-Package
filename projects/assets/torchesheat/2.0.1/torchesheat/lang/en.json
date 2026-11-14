@@ -1,0 +1,6 @@
+{
+  "setting-heat_strength": "Torch Heat Strength",
+  "setting-heat_strength-desc": "How much warmth one lit torch contributes, on the game's own heat scale: burning firepit 10, embers 6, smouldering firepit 0.25. Default is 1.5. The game applies its usual distance falloff on top, the same way it does for firepits. Set to 0 to disable torch heat.",
+  "setting-max_distance": "Torch Heat Range",
+  "setting-max_distance-desc": "Torches further away than this many blocks contribute nothing (default: 5). Mostly matters indoors: the game scans your whole room for heat sources when you are enclosed, but only 3 blocks around you outdoors."
+}

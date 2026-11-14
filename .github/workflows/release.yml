@@ -24,6 +24,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: language-pack-release
+  cancel-in-progress: false
+
 env:
   VINTAGE_STORY_BUILD_VERSION: ${{ inputs.game_version }}
 
@@ -92,7 +96,9 @@ jobs:
           } >> "${GITHUB_STEP_SUMMARY}"
 
       - name: Run tests
-        run: dotnet test
+        run: |
+          dotnet test
+          python3 -m unittest discover -s tests/ReleaseWorkflow
 
       - name: Configure game translation
         shell: bash
@@ -133,6 +139,12 @@ jobs:
             echo "- Included: ${INCLUDE_GAME_TRANSLATION}"
           } >> "${GITHUB_STEP_SUMMARY}"
 
+      - name: Download previous package
+        id: previous
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/download_previous_package.py
+
       - name: Build package
         shell: bash
         run: |
@@ -142,11 +154,16 @@ jobs:
         shell: bash
         env:
           RELEASE_KIND: ${{ inputs.release_kind }}
+          PREVIOUS_PACKAGE: ${{ steps.previous.outputs.previous_package }}
         run: |
           notes_path="build/release-notes-${VERSION}.md"
           readme_path="build/README-${VERSION}.md"
-          dotnet run --project src/Packer -- describe-release --config config/packer/default.json --package-version "${VERSION}" --release-kind "${RELEASE_KIND}" --fetch-api > "${notes_path}"
-          dotnet run --project src/Packer -- describe-package --config config/packer/default.json --package-version "${VERSION}" --fetch-api > "${readme_path}"
+          previous_args=()
+          if [ -n "${PREVIOUS_PACKAGE}" ]; then
+            previous_args=(--previous-package "${PREVIOUS_PACKAGE}")
+          fi
+          dotnet run --project src/Packer -- describe-release --config config/packer/default.json --package-version "${VERSION}" --release-kind "${RELEASE_KIND}" "${previous_args[@]}" > "${notes_path}"
+          cp "${notes_path}" "${readme_path}"
 
       - name: Add README to package
         shell: bash

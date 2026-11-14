@@ -1,0 +1,10 @@
+{
+  "game:worldconfig-category-realisticwater": "真实水体",
+  "game:worldattribute-RWEnableRivulets": "启用山间细流",
+  "game:worldattribute-RWEnableRivulets-desc": "启用或禁用山坡上的细流（急流始终启用）",
+  "game:worldattribute-RWEnableLakeExtension": "启用湖泊扩展",
+  "game:worldattribute-RWEnableLakeExtension-desc": "启用后，在湖岸挖掘会生成新的水源，可借此开凿通航运河。",
+  "game:worldattribute-RWFlowSearchDistance": "水流寻路距离",
+  "game:worldattribute-RWFlowSearchDistance-desc": "水流寻找向下流动路径时向前探查的最大距离。数值较小会形成更多湿地，较大则会形成更多流动的溪流。",
+  "game:worldattribute-RWFlowSearchDistance-unit": "{0} 格"
+}

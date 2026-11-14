@@ -25,7 +25,7 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/zh-cn.json
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/builtin
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/source
 projects/assets/<mod-name>/<mod-version>/<modid>/lang/decompiled
-projects/assets/index.json
+projects/assets/<mod-name>/<mod-version>/<modid>/README.txt
 projects/game/index.json
 projects/game/<game-version>/assets/game/lang/zh-cn.json
 projects/game/<game-version>/assets/game/lang/en.json
@@ -41,9 +41,9 @@ tests/Packer.Tests
 - `<mod-name>` 仅用于仓库内组织，不进入最终产物。
 - `<mod-version>` 表示目标模组版本，不表示游戏版本。
 - `<modid>` 必须使用被汉化模组的真实 `modid`。
-- `projects/assets/index.json` 用于维护模组展示元数据，键名为 `<mod-name>`。
+- 每个汉化目录的 `README.txt` 只需一行汉化作者，与 `lang` 文件夹同级。
 - `projects/game/index.json` 用于维护游戏本体翻译的版本化贡献者信息，键名为 `<game-version>`。
-- `projects/game` 存放游戏本体翻译；它与模组翻译分开管理，不参与模组站版本检查和模组数量统计。
+- `projects/game` 存放游戏本体翻译；它与模组翻译分开管理，不参与模组数量统计。
 - `projects/translation-terminology/<language>/*.json` 是按主题拆分的译名标准化术语表，用于 Weblate 术语协作。
 - `projects/dictionaries/vs-wiki/zh-cn.dictionary.json` 是从 Vintage Story Wiki 抽取的来源字典，供生成或校对术语表时参考。
 - `src/Updater` 是独立的客户端代码模组 `vscnlangpackupdater`，游戏内名称为“VSCN 汉化包自动更新器”，用于通过 GitHub 加速通道自动检查并下载最新版汉化包。
@@ -62,24 +62,6 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 
 这三种标记在打包器中的行为完全一致：对应版本会参与版本判断，但不会被打包输出。
 
-如果某个模组整体应按上述特殊状态处理，可以在 `projects/assets/index.json` 中将该模组的 `latestVersion` 直接写为 `builtin`、`source` 或 `decompiled`。例如：
-
-```json
-{
-  "chiseltools": {
-    "name": "QP's Chisel Tools",
-    "translation": "QP 的凿刻工具",
-    "authors": [
-      "QPTech"
-    ],
-    "homepage": "https://mods.vintagestory.at/chiseltools",
-    "latestVersion": "builtin"
-  }
-}
-```
-
-这种写法会让打包器和版本检查工作流完全跳过该模组。
-
 ## 新增翻译
 
 1. 在 `projects/assets` 下创建目录：
@@ -96,30 +78,23 @@ projects/assets/<mod-name>/<mod-version>/<modid>/lang/en.json
 
 3. 保证 `zh-cn.json` 是合法 JSON，且根节点是对象。
 
-4. 按需在 `projects/assets/index.json` 补充展示信息：
+4. 在 `lang` 同级新建 UTF-8 编码的 `README.txt`，只写一行汉化作者，不需要字段名或其他信息。例如：
 
-   ```json
-   {
-     "betterloot": {
-       "name": "Better Loot",
-       "translation": "更好的战利品",
-       "authors": [
-         "DejFidOFF"
-       ],
-       "contributors": [
-         {
-           "name": "HansJack",
-           "url": "https://vintagestory.top/u/HansJack",
-           "role": "Chinese Translator"
-         }
-       ],
-       "homepage": "https://mods.vintagestory.at/betterloot",
-       "latestVersion": "2.0.3"
-     }
-   }
+   ```text
+   projects/assets/hideracks/1.0.1/hideracks/README.txt
    ```
 
-   其中 `betterloot` 对应仓库目录里的 `<mod-name>`。`authors` 是原模组作者；`contributors` 是汉化贡献者，支持贡献者名称、链接和角色。发布 Release 时会通过 `mods.vintagestory.at/api` 获取英文名、主页、作者和最新版本；`translation` 和 `contributors` 这类人工维护信息仍以 `index.json` 为准。
+   内容：
+
+   ```text
+   HansJack
+   ```
+
+   多名汉化作者可在同一行用 `、` 分隔，例如 `Alice、Bob`。读取第一行非空内容，忽略首尾空白和重复名字。署名按实际选中的版本和资源目录读取，并随打包记录保存。文件缺失或为空时仍可打包，汉化作者显示“未记录”。
+
+   请按实际译文来源填写汉化作者，不要直接使用模组作者或聚合汉化包作者。引用 BetterChinese 译文时，可参考其对应模组目录中版本 `.txt` 文件的“汉化人员”记录，并保留本仓库已有的翻译贡献者；其他版本需核对译文来源，无法确认时留空。
+
+   模组 ID 和目标版本从目录获取，其他信息无需填写。打包和生成发布说明均不读取模组索引、不请求模组站 API。`README.txt` 本身不作为游戏资源打包，作者名单保存在 ZIP 的 `assets/vscnlangpack/config/package-record.json` 中。
 
 当同一个真实 `modid` 同时存在多个目标模组版本时，打包器会默认选择最高版本；如果版本无法比较、同一归一化版本重复，或最终输出路径发生冲突，打包会直接失败并列出冲突来源。
 
@@ -157,7 +132,7 @@ projects/game/<game-version>/assets/game/lang/en.json
 }
 ```
 
-`contributors` 的 `name` 必填，`url` 和 `role` 可选。该文件与 `projects/assets/index.json` 分别维护；前者用于游戏本体，后者仅用于模组。发布时会按 `targetVersion` 读取本体贡献者，并写入 Release 说明、Release README 和贡献者统计。
+`contributors` 的 `name` 必填，`url` 和 `role` 可选。该文件仅用于游戏本体，独立于模组目录中的 `README.txt`。发布时会按 `targetVersion` 读取本体贡献者，并写入 Release 说明、Release README 和贡献者统计。
 
 要启用本体翻译，在 `config/packer/default.json` 中设置 `gameTranslation`：
 
@@ -180,7 +155,7 @@ projects/game/1.22.3/assets/game/lang/zh-cn.json
 assets/game/lang/zh-cn.json
 ```
 
-同时，生成的 `modinfo.json` 会声明 `game: 1.22.3` 依赖。本体翻译不计入模组翻译数量，也不会出现在模组清单和模组站版本检查中。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
+同时，生成的 `modinfo.json` 会声明 `game: 1.22.3` 依赖。本体翻译不计入模组翻译数量，在发布变更表中单独标记为“游戏本体”。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
 
 ## 译名标准化术语表
 
@@ -261,14 +236,27 @@ build/VintageStory-Chinese-Language-Package-<version>.zip
 
 ```text
 modinfo.json
+assets/vscnlangpack/config/package-record.json  （本次实际入包记录）
 assets/game/lang/zh-cn.json             （启用游戏本体翻译时）
 assets/<真实modid>/lang/zh-cn.json
 ```
+
+打包记录包含每份入包译文的资源路径、目标版本、SHA-256 和汉化作者，与译文一起写入 ZIP。保留不同版本的 ZIP，即可比较前后打包结果：
+
+```powershell
+dotnet run --project src/Packer -- pack --config config/packer/default.json --package-version 26.11.2
+dotnet run --project src/Packer -- describe-release --config config/packer/default.json --package-version 26.11.2 --release-kind release --previous-package build/VintageStory-Chinese-Language-Package-26.11.1.zip
+```
+
+`describe-release` 读取已经生成的当前版本 ZIP，不会重新扫描源文件。首次打包时省略 `--previous-package`，全部内容记为新增；指定的旧包不存在、损坏或记录格式不支持时会报错，不会按首次发布继续。旧 ZIP 没有打包记录时，按其中译文的实际内容比较，无法恢复的旧模组版本和汉化署名会注明未知。
+
+变更表仅列新增、更新和移除项；目标版本、译文内容或汉化署名改变均算更新，未变更项目不列出。游戏本体翻译也参与比较。没有变化时只显示“本次没有翻译变更”。`describe-package` 仍可用于本地查看当前目录的完整打包预览，不用于 Release 表格。
 
 ## 运行测试
 
 ```powershell
 dotnet test
+python -m unittest discover -s tests/ReleaseWorkflow
 ```
 
 测试会覆盖路径扫描、版本选择、冲突处理、JSON 校验、zip 输出结构以及 CLI 参数契约。
@@ -277,13 +265,11 @@ dotnet test
 
 Release 通过 `.github/workflows/release.yml` 手动触发。除 `release_kind` 外，还需要填写 `game_version`，它同时决定 Updater 的构建 API 版本；当仓库已有 `projects/game/<game_version>/assets/game/lang/zh-cn.json` 时，勾选 `include_game_translation` 即可将该版本的本体翻译加入语言包。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
 
-发布说明会以表格显示游戏本体翻译的目标版本和贡献者，以及全部入包模组列表（包含模组中文名称、模组英文名称、模组 ID、模组最新版本和翻译贡献者），并生成包含本体与模组翻译的贡献者数量统计表。
+发布时会下载最近一次已发布的语言包 ZIP（包括预发布，按发布时间选择，跳过草稿），与本次实际打包记录对比，生成仅包含新增、更新和移除翻译的 Release 表格。第一次发布没有旧包时全部列为新增。下载或 API 查询失败会停止工作流，避免误生成全量变更。
 
-Release 还会额外附带 `README.md` 文件，里面包含完整入包模组清单和贡献者链接。发布说明和 Release README 会通过 `mods.vintagestory.at/api` 获取模组站元数据，并结合 `projects/assets/index.json` 中的人工中文名和覆盖信息生成。
+ZIP 内的 `README.md` 使用同一份变更说明。Release 不再生成全量模组清单，也不查询模组站最新版本。模组作者、中文名和主页不再需要手工维护。
 
 同一个 Release 会额外上传 `vscnlangpackupdater-<version>.zip`，用于发布自动更新客户端模组。
-
-模组最新版本检查会生成待更新模组表和完整模组版本表。完整版本表包含“状态”列：`仓库维护` 表示仍由本仓库提供社区翻译，`作者内置`、`源码翻译`、`反编译翻译` 分别表示该版本通过 `lang/builtin`、`lang/source`、`lang/decompiled` 标记为特殊维护方式。`index.json` 中 `latestVersion` 为 `builtin`、`source` 或 `decompiled` 的模组会被版本检查直接跳过。
 
 ## 自动更新模组
 

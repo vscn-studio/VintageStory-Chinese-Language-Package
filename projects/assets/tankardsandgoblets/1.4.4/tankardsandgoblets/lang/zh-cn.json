@@ -1,5 +1,4 @@
 {
-	//Metal Tankards
 	"block-tankard-metal-copper": "铜啤酒杯",
 	"block-tankard-metal-bismuthbronze": "铋铜啤酒杯",
 	"block-tankard-metal-blackbronze": "黑铜啤酒杯",
@@ -16,7 +15,6 @@
 	"blockdesc-tankard-metal-*": "容量：1L",
 	"blockdesc-tankard-metal-lead": "容量：1L<br>大概不适合拿来喝东西……",
 	
-	//Metal Goblet
 	"block-goblet-copper": "铜高脚杯",
 	"block-goblet-bismuthbronze": "铋铜高脚杯",
 	"block-goblet-blackbronze": "黑铜高脚杯",
@@ -33,7 +31,6 @@
 	"blockdesc-goblet-*": "容量：1L",
 	"blockdesc-goblet-lead": "容量：1L<br>大概不适合拿来喝东西……",
 		
-	//Metal Jeweled Goblet - Copper
 	"block-goblet-jeweled-copper-amethyst": "铜镶紫水晶高脚杯",
 	"block-goblet-jeweled-copper-cinnabar": "铜镶朱砂高脚杯",
 	"block-goblet-jeweled-copper-diamond": "铜镶钻石高脚杯",
@@ -46,7 +43,6 @@
 	"block-goblet-jeweled-copper-ruby": "铜镶红宝石高脚杯",
 	"block-goblet-jeweled-copper-turquoise": "铜镶绿松石高脚杯",
 	"block-goblet-jeweled-copper-olivine": "铜镶橄榄石高脚杯",
-	//Geology Additions - Additional Copper Variants
 	"block-goblet-jeweled-copper-gaberylbixbite": "铜镶红绿柱石高脚杯",
 	"block-goblet-jeweled-copper-gacorundumsapphire": "铜镶蓝宝石高脚杯",
 	"block-goblet-jeweled-copper-gatopazamber": "铜镶琥珀托帕石高脚杯",
@@ -59,7 +55,6 @@
 	"block-goblet-jeweled-copper-gawulfenite": "铜镶钼铅矿高脚杯",
 	"block-goblet-jeweled-copper-gajade": "铜镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Bismuth Bronze
 	"block-goblet-jeweled-bismuthbronze-amethyst": "铋铜镶紫水晶高脚杯",
 	"block-goblet-jeweled-bismuthbronze-cinnabar": "铋铜镶朱砂高脚杯",
 	"block-goblet-jeweled-bismuthbronze-diamond": "铋铜镶钻石高脚杯",
@@ -72,7 +67,6 @@
 	"block-goblet-jeweled-bismuthbronze-ruby": "铋铜镶红宝石高脚杯",
 	"block-goblet-jeweled-bismuthbronze-turquoise": "铋铜镶绿松石高脚杯",
 	"block-goblet-jeweled-bismuthbronze-olivine": "铋铜镶橄榄石高脚杯",
-	//Geology Additions - Additional Bismuth Bronze Variants
 	"block-goblet-jeweled-bismuthbronze-gaberylbixbite": "铋铜镶红绿柱石高脚杯",
 	"block-goblet-jeweled-bismuthbronze-gacorundumsapphire": "铋铜镶蓝宝石高脚杯",
 	"block-goblet-jeweled-bismuthbronze-gatopazamber": "铋铜镶琥珀托帕石高脚杯",
@@ -85,7 +79,6 @@
 	"block-goblet-jeweled-bismuthbronze-gawulfenite": "铋铜镶钼铅矿高脚杯",
 	"block-goblet-jeweled-bismuthbronze-gajade": "铋铜镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Blackbronze
 	"block-goblet-jeweled-blackbronze-amethyst": "黑铜镶紫水晶高脚杯",
 	"block-goblet-jeweled-blackbronze-cinnabar": "黑铜镶朱砂高脚杯",
 	"block-goblet-jeweled-blackbronze-diamond": "黑铜镶钻石高脚杯",
@@ -98,7 +91,6 @@
 	"block-goblet-jeweled-blackbronze-ruby": "黑铜镶红宝石高脚杯",
 	"block-goblet-jeweled-blackbronze-turquoise": "黑铜镶绿松石高脚杯",
 	"block-goblet-jeweled-blackbronze-olivine": "黑铜镶橄榄石高脚杯",
-	//Geology Additions - Additional Black Bronze Variants
 	"block-goblet-jeweled-blackbronze-gaberylbixbite": "黑铜镶红绿柱石高脚杯",
 	"block-goblet-jeweled-blackbronze-gacorundumsapphire": "黑铜镶蓝宝石高脚杯",
 	"block-goblet-jeweled-blackbronze-gatopazamber": "黑铜镶琥珀托帕石高脚杯",
@@ -111,7 +103,6 @@
 	"block-goblet-jeweled-blackbronze-gawulfenite": "黑铜镶钼铅矿高脚杯",
 	"block-goblet-jeweled-blackbronze-gajade": "黑铜镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Brass
 	"block-goblet-jeweled-brass-amethyst": "黄铜镶紫水晶高脚杯",
 	"block-goblet-jeweled-brass-cinnabar": "黄铜镶朱砂高脚杯",
 	"block-goblet-jeweled-brass-diamond": "黄铜镶钻石高脚杯",
@@ -124,7 +115,6 @@
 	"block-goblet-jeweled-brass-ruby": "黄铜镶红宝石高脚杯",
 	"block-goblet-jeweled-brass-turquoise": "黄铜镶绿松石高脚杯",
 	"block-goblet-jeweled-brass-olivine": "黄铜镶橄榄石高脚杯",
-	//Geology Additions - Additional Brass Variants
 	"block-goblet-jeweled-brass-gaberylbixbite": "黄铜镶红绿柱石高脚杯",
 	"block-goblet-jeweled-brass-gacorundumsapphire": "黄铜镶蓝宝石高脚杯",
 	"block-goblet-jeweled-brass-gatopazamber": "黄铜镶琥珀托帕石高脚杯",
@@ -137,7 +127,6 @@
 	"block-goblet-jeweled-brass-gawulfenite": "黄铜镶钼铅矿高脚杯",
 	"block-goblet-jeweled-brass-gajade": "黄铜镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Iron
 	"block-goblet-jeweled-iron-amethyst": "铁镶紫水晶高脚杯",
 	"block-goblet-jeweled-iron-cinnabar": "铁镶朱砂高脚杯",
 	"block-goblet-jeweled-iron-diamond": "铁镶钻石高脚杯",
@@ -150,7 +139,6 @@
 	"block-goblet-jeweled-iron-ruby": "铁镶红宝石高脚杯",
 	"block-goblet-jeweled-iron-turquoise": "铁镶绿松石高脚杯",
 	"block-goblet-jeweled-iron-olivine": "铁镶橄榄石高脚杯",
-	//Geology Additions - Additional Iron Variants
 	"block-goblet-jeweled-iron-gaberylbixbite": "铁镶红绿柱石高脚杯",
 	"block-goblet-jeweled-iron-gacorundumsapphire": "铁镶蓝宝石高脚杯",
 	"block-goblet-jeweled-iron-gatopazamber": "铁镶琥珀托帕石高脚杯",
@@ -163,7 +151,6 @@
 	"block-goblet-jeweled-iron-gawulfenite": "铁镶钼铅矿高脚杯",
 	"block-goblet-jeweled-iron-gajade": "铁镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Steel
 	"block-goblet-jeweled-steel-amethyst": "钢镶紫水晶高脚杯",
 	"block-goblet-jeweled-steel-cinnabar": "钢镶朱砂高脚杯",
 	"block-goblet-jeweled-steel-diamond": "钢镶钻石高脚杯",
@@ -176,7 +163,6 @@
 	"block-goblet-jeweled-steel-ruby": "钢镶红宝石高脚杯",
 	"block-goblet-jeweled-steel-turquoise": "钢镶绿松石高脚杯",
 	"block-goblet-jeweled-steel-olivine": "钢镶橄榄石高脚杯",
-	//Geology Additions - Additional Steel Variants
 	"block-goblet-jeweled-steel-gaberylbixbite": "钢镶红绿柱石高脚杯",
 	"block-goblet-jeweled-steel-gacorundumsapphire": "钢镶蓝宝石高脚杯",
 	"block-goblet-jeweled-steel-gatopazamber": "钢镶琥珀托帕石高脚杯",
@@ -189,7 +175,6 @@
 	"block-goblet-jeweled-steel-gawulfenite": "钢镶钼铅矿高脚杯",
 	"block-goblet-jeweled-steel-gajade": "钢镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Meteoric Iron
 	"block-goblet-jeweled-meteoriciron-amethyst": "陨铁镶紫水晶高脚杯",
 	"block-goblet-jeweled-meteoriciron-cinnabar": "陨铁镶朱砂高脚杯",
 	"block-goblet-jeweled-meteoriciron-diamond": "陨铁镶钻石高脚杯",
@@ -202,7 +187,6 @@
 	"block-goblet-jeweled-meteoriciron-ruby": "陨铁镶红宝石高脚杯",
 	"block-goblet-jeweled-meteoriciron-turquoise": "陨铁镶绿松石高脚杯",
 	"block-goblet-jeweled-meteoriciron-olivine": "陨铁镶橄榄石高脚杯",
-	//Geology Additions - Additional Meteoric Iron Variants
 	"block-goblet-jeweled-meteoriciron-gaberylbixbite": "陨铁镶红绿柱石高脚杯",
 	"block-goblet-jeweled-meteoriciron-gacorundumsapphire": "陨铁镶蓝宝石高脚杯",
 	"block-goblet-jeweled-meteoriciron-gatopazamber": "陨铁镶琥珀托帕石高脚杯",
@@ -215,7 +199,6 @@
 	"block-goblet-jeweled-meteoriciron-gawulfenite": "陨铁镶钼铅矿高脚杯",
 	"block-goblet-jeweled-meteoriciron-gajade": "陨铁镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Tinbronze
 	"block-goblet-jeweled-tinbronze-amethyst": "锡铜镶紫水晶高脚杯",
 	"block-goblet-jeweled-tinbronze-cinnabar": "锡铜镶朱砂高脚杯",
 	"block-goblet-jeweled-tinbronze-diamond": "锡铜镶钻石高脚杯",
@@ -228,7 +211,6 @@
 	"block-goblet-jeweled-tinbronze-ruby": "锡铜镶红宝石高脚杯",
 	"block-goblet-jeweled-tinbronze-turquoise": "锡铜镶绿松石高脚杯",
 	"block-goblet-jeweled-tinbronze-olivine": "锡铜镶橄榄石高脚杯",
-	//Geology Additions - Additional Tin Bronze Variants
 	"block-goblet-jeweled-tinbronze-gaberylbixbite": "锡铜镶红绿柱石高脚杯",
 	"block-goblet-jeweled-tinbronze-gacorundumsapphire": "锡铜镶蓝宝石高脚杯",
 	"block-goblet-jeweled-tinbronze-gatopazamber": "锡铜镶琥珀托帕石高脚杯",
@@ -241,7 +223,6 @@
 	"block-goblet-jeweled-tinbronze-gawulfenite": "锡铜镶钼铅矿高脚杯",
 	"block-goblet-jeweled-tinbronze-gajade": "锡铜镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Gold
 	"block-goblet-jeweled-gold-amethyst": "金镶紫水晶高脚杯",
 	"block-goblet-jeweled-gold-cinnabar": "金镶朱砂高脚杯",
 	"block-goblet-jeweled-gold-diamond": "金镶钻石高脚杯",
@@ -254,7 +235,6 @@
 	"block-goblet-jeweled-gold-ruby": "金镶红宝石高脚杯",
 	"block-goblet-jeweled-gold-turquoise": "金镶绿松石高脚杯",
 	"block-goblet-jeweled-gold-olivine": "金镶橄榄石高脚杯",
-	//Geology Additions - Additional Gold Variants
 	"block-goblet-jeweled-gold-gaberylbixbite": "金镶红绿柱石高脚杯",
 	"block-goblet-jeweled-gold-gacorundumsapphire": "金镶蓝宝石高脚杯",
 	"block-goblet-jeweled-gold-gatopazamber": "金镶琥珀托帕石高脚杯",
@@ -267,7 +247,6 @@
 	"block-goblet-jeweled-gold-gawulfenite": "金镶钼铅矿高脚杯",
 	"block-goblet-jeweled-gold-gajade": "金镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Silver
 	"block-goblet-jeweled-silver-amethyst": "银镶紫水晶高脚杯",
 	"block-goblet-jeweled-silver-cinnabar": "银镶朱砂高脚杯",
 	"block-goblet-jeweled-silver-diamond": "银镶钻石高脚杯",
@@ -280,7 +259,6 @@
 	"block-goblet-jeweled-silver-ruby": "银镶红宝石高脚杯",
 	"block-goblet-jeweled-silver-turquoise": "银镶绿松石高脚杯",
 	"block-goblet-jeweled-silver-olivine": "银镶橄榄石高脚杯",
-	//Geology Additions - Additional Silver Variants
 	"block-goblet-jeweled-silver-gaberylbixbite": "银镶红绿柱石高脚杯",
 	"block-goblet-jeweled-silver-gacorundumsapphire": "银镶蓝宝石高脚杯",
 	"block-goblet-jeweled-silver-gatopazamber": "银镶琥珀托帕石高脚杯",
@@ -293,7 +271,6 @@
 	"block-goblet-jeweled-silver-gawulfenite": "银镶钼铅矿高脚杯",
 	"block-goblet-jeweled-silver-gajade": "银镶玉高脚杯",
 	
-	//Metal Jeweled Goblet - Platinum
 	"block-goblet-jeweled-platinum-amethyst": "铂镶紫水晶高脚杯",
 	"block-goblet-jeweled-platinum-cinnabar": "铂镶朱砂高脚杯",
 	"block-goblet-jeweled-platinum-diamond": "铂镶钻石高脚杯",
@@ -306,7 +283,6 @@
 	"block-goblet-jeweled-platinum-ruby": "铂镶红宝石高脚杯",
 	"block-goblet-jeweled-platinum-turquoise": "铂镶绿松石高脚杯",
 	"block-goblet-jeweled-platinum-olivine": "铂镶橄榄石高脚杯",
-	//Geology Additions - Additional Platinum Variants
 	"block-goblet-jeweled-platinum-gaberylbixbite": "铂镶红绿柱石高脚杯",
 	"block-goblet-jeweled-platinum-gacorundumsapphire": "铂镶蓝宝石高脚杯",
 	"block-goblet-jeweled-platinum-gatopazamber": "铂镶琥珀托帕石高脚杯",
@@ -321,7 +297,6 @@
 	
 	"blockdesc-goblet-jeweled-*": "容量：0.5L",
 	
-	//Wooden Tankards - Oak
 	"block-tankard-woodtype-oak.-leather*": "皮革箍橡木啤酒杯",
 	"block-tankard-woodtype-oak.-iron": "铁箍橡木啤酒杯",
 	"block-tankard-woodtype-oak.-malachite": "孔雀石箍橡木啤酒杯",
@@ -339,7 +314,6 @@
 	"block-tankard-woodtype-oak.-platinum": "铂箍橡木啤酒杯",
 	"block-tankard-woodtype-oak.-nickel": "镍箍橡木啤酒杯",
 	
-	//Wooden Tankards - Birch
 	"block-tankard-woodtype-birch.-leather*": "皮革箍桦木啤酒杯",
 	"block-tankard-woodtype-birch.-iron": "铁箍桦木啤酒杯",
 	"block-tankard-woodtype-birch.-malachite": "孔雀石箍桦木啤酒杯",
@@ -357,7 +331,6 @@
 	"block-tankard-woodtype-birch.-platinum": "铂箍桦木啤酒杯",
 	"block-tankard-woodtype-birch.-nickel": "镍箍桦木啤酒杯",
 	
-	//Wooden Tankards - Pine
 	"block-tankard-woodtype-pine.-leather*": "皮革箍松木啤酒杯",
 	"block-tankard-woodtype-pine.-iron": "铁箍松木啤酒杯",
 	"block-tankard-woodtype-pine.-malachite": "孔雀石箍松木啤酒杯",
@@ -375,7 +348,6 @@
 	"block-tankard-woodtype-pine.-platinum": "铂箍松木啤酒杯",
 	"block-tankard-woodtype-pine.-nickel": "镍箍松木啤酒杯",
 	
-	//Wooden Tankards - Acacia
 	"block-tankard-woodtype-acacia.-leather*": "皮革箍金合欢木啤酒杯",
 	"block-tankard-woodtype-acacia.-iron": "铁箍金合欢木啤酒杯",
 	"block-tankard-woodtype-acacia.-malachite": "孔雀石箍金合欢木啤酒杯",
@@ -393,7 +365,6 @@
 	"block-tankard-woodtype-acacia.-platinum": "铂箍金合欢木啤酒杯",
 	"block-tankard-woodtype-acacia.-nickel": "镍箍金合欢木啤酒杯",
 	
-	//Wooden Tankards - Aged Wood
 	"block-tankard-woodtype-aged.-leather*": "皮革箍陈年木啤酒杯",
 	"block-tankard-woodtype-aged.-iron": "铁箍陈年木啤酒杯",
 	"block-tankard-woodtype-aged.-malachite": "孔雀石箍陈年木啤酒杯",
@@ -411,7 +382,6 @@
 	"block-tankard-woodtype-aged.-platinum": "铂箍陈年木啤酒杯",
 	"block-tankard-woodtype-aged.-nickel": "镍箍陈年木啤酒杯",
 	
-	//Wooden Tankards - Larch
 	"block-tankard-woodtype-larch.-leather*": "皮革箍落叶松木啤酒杯",
 	"block-tankard-woodtype-larch.-iron": "铁箍落叶松木啤酒杯",
 	"block-tankard-woodtype-larch.-malachite": "孔雀石箍落叶松木啤酒杯",
@@ -429,7 +399,6 @@
 	"block-tankard-woodtype-larch.-platinum": "铂箍落叶松木啤酒杯",
 	"block-tankard-woodtype-larch.-nickel": "镍箍落叶松木啤酒杯",
 	
-	//Wooden Tankards - Bald cypress
 	"block-tankard-woodtype-baldcypress.-leather*": "皮革箍落羽杉木啤酒杯",
 	"block-tankard-woodtype-baldcypress.-iron": "铁箍落羽杉木啤酒杯",
 	"block-tankard-woodtype-baldcypress.-malachite": "孔雀石箍落羽杉木啤酒杯",
@@ -447,7 +416,6 @@
 	"block-tankard-woodtype-baldcypress.-platinum": "铂箍落羽杉木啤酒杯",
 	"block-tankard-woodtype-baldcypress.-nickel": "镍箍落羽杉木啤酒杯",
 	
-	//Wooden Tankards - Ebony
 	"block-tankard-woodtype-ebony.-leather*": "皮革箍乌木啤酒杯",
 	"block-tankard-woodtype-ebony.-iron": "铁箍乌木啤酒杯",
 	"block-tankard-woodtype-ebony.-malachite": "孔雀石箍乌木啤酒杯",
@@ -465,7 +433,6 @@
 	"block-tankard-woodtype-ebony.-platinum": "铂箍乌木啤酒杯",
 	"block-tankard-woodtype-ebony.-nickel": "镍箍乌木啤酒杯",
 	
-	//Wooden Tankards - Kapok
 	"block-tankard-woodtype-kapok.-leather*": "皮革箍木棉木啤酒杯",
 	"block-tankard-woodtype-kapok.-iron": "铁箍木棉木啤酒杯",
 	"block-tankard-woodtype-kapok.-malachite": "孔雀石箍木棉木啤酒杯",
@@ -483,7 +450,6 @@
 	"block-tankard-woodtype-kapok.-platinum": "铂箍木棉木啤酒杯",
 	"block-tankard-woodtype-kapok.-nickel": "镍箍木棉木啤酒杯",
 	
-	//Wooden Tankards - Maple
 	"block-tankard-woodtype-maple.-leather*": "皮革箍枫木啤酒杯",
 	"block-tankard-woodtype-maple.-iron": "铁箍枫木啤酒杯",
 	"block-tankard-woodtype-maple.-malachite": "孔雀石箍枫木啤酒杯",
@@ -501,7 +467,6 @@
 	"block-tankard-woodtype-maple.-platinum": "铂箍枫木啤酒杯",
 	"block-tankard-woodtype-maple.-nickel": "镍箍枫木啤酒杯",
 
-	//Wooden Tankards - Purpleheart
 	"block-tankard-woodtype-purpleheart.-leather*": "皮革箍紫心木啤酒杯",
 	"block-tankard-woodtype-purpleheart.-iron": "铁箍紫心木啤酒杯",
 	"block-tankard-woodtype-purpleheart.-malachite": "孔雀石箍紫心木啤酒杯",
@@ -519,7 +484,6 @@
 	"block-tankard-woodtype-purpleheart.-platinum": "铂箍紫心木啤酒杯",
 	"block-tankard-woodtype-purpleheart.-nickel": "镍箍紫心木啤酒杯",
 	
-	//Wooden Tankards - Redwood
 	"block-tankard-woodtype-redwood.-leather*": "皮革箍红杉木啤酒杯",
 	"block-tankard-woodtype-redwood.-iron": "铁箍红杉木啤酒杯",
 	"block-tankard-woodtype-redwood.-malachite": "孔雀石箍红杉木啤酒杯",
@@ -537,7 +501,6 @@
 	"block-tankard-woodtype-redwood.-platinum": "铂箍红杉木啤酒杯",
 	"block-tankard-woodtype-redwood.-nickel": "镍箍红杉木啤酒杯",
 	
-	//Wooden Tankards - Walnut
 	"block-tankard-woodtype-walnut.-leather*": "皮革箍胡桃木啤酒杯",
 	"block-tankard-woodtype-walnut.-iron": "铁箍胡桃木啤酒杯",
 	"block-tankard-woodtype-walnut.-malachite": "孔雀石箍胡桃木啤酒杯",
@@ -557,7 +520,6 @@
 	
 	"blockdesc-tankard-woodtype-*-*": "容量：1L",
 	
-	//Glass Bottles
 	"block-t&g-winebottle-*": "玻璃瓶",
 	"blockdesc-t&g-winebottle-*": "容量：2L",
 	"block-t&g-winebottle-wicker-*": "柳条包覆瓶",
@@ -568,11 +530,10 @@
 	"blockdesc-t&g-smalldemijohn-*": "容量：5L",
 	"blockdesc-t&g-largedemijohn-*": "容量：25L",
 	
-	//Other Vessels
 	"block-t&g-tankard-glass": "玻璃啤酒杯",
 	"block-t&g-goblet-glass": "玻璃高脚杯",
 	"block-t&g-mug": "马克杯",
 	"block-tankard-wood": "简易木制啤酒杯",
-	"blockdesc-tankard-wood": "容量：1L<br>若没有来处的提醒，我们又如何知道自己走了多远？",
+	"blockdesc-tankard-wood": "容量：1L<br>若没有来处的提醒，我们又如何知道自己走了多远？"
 
 }

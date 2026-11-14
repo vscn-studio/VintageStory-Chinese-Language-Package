@@ -1,0 +1,10 @@
+{
+  "ashes:setting_enable_potash_crafting": "Can craft potash",
+  "ashes:setting_enable_potash_crafting_comment": "Enables crafting of potash from drying wet wood ash",
+  "ashes:settings_title_crafting_recipes": "Valley of Ashes - Crafting Recipes",
+  "game:handbook-item-usage-bark-ash": "Can be turned into fertilizer by leeching it in water, then drying it.",
+  "game:handbook-item-usage-bark-ash-solution": "Can be turned into fertilizer by concentrating it into <a href=\"handbook://item-em:ash-organic-wood-sludge\">ash sludge</a>, and then drying it.",
+  "ashes:item-plantdebris-seagrass": "Fresh sea grass",
+  "ashes:item-plantdebris-seaweed": "Fresh sea weed",
+  "ashes:item-plantdebris-kelp": "Fresh kelp"
+}

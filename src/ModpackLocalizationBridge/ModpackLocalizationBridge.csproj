@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>hansjackmodpacklocalization</AssemblyName>
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == ''">$(VINTAGE_STORY)</VintageStoryDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="VintagestoryAPI" HintPath="$(VintageStoryDir)/VintagestoryAPI.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(VintageStoryDir)/Lib/0Harmony.dll" Private="false" />
+    <EmbeddedResource Include="catalog.json" />
+  </ItemGroup>
+  <Target Name="ValidateGamePath" BeforeTargets="BeforeBuild">
+    <Error Condition="!Exists('$(VintageStoryDir)/VintagestoryAPI.dll')" Text="Set VINTAGE_STORY or VintageStoryDir to a Vintage Story 1.22 installation." />
+  </Target>
+</Project>

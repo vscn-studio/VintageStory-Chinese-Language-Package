@@ -1,0 +1,4 @@
+{
+  "game:placefailure-chiseledgroundplacement-recessedsurfaceinvalid": "This chiseled surface is not flat or clear enough for that object.",
+  "game:placefailure-chiseledgroundplacement-recessedobjectobstructed": "There is not enough clear space on this side of the chiseled surface."
+}

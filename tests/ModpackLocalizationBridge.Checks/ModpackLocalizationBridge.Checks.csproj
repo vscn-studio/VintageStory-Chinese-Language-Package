@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <VintageStoryDir Condition="'$(VintageStoryDir)' == ''">$(VINTAGE_STORY)</VintageStoryDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/ModpackLocalizationBridge/ModpackLocalizationBridge.csproj" />
+    <Reference Include="VintagestoryAPI" HintPath="$(VintageStoryDir)/VintagestoryAPI.dll" Private="true" />
+    <Reference Include="0Harmony" HintPath="$(VintageStoryDir)/Lib/0Harmony.dll" Private="true" />
+  </ItemGroup>
+</Project>

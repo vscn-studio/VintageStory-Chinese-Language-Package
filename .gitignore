@@ -6,3 +6,4 @@ TestResults/
 bin2/
 obj2/
 tmp-obj/
+__pycache__/

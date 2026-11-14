@@ -1,5 +1,4 @@
 {
-	//Metal Tankards
 	"block-tankard-metal-copper": "Copper Tankard",
 	"block-tankard-metal-bismuthbronze": "Bismuth Bronze Tankard",
 	"block-tankard-metal-blackbronze": "Black Bronze Tankard",
@@ -16,7 +15,6 @@
 	"blockdesc-tankard-metal-*": "Capacity: 1L",
 	"blockdesc-tankard-metal-lead": "Capacity: 1L<br>Probably not safe to drink from...",
 	
-	//Metal Goblet
 	"block-goblet-copper": "Copper Goblet",
 	"block-goblet-bismuthbronze": "Bismuth Bronze Goblet",
 	"block-goblet-blackbronze": "Black Bronze Goblet",
@@ -33,7 +31,6 @@
 	"blockdesc-goblet-*": "Capacity: 1L",
 	"blockdesc-goblet-lead": "Capacity: 1L<br>Probably not safe to drink from...",
 		
-	//Metal Jeweled Goblet - Copper
 	"block-goblet-jeweled-copper-amethyst": "Copper & Amethyst Goblet",
 	"block-goblet-jeweled-copper-cinnabar": "Copper & Cinnabar Goblet",
 	"block-goblet-jeweled-copper-diamond": "Copper & Diamond Goblet",
@@ -46,7 +43,6 @@
 	"block-goblet-jeweled-copper-ruby": "Copper & Ruby Goblet",
 	"block-goblet-jeweled-copper-turquoise": "Copper & Turquoise Goblet",
 	"block-goblet-jeweled-copper-olivine": "Copper & Olivine Goblet",
-	//Geology Additions - Additional Copper Variants
 	"block-goblet-jeweled-copper-gaberylbixbite": "Copper & Bixbite Goblet",
 	"block-goblet-jeweled-copper-gacorundumsapphire": "Copper & Sapphire Goblet",
 	"block-goblet-jeweled-copper-gatopazamber": "Copper & Amber Topaz Goblet",
@@ -59,7 +55,6 @@
 	"block-goblet-jeweled-copper-gawulfenite": "Copper & Wulfenite Goblet",
 	"block-goblet-jeweled-copper-gajade": "Copper & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Bismuth Bronze
 	"block-goblet-jeweled-bismuthbronze-amethyst": "Bismuth Bronze & Amethyst Goblet",
 	"block-goblet-jeweled-bismuthbronze-cinnabar": "Bismuth Bronze & Cinnabar Goblet",
 	"block-goblet-jeweled-bismuthbronze-diamond": "Bismuth Bronze & Diamond Goblet",
@@ -72,7 +67,6 @@
 	"block-goblet-jeweled-bismuthbronze-ruby": "Bismuth Bronze & Ruby Goblet",
 	"block-goblet-jeweled-bismuthbronze-turquoise": "Bismuth Bronze & Turquoise Goblet",
 	"block-goblet-jeweled-bismuthbronze-olivine": "Bismuth Bronze & Olivine Goblet",
-	//Geology Additions - Additional Bismuth Bronze Variants
 	"block-goblet-jeweled-bismuthbronze-gaberylbixbite": "Bismuth Bronze & Bixbite Goblet",
 	"block-goblet-jeweled-bismuthbronze-gacorundumsapphire": "Bismuth Bronze & Sapphire Goblet",
 	"block-goblet-jeweled-bismuthbronze-gatopazamber": "Bismuth Bronze & Amber Topaz Goblet",
@@ -85,7 +79,6 @@
 	"block-goblet-jeweled-bismuthbronze-gawulfenite": "Bismuth Bronze & Wulfenite Goblet",
 	"block-goblet-jeweled-bismuthbronze-gajade": "Bismuth Bronze & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Blackbronze
 	"block-goblet-jeweled-blackbronze-amethyst": "Black Bronze & Amethyst Goblet",
 	"block-goblet-jeweled-blackbronze-cinnabar": "Black Bronze & Cinnabar Goblet",
 	"block-goblet-jeweled-blackbronze-diamond": "Black Bronze & Diamond Goblet",
@@ -98,7 +91,6 @@
 	"block-goblet-jeweled-blackbronze-ruby": "Black Bronze & Ruby Goblet",
 	"block-goblet-jeweled-blackbronze-turquoise": "Black Bronze & Turquoise Goblet",
 	"block-goblet-jeweled-blackbronze-olivine": "Black Bronze & Olivine Goblet",
-	//Geology Additions - Additional Black Bronze Variants
 	"block-goblet-jeweled-blackbronze-gaberylbixbite": "Black Bronze & Bixbite Goblet",
 	"block-goblet-jeweled-blackbronze-gacorundumsapphire": "Black Bronze & Sapphire Goblet",
 	"block-goblet-jeweled-blackbronze-gatopazamber": "Black Bronze & Amber Topaz Goblet",
@@ -111,7 +103,6 @@
 	"block-goblet-jeweled-blackbronze-gawulfenite": "Black Bronze & Wulfenite Goblet",
 	"block-goblet-jeweled-blackbronze-gajade": "Black Bronze & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Brass
 	"block-goblet-jeweled-brass-amethyst": "Brass & Amethyst Goblet",
 	"block-goblet-jeweled-brass-cinnabar": "Brass & Cinnabar Goblet",
 	"block-goblet-jeweled-brass-diamond": "Brass & Diamond Goblet",
@@ -124,7 +115,6 @@
 	"block-goblet-jeweled-brass-ruby": "Brass & Ruby Goblet",
 	"block-goblet-jeweled-brass-turquoise": "Brass & Turquoise Goblet",
 	"block-goblet-jeweled-brass-olivine": "Brass & Olivine Goblet",
-	//Geology Additions - Additional Brass Variants
 	"block-goblet-jeweled-brass-gaberylbixbite": "Brass & Bixbite Goblet",
 	"block-goblet-jeweled-brass-gacorundumsapphire": "Brass & Sapphire Goblet",
 	"block-goblet-jeweled-brass-gatopazamber": "Brass & Amber Topaz Goblet",
@@ -137,7 +127,6 @@
 	"block-goblet-jeweled-brass-gawulfenite": "Brass & Wulfenite Goblet",
 	"block-goblet-jeweled-brass-gajade": "Brass & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Iron
 	"block-goblet-jeweled-iron-amethyst": "Iron & Amethyst Goblet",
 	"block-goblet-jeweled-iron-cinnabar": "Iron & Cinnabar Goblet",
 	"block-goblet-jeweled-iron-diamond": "Iron & Diamond Goblet",
@@ -150,7 +139,6 @@
 	"block-goblet-jeweled-iron-ruby": "Iron & Ruby Goblet",
 	"block-goblet-jeweled-iron-turquoise": "Iron & Turquoise Goblet",
 	"block-goblet-jeweled-iron-olivine": "Iron & Olivine Goblet",
-	//Geology Additions - Additional Iron Variants
 	"block-goblet-jeweled-iron-gaberylbixbite": "Iron & Bixbite Goblet",
 	"block-goblet-jeweled-iron-gacorundumsapphire": "Iron & Sapphire Goblet",
 	"block-goblet-jeweled-iron-gatopazamber": "Iron & Amber Topaz Goblet",
@@ -163,7 +151,6 @@
 	"block-goblet-jeweled-iron-gawulfenite": "Iron & Wulfenite Goblet",
 	"block-goblet-jeweled-iron-gajade": "Iron & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Steel
 	"block-goblet-jeweled-steel-amethyst": "Steel & Amethyst Goblet",
 	"block-goblet-jeweled-steel-cinnabar": "Steel & Cinnabar Goblet",
 	"block-goblet-jeweled-steel-diamond": "Steel & Diamond Goblet",
@@ -176,7 +163,6 @@
 	"block-goblet-jeweled-steel-ruby": "Steel & Ruby Goblet",
 	"block-goblet-jeweled-steel-turquoise": "Steel & Turquoise Goblet",
 	"block-goblet-jeweled-steel-olivine": "Steel & Olivine Goblet",
-	//Geology Additions - Additional Steel Variants
 	"block-goblet-jeweled-steel-gaberylbixbite": "Steel & Bixbite Goblet",
 	"block-goblet-jeweled-steel-gacorundumsapphire": "Steel & Sapphire Goblet",
 	"block-goblet-jeweled-steel-gatopazamber": "Steel & Amber Topaz Goblet",
@@ -189,7 +175,6 @@
 	"block-goblet-jeweled-steel-gawulfenite": "Steel & Wulfenite Goblet",
 	"block-goblet-jeweled-steel-gajade": "Steel & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Meteoric Iron
 	"block-goblet-jeweled-meteoriciron-amethyst": "Meteoric Iron & Amethyst Goblet",
 	"block-goblet-jeweled-meteoriciron-cinnabar": "Meteoric Iron & Cinnabar Goblet",
 	"block-goblet-jeweled-meteoriciron-diamond": "Meteoric Iron & Diamond Goblet",
@@ -202,7 +187,6 @@
 	"block-goblet-jeweled-meteoriciron-ruby": "Meteoric Iron & Ruby Goblet",
 	"block-goblet-jeweled-meteoriciron-turquoise": "Meteoric Iron & Turquoise Goblet",
 	"block-goblet-jeweled-meteoriciron-olivine": "Meteoric Iron & Olivine Goblet",
-	//Geology Additions - Additional Meteoric Iron Variants
 	"block-goblet-jeweled-meteoriciron-gaberylbixbite": "Meteoric Iron & Bixbite Goblet",
 	"block-goblet-jeweled-meteoriciron-gacorundumsapphire": "Meteoric Iron & Sapphire Goblet",
 	"block-goblet-jeweled-meteoriciron-gatopazamber": "Meteoric Iron & Amber Topaz Goblet",
@@ -215,7 +199,6 @@
 	"block-goblet-jeweled-meteoriciron-gawulfenite": "Meteoric Iron & Wulfenite Goblet",
 	"block-goblet-jeweled-meteoriciron-gajade": "Meteoric Iron & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Tinbronze
 	"block-goblet-jeweled-tinbronze-amethyst": "Tin Bronze & Amethyst Goblet",
 	"block-goblet-jeweled-tinbronze-cinnabar": "Tin Bronze & Cinnabar Goblet",
 	"block-goblet-jeweled-tinbronze-diamond": "Tin Bronze & Diamond Goblet",
@@ -228,7 +211,6 @@
 	"block-goblet-jeweled-tinbronze-ruby": "Tin Bronze & Ruby Goblet",
 	"block-goblet-jeweled-tinbronze-turquoise": "Tin Bronze & Turquoise Goblet",
 	"block-goblet-jeweled-tinbronze-olivine": "Tin Bronze & Olivine Goblet",
-	//Geology Additions - Additional Tin Bronze Variants
 	"block-goblet-jeweled-tinbronze-gaberylbixbite": "Tin Bronze & Bixbite Goblet",
 	"block-goblet-jeweled-tinbronze-gacorundumsapphire": "Tin Bronze & Sapphire Goblet",
 	"block-goblet-jeweled-tinbronze-gatopazamber": "Tin Bronze & Amber Topaz Goblet",
@@ -241,7 +223,6 @@
 	"block-goblet-jeweled-tinbronze-gawulfenite": "Tin Bronze & Wulfenite Goblet",
 	"block-goblet-jeweled-tinbronze-gajade": "Tin Bronze & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Gold
 	"block-goblet-jeweled-gold-amethyst": "Gold & Amethyst Goblet",
 	"block-goblet-jeweled-gold-cinnabar": "Gold & Cinnabar Goblet",
 	"block-goblet-jeweled-gold-diamond": "Gold & Diamond Goblet",
@@ -254,7 +235,6 @@
 	"block-goblet-jeweled-gold-ruby": "Gold & Ruby Goblet",
 	"block-goblet-jeweled-gold-turquoise": "Gold & Turquoise Goblet",
 	"block-goblet-jeweled-gold-olivine": "Gold & Olivine Goblet",
-	//Geology Additions - Additional Gold Variants
 	"block-goblet-jeweled-gold-gaberylbixbite": "Gold & Bixbite Goblet",
 	"block-goblet-jeweled-gold-gacorundumsapphire": "Gold & Sapphire Goblet",
 	"block-goblet-jeweled-gold-gatopazamber": "Gold & Amber Topaz Goblet",
@@ -267,7 +247,6 @@
 	"block-goblet-jeweled-gold-gawulfenite": "Gold & Wulfenite Goblet",
 	"block-goblet-jeweled-gold-gajade": "Gold & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Silver
 	"block-goblet-jeweled-silver-amethyst": "Silver & Amethyst Goblet",
 	"block-goblet-jeweled-silver-cinnabar": "Silver & Cinnabar Goblet",
 	"block-goblet-jeweled-silver-diamond": "Silver & Diamond Goblet",
@@ -280,7 +259,6 @@
 	"block-goblet-jeweled-silver-ruby": "Silver & Ruby Goblet",
 	"block-goblet-jeweled-silver-turquoise": "Silver & Turquoise Goblet",
 	"block-goblet-jeweled-silver-olivine": "Silver & Olivine Goblet",
-	//Geology Additions - Additional Silver Variants
 	"block-goblet-jeweled-silver-gaberylbixbite": "Silver & Bixbite Goblet",
 	"block-goblet-jeweled-silver-gacorundumsapphire": "Silver & Sapphire Goblet",
 	"block-goblet-jeweled-silver-gatopazamber": "Silver & Amber Topaz Goblet",
@@ -293,7 +271,6 @@
 	"block-goblet-jeweled-silver-gawulfenite": "Silver & Wulfenite Goblet",
 	"block-goblet-jeweled-silver-gajade": "Silver & Jade Goblet",
 	
-	//Metal Jeweled Goblet - Platinum
 	"block-goblet-jeweled-platinum-amethyst": "Platinum & Amethyst Goblet",
 	"block-goblet-jeweled-platinum-cinnabar": "Platinum & Cinnabar Goblet",
 	"block-goblet-jeweled-platinum-diamond": "Platinum & Diamond Goblet",
@@ -306,7 +283,6 @@
 	"block-goblet-jeweled-platinum-ruby": "Platinum & Ruby Goblet",
 	"block-goblet-jeweled-platinum-turquoise": "Platinum & Turquoise Goblet",
 	"block-goblet-jeweled-platinum-olivine": "Platinum & Olivine Goblet",
-	//Geology Additions - Additional Platinum Variants
 	"block-goblet-jeweled-platinum-gaberylbixbite": "Platinum & Bixbite Goblet",
 	"block-goblet-jeweled-platinum-gacorundumsapphire": "Platinum & Sapphire Goblet",
 	"block-goblet-jeweled-platinum-gatopazamber": "Platinum & Amber Topaz Goblet",
@@ -321,7 +297,6 @@
 	
 	"blockdesc-goblet-jeweled-*": "Capacity: 0.5L",
 	
-	//Wooden Tankards - Oak
 	"block-tankard-woodtype-oak.-leather*": "Leather-bound Oak Tankard",
 	"block-tankard-woodtype-oak.-iron": "Iron-bound Oak Tankard",
 	"block-tankard-woodtype-oak.-malachite": "Malachite-bound Oak Tankard",
@@ -339,7 +314,6 @@
 	"block-tankard-woodtype-oak.-platinum": "Platinum-bound Oak Tankard",
 	"block-tankard-woodtype-oak.-nickel": "Nickel-bound Oak Tankard",
 	
-	//Wooden Tankards - Birch
 	"block-tankard-woodtype-birch.-leather*": "Leather-bound Birch Tankard",
 	"block-tankard-woodtype-birch.-iron": "Iron-bound Birch Tankard",
 	"block-tankard-woodtype-birch.-malachite": "Malachite-bound Birch Tankard",
@@ -357,7 +331,6 @@
 	"block-tankard-woodtype-birch.-platinum": "Platinum-bound Birch Tankard",
 	"block-tankard-woodtype-birch.-nickel": "Nickel-bound Birch Tankard",
 	
-	//Wooden Tankards - Pine
 	"block-tankard-woodtype-pine.-leather*": "Leather-bound Pine Tankard",
 	"block-tankard-woodtype-pine.-iron": "Iron-bound Pine Tankard",
 	"block-tankard-woodtype-pine.-malachite": "Malachite-bound Pine Tankard",
@@ -375,7 +348,6 @@
 	"block-tankard-woodtype-pine.-platinum": "Platinum-bound Pine Tankard",
 	"block-tankard-woodtype-pine.-nickel": "Nickel-bound Pine Tankard",
 	
-	//Wooden Tankards - Acacia
 	"block-tankard-woodtype-acacia.-leather*": "Leather-bound Acacia Tankard",
 	"block-tankard-woodtype-acacia.-iron": "Iron-bound Acacia Tankard",
 	"block-tankard-woodtype-acacia.-malachite": "Malachite-bound Acacia Tankard",
@@ -393,7 +365,6 @@
 	"block-tankard-woodtype-acacia.-platinum": "Platinum-bound Acacia Tankard",
 	"block-tankard-woodtype-acacia.-nickel": "Nickel-bound Acacia Tankard",
 	
-	//Wooden Tankards - Aged Wood
 	"block-tankard-woodtype-aged.-leather*": "Leather-bound Aged Tankard",
 	"block-tankard-woodtype-aged.-iron": "Iron-bound Aged Tankard",
 	"block-tankard-woodtype-aged.-malachite": "Malachite-bound Aged Tankard",
@@ -411,7 +382,6 @@
 	"block-tankard-woodtype-aged.-platinum": "Platinum-bound Aged Tankard",
 	"block-tankard-woodtype-aged.-nickel": "Nickel-bound Aged Tankard",
 	
-	//Wooden Tankards - Larch
 	"block-tankard-woodtype-larch.-leather*": "Leather-bound Larch Tankard",
 	"block-tankard-woodtype-larch.-iron": "Iron-bound Larch Tankard",
 	"block-tankard-woodtype-larch.-malachite": "Malachite-bound Larch Tankard",
@@ -429,7 +399,6 @@
 	"block-tankard-woodtype-larch.-platinum": "Platinum-bound Larch Tankard",
 	"block-tankard-woodtype-larch.-nickel": "Nickel-bound Larch Tankard",
 	
-	//Wooden Tankards - Bald cypress
 	"block-tankard-woodtype-baldcypress.-leather*": "Leather-bound Bald Cypress Tankard",
 	"block-tankard-woodtype-baldcypress.-iron": "Iron-bound Bald Cypress Tankard",
 	"block-tankard-woodtype-baldcypress.-malachite": "Malachite-bound Bald Cypress Tankard",
@@ -447,7 +416,6 @@
 	"block-tankard-woodtype-baldcypress.-platinum": "Platinum-bound Bald Cypress Tankard",
 	"block-tankard-woodtype-baldcypress.-nickel": "Nickel-bound Bald Cypress Tankard",
 	
-	//Wooden Tankards - Ebony
 	"block-tankard-woodtype-ebony.-leather*": "Leather-bound Ebony Tankard",
 	"block-tankard-woodtype-ebony.-iron": "Iron-bound Ebony Tankard",
 	"block-tankard-woodtype-ebony.-malachite": "Malachite-bound Ebony Tankard",
@@ -465,7 +433,6 @@
 	"block-tankard-woodtype-ebony.-platinum": "Platinum-bound Ebony Tankard",
 	"block-tankard-woodtype-ebony.-nickel": "Nickel-bound Ebony Tankard",
 	
-	//Wooden Tankards - Kapok
 	"block-tankard-woodtype-kapok.-leather*": "Leather-bound Kapok Tankard",
 	"block-tankard-woodtype-kapok.-iron": "Iron-bound Kapok Tankard",
 	"block-tankard-woodtype-kapok.-malachite": "Malachite-bound Kapok Tankard",
@@ -483,7 +450,6 @@
 	"block-tankard-woodtype-kapok.-platinum": "Platinum-bound Kapok Tankard",
 	"block-tankard-woodtype-kapok.-nickel": "Nickel-bound Kapok Tankard",
 	
-	//Wooden Tankards - Maple
 	"block-tankard-woodtype-maple.-leather*": "Leather-bound Maple Tankard",
 	"block-tankard-woodtype-maple.-iron": "Iron-bound Maple Tankard",
 	"block-tankard-woodtype-maple.-malachite": "Malachite-bound Maple Tankard",
@@ -501,7 +467,6 @@
 	"block-tankard-woodtype-maple.-platinum": "Platinum-bound Maple Tankard",
 	"block-tankard-woodtype-maple.-nickel": "Nickel-bound Maple Tankard",
 
-	//Wooden Tankards - Purpleheart
 	"block-tankard-woodtype-purpleheart.-leather*": "Leather-bound Purpleheart Tankard",
 	"block-tankard-woodtype-purpleheart.-iron": "Iron-bound Purpleheart Tankard",
 	"block-tankard-woodtype-purpleheart.-malachite": "Malachite-bound Purpleheart Tankard",
@@ -519,7 +484,6 @@
 	"block-tankard-woodtype-purpleheart.-platinum": "Platinum-bound Purpleheart Tankard",
 	"block-tankard-woodtype-purpleheart.-nickel": "Nickel-bound Purpleheart Tankard",
 	
-	//Wooden Tankards - Redwood
 	"block-tankard-woodtype-redwood.-leather*": "Leather-bound Redwood Tankard",
 	"block-tankard-woodtype-redwood.-iron": "Iron-bound Redwood Tankard",
 	"block-tankard-woodtype-redwood.-malachite": "Malachite-bound Redwood Tankard",
@@ -537,7 +501,6 @@
 	"block-tankard-woodtype-redwood.-platinum": "Platinum-bound Redwood Tankard",
 	"block-tankard-woodtype-redwood.-nickel": "Nickel-bound Redwood Tankard",
 	
-	//Wooden Tankards - Walnut
 	"block-tankard-woodtype-walnut.-leather*": "Leather-bound Walnut Tankard",
 	"block-tankard-woodtype-walnut.-iron": "Iron-bound Walnut Tankard",
 	"block-tankard-woodtype-walnut.-malachite": "Malachite-bound Walnut Tankard",
@@ -557,7 +520,6 @@
 	
 	"blockdesc-tankard-woodtype-*-*": "Capacity: 1L",
 	
-	//Glass Bottles
 	"block-t&g-winebottle-*": "Glass Bottle",
 	"blockdesc-t&g-winebottle-*": "Capacity: 2L",
 	"block-t&g-winebottle-wicker-*": "Wicker Bottle",
@@ -568,11 +530,10 @@
 	"blockdesc-t&g-smalldemijohn-*": "Capacity: 5L",
 	"blockdesc-t&g-largedemijohn-*": "Capacity: 25L",
 	
-	//Other Vessels
 	"block-t&g-tankard-glass": "Glass Tankard",
 	"block-t&g-goblet-glass": "Glass Goblet",
 	"block-t&g-mug": "Mug",
 	"block-tankard-wood": "Basic Wooden Tankard",
-	"blockdesc-tankard-wood": "Capacity: 1L<br>How can we know how far we've come without a reminder of where we started?",
+	"blockdesc-tankard-wood": "Capacity: 1L<br>How can we know how far we've come without a reminder of where we started?"
 
 }

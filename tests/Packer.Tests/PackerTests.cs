@@ -43,7 +43,7 @@ public sealed class PackerTests
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
         Assert.Equal(
-            ["assets/carryon/lang/zh-cn.json", "modinfo.json"],
+            ["assets/carryon/lang/zh-cn.json", PackageHistory.RecordFileName, "modinfo.json"],
             entryNames);
 
         using var translationReader = new StreamReader(archive.GetEntry("assets/carryon/lang/zh-cn.json")!.Open());
@@ -251,7 +251,7 @@ public sealed class PackerTests
             .Select(entry => entry.FullName)
             .OrderBy(name => name, StringComparer.Ordinal)
             .ToArray();
-        Assert.Equal(["modinfo.json"], entryNames);
+        Assert.Equal([PackageHistory.RecordFileName, "modinfo.json"], entryNames);
     }
 
     [Theory]
@@ -276,40 +276,6 @@ public sealed class PackerTests
 
         using var archive = ZipFile.OpenRead(result.OutputZipPath);
         Assert.NotNull(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
-    }
-
-    [Theory]
-    [InlineData("builtin")]
-    [InlineData("source")]
-    [InlineData("decompiled")]
-    public async Task BuildAsync_SkipsProjectWhenIndexLatestVersionIsMarker(string markerValue)
-    {
-        using var workspace = new TestWorkspace();
-        workspace.WriteText(
-            "projects/assets/index.json",
-            """
-            {
-              "example": {
-                "name": "Example",
-                "translation": "示例",
-                "latestVersion": "__MARKER__"
-              }
-            }
-            """.Replace("__MARKER__", markerValue, StringComparison.Ordinal));
-        workspace.WriteText(
-            "projects/assets/example/9.9.9/examplemod/lang/zh-cn.json",
-            """
-            {
-              "item.name": "不会入包"
-            }
-            """);
-
-        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
-
-        Assert.Equal(0, result.SelectedTranslationCount);
-
-        using var archive = ZipFile.OpenRead(result.OutputZipPath);
-        Assert.Null(archive.GetEntry("assets/examplemod/lang/zh-cn.json"));
     }
 
     [Fact]
@@ -599,7 +565,7 @@ public sealed class PackerTests
     }
 
     [Fact]
-    public async Task CliRunner_DescribeReleaseCommand_WritesFullTable()
+    public async Task CliRunner_DescribeReleaseCommand_ListsInitialAdditions()
     {
         using var workspace = new TestWorkspace();
 
@@ -626,6 +592,7 @@ public sealed class PackerTests
         var stdout = new StringWriter();
         var stderr = new StringWriter();
 
+        await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("0.0.1"), workspace.RootPath);
         var exitCode = await CliRunner.RunAsync(
             ["describe-release", "--config", configPath, "--package-version", "0.0.1", "--release-kind", "release"],
             stdout,
@@ -637,9 +604,9 @@ public sealed class PackerTests
         Assert.Contains("# VSCN Vintage Story 汉化包", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("语言包版本：0.0.1", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("发布类型：release", stdout.ToString(), StringComparison.Ordinal);
-        Assert.Contains("| 模组中文名称 | 模组英文名称 | 模组ID | 贡献者 | 模组最新版本 |", stdout.ToString(), StringComparison.Ordinal);
-        Assert.Contains("| mod0 | mod0 | mod0 | 未记录 | 1.0.0 |", stdout.ToString(), StringComparison.Ordinal);
-        Assert.Contains("## 贡献者统计", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| 变更 | 模组 ID / 游戏本体 | 原目标版本 | 新目标版本 | 汉化作者 |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.Contains("| 新增 | mod0 | — | 1.0.0 | 未记录 |", stdout.ToString(), StringComparison.Ordinal);
+        Assert.DoesNotContain("## 模组清单", stdout.ToString(), StringComparison.Ordinal);
         Assert.Contains("zmod", stdout.ToString(), StringComparison.Ordinal);
     }
 
@@ -735,6 +702,9 @@ public sealed class PackerTests
             stdout.ToString(),
             StringComparison.Ordinal);
 
+        var releaseConfig = workspace.CreateConfig("0.0.1");
+        releaseConfig.GameTranslation = new GameTranslationConfig { ContentRoot = "projects/game", TargetVersion = "1.22.3" };
+        await TranslationPackBuilder.BuildAsync(releaseConfig, workspace.RootPath);
         var releaseStdout = new StringWriter();
         var releaseStderr = new StringWriter();
         var releaseExitCode = await CliRunner.RunAsync(
@@ -746,65 +716,203 @@ public sealed class PackerTests
         Assert.Equal(0, releaseExitCode);
         Assert.Equal(string.Empty, releaseStderr.ToString());
         Assert.Contains(
-            "| Vintage Story 1.22.3 | [GameTranslator](https://example.com/game-translator) (游戏本体翻译) |",
+            "| 新增 | 游戏本体 | — | 1.22.3 | GameTranslator |",
             releaseStdout.ToString(),
             StringComparison.Ordinal);
     }
 
-    [Fact]
-    public async Task CliRunner_DescribePackageCommand_UsesIndexMetadata()
+    [Theory]
+    [InlineData("describe-package")]
+    [InlineData("describe-release")]
+    public async Task CliRunner_UsesSelectedReadmeWithoutIndex(string command)
     {
         using var workspace = new TestWorkspace();
-        workspace.WriteText(
-            "projects/assets/index.json",
-            """
-            {
-              "betterloot": {
-                "name": "Better Loot",
-                "translation": "更好的战利品",
-                "authors": [
-                  "DejFidOFF"
-                ],
-                "contributors": [
-                  {
-                    "name": "HansJack",
-                    "url": "https://vintagestory.top/u/HansJack",
-                    "role": "Chinese Translator"
-                  }
-                ],
-                "homepage": "https://mods.vintagestory.at/betterloot",
-                "latestVersion": "2.0.3"
-              }
-            }
-            """);
-        workspace.WriteText(
-            "projects/assets/betterloot/2.0.2/betterloot/lang/zh-cn.json",
-            """
-            {
-              "item-gearpart": "更好的战利品"
-            }
-            """);
+        workspace.WriteText("projects/assets/example/1.0.0/examplemod/lang/zh-cn.json", "{}");
+        workspace.WriteText("projects/assets/example/1.0.0/examplemod/README.txt", "Old Author");
+        workspace.WriteText("projects/assets/example/2.0.0/examplemod/lang/zh-cn.json", "{}");
+        workspace.WriteText("projects/assets/example/2.0.0/examplemod/README.txt", "\uFEFF\n  HansJack、Alice  \nIgnored text");
+        workspace.WriteText("projects/assets/example/2.0.0/othermod/lang/zh-cn.json", "{}");
+        workspace.WriteText("projects/assets/example/2.0.0/othermod/README.txt", "Other | Author");
 
-        var configPath = workspace.WriteConfigFile();
         var stdout = new StringWriter();
         var stderr = new StringWriter();
-
+        await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("0.0.1"), workspace.RootPath);
         var exitCode = await CliRunner.RunAsync(
-            ["describe-package", "--config", configPath, "--package-version", "0.0.1"],
-            stdout,
-            stderr,
-            workspace.RootPath);
+            [command, "--config", workspace.WriteConfigFile(), "--package-version", "0.0.1", "--release-kind", "release"],
+            stdout, stderr, workspace.RootPath);
 
         Assert.Equal(0, exitCode);
         Assert.Equal(string.Empty, stderr.ToString());
-        Assert.Contains(
-            "| [更好的战利品](https://mods.vintagestory.at/betterloot) | [Better Loot](https://mods.vintagestory.at/betterloot) | betterloot | [HansJack](https://vintagestory.top/u/HansJack) (Chinese Translator) | 2.0.3 |",
-            stdout.ToString(),
-            StringComparison.Ordinal);
-        Assert.Contains(
-            "| [HansJack](https://vintagestory.top/u/HansJack) | Chinese Translator | 1 |",
-            stdout.ToString(),
-            StringComparison.Ordinal);
+        if (command == "describe-release")
+        {
+            Assert.Contains("| 新增 | examplemod | — | 2.0.0 | HansJack、Alice |", stdout.ToString());
+            Assert.Contains("| 新增 | othermod | — | 2.0.0 | Other \\| Author |", stdout.ToString());
+        }
+        else
+        {
+            Assert.Contains("| example | example | examplemod | HansJack (汉化)<br>Alice (汉化) | 2.0.0 |", stdout.ToString());
+            Assert.Contains("| HansJack | 汉化 | 1 |", stdout.ToString());
+            Assert.Contains("| Alice | 汉化 | 1 |", stdout.ToString());
+        }
+        Assert.DoesNotContain("Old Author", stdout.ToString());
+        Assert.DoesNotContain("Ignored text", stdout.ToString());
+
+        var result = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig(), workspace.RootPath);
+        using var archive = ZipFile.OpenRead(result.OutputZipPath);
+        Assert.Equal(4, archive.Entries.Count);
+        Assert.DoesNotContain(archive.Entries, entry => entry.FullName.EndsWith("README.txt"));
+    }
+
+    [Theory]
+    [InlineData(null)]
+    [InlineData(" \n\t")]
+    public void ReadmeWithoutCredits_ReturnsNoContributors(string? readme)
+    {
+        using var workspace = new TestWorkspace();
+        var sourceDirectory = Path.Combine(workspace.RootPath, "projects", "assets", "example", "1.0.0", "examplemod");
+        if (readme is not null) workspace.WriteText("projects/assets/example/1.0.0/examplemod/README.txt", readme);
+        Assert.Empty(ModMetadataProvider.ReadContributors(sourceDirectory));
+    }
+
+    [Fact]
+    public async Task Release_UsesActualPackagesAndReportsOnlyChanges()
+    {
+        using var workspace = new TestWorkspace();
+        foreach (var mod in new[] { "unchanged", "content", "version", "credits", "removed" })
+        {
+            workspace.WriteText($"projects/assets/{mod}/1.0.0/{mod}/lang/zh-cn.json", "{}");
+            workspace.WriteText($"projects/assets/{mod}/1.0.0/{mod}/README.txt", "Old Translator");
+        }
+        var before = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.0"), workspace.RootPath);
+        workspace.WriteText("projects/assets/content/1.0.0/content/lang/zh-cn.json", "{\"key\":\"修订\"}");
+        workspace.WriteText("projects/assets/version/2.0.0/version/lang/zh-cn.json", "{}");
+        workspace.WriteText("projects/assets/version/2.0.0/version/README.txt", "Old Translator");
+        workspace.WriteText("projects/assets/credits/1.0.0/credits/README.txt", "New Translator");
+        workspace.WriteText("projects/assets/added/1.0.0/added/lang/zh-cn.json", "{}");
+        File.Delete(Path.Combine(workspace.RootPath, "projects/assets/removed/1.0.0/removed/lang/zh-cn.json"));
+        var after = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.1"), workspace.RootPath);
+
+        // Changes after packing must not leak into release notes or their credits.
+        workspace.WriteText("projects/assets/unchanged/1.0.0/unchanged/lang/zh-cn.json", "{\"late\":\"修改\"}");
+        workspace.WriteText("projects/assets/credits/1.0.0/credits/README.txt", "Unpacked Translator");
+        var stdout = new StringWriter();
+        var stderr = new StringWriter();
+        var exitCode = await CliRunner.RunAsync(
+            ["describe-release", "--config", workspace.WriteConfigFile(), "--package-version", "1.0.1",
+                "--release-kind", "release", "--previous-package", before.OutputZipPath],
+            stdout, stderr, workspace.RootPath);
+        Assert.Equal(0, exitCode);
+        Assert.Empty(stderr.ToString());
+        var notes = stdout.ToString();
+        Assert.Contains("对比版本：1.0.0", notes);
+        Assert.Contains("| 新增 | added | — | 1.0.0 |", notes);
+        Assert.Contains("| 更新 | content | 1.0.0 | 1.0.0 |", notes);
+        Assert.Contains("| 更新 | version | 1.0.0 | 2.0.0 |", notes);
+        Assert.Contains("| 更新 | credits | 1.0.0 | 1.0.0 | New Translator |", notes);
+        Assert.Contains("| 移除 | removed | 1.0.0 | — | Old Translator |", notes);
+        Assert.DoesNotContain("unchanged", notes);
+        Assert.DoesNotContain("Unpacked Translator", notes);
+
+        var record = PackageHistory.Read(after.OutputZipPath);
+        using var zip = ZipFile.OpenRead(after.OutputZipPath);
+        foreach (var item in record.Entries)
+        {
+            using var stream = zip.GetEntry(item.Path)!.Open();
+            using var bytes = new MemoryStream();
+            await stream.CopyToAsync(bytes);
+            Assert.Equal(PackageHistory.Hash(bytes.ToArray()), item.Sha256);
+            Assert.DoesNotContain(workspace.RootPath, JsonSerializer.Serialize(item));
+        }
+    }
+
+    [Fact]
+    public async Task Release_UnchangedPackagesHaveNoTable()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText("projects/assets/example/1.0.0/example/lang/zh-cn.json", "{}");
+        workspace.WriteText("projects/assets/example/1.0.0/example/README.txt", "Alice、Bob");
+        var before = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.0"), workspace.RootPath);
+        workspace.WriteText("projects/assets/example/1.0.0/example/README.txt", "Bob、Alice");
+        var after = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.1"), workspace.RootPath);
+        var notes = PackageHistory.FormatChanges(PackageHistory.Read(after.OutputZipPath), PackageHistory.Read(before.OutputZipPath), "release");
+        Assert.Contains("本次没有翻译变更", notes);
+        Assert.DoesNotContain("|", notes);
+    }
+
+    [Fact]
+    public async Task Release_TracksGameTranslationUpdatesAndRemoval()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText("projects/game/1.22.3/assets/game/lang/zh-cn.json", "{}");
+        var config = workspace.CreateConfig("1.0.0");
+        config.GameTranslation = new GameTranslationConfig { ContentRoot = "projects/game", TargetVersion = "1.22.3" };
+        var before = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
+        workspace.WriteText("projects/game/1.22.3/assets/game/lang/zh-cn.json", "{\"key\":\"修订\"}");
+        config.PackageVersion = "1.0.1";
+        var after = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
+        var notes = PackageHistory.FormatChanges(PackageHistory.Read(after.OutputZipPath), PackageHistory.Read(before.OutputZipPath), "release");
+        Assert.Contains("| 更新 | 游戏本体 | 1.22.3 | 1.22.3 |", notes);
+        config.PackageVersion = "1.0.2";
+        config.GameTranslation = null;
+        var removed = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
+        notes = PackageHistory.FormatChanges(PackageHistory.Read(removed.OutputZipPath), PackageHistory.Read(after.OutputZipPath), "release");
+        Assert.Contains("| 移除 | 游戏本体 | 1.22.3 | — |", notes);
+    }
+
+    [Fact]
+    public async Task Release_ReadsLegacyZipAndDoesNotTreatUnknownCreditsAsChanges()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText("projects/assets/example/1.0.0/example/lang/zh-cn.json", "{}");
+        var before = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.0"), workspace.RootPath);
+        using (var archive = ZipFile.Open(before.OutputZipPath, ZipArchiveMode.Update))
+            archive.GetEntry(PackageHistory.RecordFileName)!.Delete();
+        workspace.WriteText("projects/assets/example/1.0.0/example/README.txt", "Translator");
+        var after = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.1"), workspace.RootPath);
+        var legacy = PackageHistory.Read(before.OutputZipPath);
+        Assert.Equal(0, legacy.SchemaVersion);
+        var notes = PackageHistory.FormatChanges(PackageHistory.Read(after.OutputZipPath), legacy, "release");
+        Assert.Contains("上一版本没有打包记录", notes);
+        Assert.Contains("本次没有翻译变更", notes);
+        workspace.WriteText("projects/assets/example/1.0.0/example/lang/zh-cn.json", "{\"key\":\"修订\"}");
+        var changed = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.2"), workspace.RootPath);
+        Assert.Contains("| 更新 | example |", PackageHistory.FormatChanges(PackageHistory.Read(changed.OutputZipPath), legacy, "release"));
+    }
+
+    [Fact]
+    public async Task Release_RejectsMissingOrInvalidBaseline()
+    {
+        using var workspace = new TestWorkspace();
+        var built = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.0"), workspace.RootPath);
+        var stderr = new StringWriter();
+        var exitCode = await CliRunner.RunAsync(
+            ["describe-release", "--config", workspace.WriteConfigFile(), "--package-version", "1.0.0",
+                "--release-kind", "release", "--previous-package", "missing.zip"],
+            new StringWriter(), stderr, workspace.RootPath);
+        Assert.Equal(1, exitCode);
+        Assert.Contains("Package does not exist", stderr.ToString());
+        using (var archive = ZipFile.Open(built.OutputZipPath, ZipArchiveMode.Update))
+        {
+            archive.GetEntry(PackageHistory.RecordFileName)!.Delete();
+            using var writer = new StreamWriter(archive.CreateEntry(PackageHistory.RecordFileName).Open());
+            writer.Write("{\"schemaVersion\":99}");
+        }
+        Assert.Throws<PackerException>(() => PackageHistory.Read(built.OutputZipPath));
+    }
+
+    [Fact]
+    public async Task Release_RejectsRecordThatDoesNotMatchPackedContent()
+    {
+        using var workspace = new TestWorkspace();
+        workspace.WriteText("projects/assets/example/1.0.0/example/lang/zh-cn.json", "{}");
+        var built = await TranslationPackBuilder.BuildAsync(workspace.CreateConfig("1.0.0"), workspace.RootPath);
+        using (var archive = ZipFile.Open(built.OutputZipPath, ZipArchiveMode.Update))
+        {
+            archive.GetEntry("assets/example/lang/zh-cn.json")!.Delete();
+            using var writer = new StreamWriter(archive.CreateEntry("assets/example/lang/zh-cn.json").Open());
+            writer.Write("{\"key\":\"记录外修改\"}");
+        }
+        Assert.Contains("hash does not match", Assert.Throws<PackerException>(() => PackageHistory.Read(built.OutputZipPath)).Message);
     }
 
     private sealed class TestWorkspace : IDisposable
@@ -817,7 +925,7 @@ public sealed class PackerTests
 
         public string RootPath { get; }
 
-        public PackerConfig CreateConfig() => new();
+        public PackerConfig CreateConfig(string version = "0.0.0") => new() { PackageVersion = version };
 
         public string WriteConfigFile(GameTranslationConfig? gameTranslation = null)
         {

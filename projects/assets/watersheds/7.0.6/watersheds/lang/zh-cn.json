@@ -1,0 +1,8 @@
+{
+  "block-wellpulley-*": "井滑轮",
+  "wellpulley-handbook-help-title": "使用方法",
+  "wellpulley-handbook-help-text": "一个井滑轮使用<a href=\"handbooksearch://Coil of rope\">绳索</a>和一个<a href=\"handbooksearch://Wooden bucket\">木桶</a>从下方汲取盐水或淡水。<br>它可以让你快速地从远处下方装满水桶，无需你爬下去。<br><br><strong>搭建方法：</strong>要使用滑轮，首先用绳索右键点击将其缠绕，然后将绳索连接到其他地方，比如另一个滑轮或栅栏。<br>连接好绳索后，用右键点击将木桶放在滑轮上。<br><br><strong>汲水：</strong>现在滑轮已缠绕好木桶，你可以使用控制+右键点击来放下和提起木桶。如果木桶在下落过程中到达最大深度之前遇到水，它会将桶内的内容物替换为淡水或盐水。<br><br>参见：<a href=\"handbook://gamemechanicinfo-wells\">水井</a>",
+  "wellpulley-raisebucketfirst": "请先提起木桶",
+  "wellpulley-waitbucketstop": "请等待木桶停止移动",
+  "wellpulley-finishraising": "请先完成木桶的提起"
+}

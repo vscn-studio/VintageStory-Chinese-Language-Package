@@ -5,7 +5,7 @@ namespace Packer;
 public static class CliRunner
 {
     private const string Usage =
-        "Usage: dotnet run --project src/Packer -- <pack|inspect|describe-release|describe-package> --config <path> [--package-version <value>] [--release-kind <release|pre-release>] [--fetch-api]";
+        "Usage: dotnet run --project src/Packer -- <pack|inspect|describe-release|describe-package> --config <path> [--package-version <value>] [--release-kind <release|pre-release>] [--previous-package <zip>]";
 
     public static async Task<int> RunAsync(
         string[] args,
@@ -14,7 +14,7 @@ public static class CliRunner
         string repositoryRoot,
         CancellationToken cancellationToken = default)
     {
-        if (!TryParseArguments(args, out var command, out var configPath, out var packageVersion, out var releaseKind, out var fetchApi, out var parseError))
+        if (!TryParseArguments(args, out var command, out var configPath, out var packageVersion, out var releaseKind, out var previousPackage, out var parseError))
         {
             await stderr.WriteLineAsync(parseError ?? Usage);
             return 1;
@@ -40,17 +40,14 @@ public static class CliRunner
 
             if (string.Equals(command, "describe-release", StringComparison.OrdinalIgnoreCase))
             {
-                var description = TranslationPackBuilder.DescribeReleasePackage(
-                    config,
-                    repositoryRoot,
-                    packageVersion!);
-                var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
-                var gameMetadata = await LoadGameTranslationMetadataAsync(
-                    config,
-                    repositoryRoot,
-                    description.GameTranslation,
-                    cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, gameMetadata, releaseKind!));
+                config.PackageVersion = packageVersion!;
+                config.Validate();
+                var packagePath = Path.Combine(PackerConfigLoader.ResolvePath(config.OutputDirectory, repositoryRoot), config.ResolveOutputFileName());
+                var current = PackageHistory.Read(packagePath);
+                if (current.PackageVersion != config.PackageVersion || current.ModId != config.ModId)
+                    throw new PackerException("Current package does not match the requested version or mod ID.");
+                var previous = previousPackage is null ? null : PackageHistory.Read(PackerConfigLoader.ResolvePath(previousPackage, repositoryRoot));
+                await stdout.WriteAsync(PackageHistory.FormatChanges(current, previous, releaseKind!));
                 return 0;
             }
 
@@ -60,13 +57,12 @@ public static class CliRunner
                     config,
                     repositoryRoot,
                     packageVersion!);
-                var metadata = await LoadMetadataAsync(config, repositoryRoot, description.Entries, fetchApi, cancellationToken);
                 var gameMetadata = await LoadGameTranslationMetadataAsync(
                     config,
                     repositoryRoot,
                     description.GameTranslation,
                     cancellationToken);
-                await stdout.WriteAsync(FormatReleasePackageDescription(description, metadata, gameMetadata, "release"));
+                await stdout.WriteAsync(FormatReleasePackageDescription(description, gameMetadata, "release"));
                 return 0;
             }
 
@@ -114,14 +110,14 @@ public static class CliRunner
         out string? configPath,
         out string? packageVersion,
         out string? releaseKind,
-        out bool fetchApi,
+        out string? previousPackage,
         out string? error)
     {
         command = null;
         configPath = null;
         packageVersion = null;
         releaseKind = null;
-        fetchApi = false;
+        previousPackage = null;
         error = null;
 
         if (args.Length == 0)
@@ -186,9 +182,14 @@ public static class CliRunner
                 continue;
             }
 
-            if (string.Equals(arg, "--fetch-api", StringComparison.OrdinalIgnoreCase))
+            if (string.Equals(arg, "--previous-package", StringComparison.OrdinalIgnoreCase))
             {
-                fetchApi = true;
+                if (i + 1 >= args.Length || string.IsNullOrWhiteSpace(args[i + 1]))
+                {
+                    error = $"Missing value for --previous-package.{Environment.NewLine}{Usage}";
+                    return false;
+                }
+                previousPackage = args[++i];
                 continue;
             }
 
@@ -209,11 +210,9 @@ public static class CliRunner
             return false;
         }
 
-        if ((string.Equals(command, "pack", StringComparison.OrdinalIgnoreCase) ||
-             string.Equals(command, "inspect", StringComparison.OrdinalIgnoreCase)) &&
-            fetchApi)
+        if (previousPackage is not null && !string.Equals(command, "describe-release", StringComparison.OrdinalIgnoreCase))
         {
-            error = $"--fetch-api is only supported by the describe commands.{Environment.NewLine}{Usage}";
+            error = "--previous-package is only supported by describe-release.";
             return false;
         }
 
@@ -244,25 +243,6 @@ public static class CliRunner
         return true;
     }
 
-    private static async Task<IReadOnlyDictionary<string, ModMetadata>> LoadMetadataAsync(
-        PackerConfig config,
-        string repositoryRoot,
-        IReadOnlyList<ReleaseMilestoneEntry> entries,
-        bool fetchApi,
-        CancellationToken cancellationToken)
-    {
-        var contentRoot = PackerConfigLoader.ResolvePath(config.ContentRoot, repositoryRoot);
-        var projectSlugs = entries.Select(entry => entry.ProjectSlug);
-        var projectModIds = entries
-            .GroupBy(entry => entry.ProjectSlug, StringComparer.OrdinalIgnoreCase)
-            .ToDictionary(
-                group => group.Key,
-                group => group.First().RealModId,
-                StringComparer.OrdinalIgnoreCase);
-
-        return await ModMetadataProvider.LoadAsync(contentRoot, projectSlugs, projectModIds, fetchApi, cancellationToken);
-    }
-
     private static async Task<GameTranslationMetadata?> LoadGameTranslationMetadataAsync(
         PackerConfig config,
         string repositoryRoot,
@@ -283,7 +263,6 @@ public static class CliRunner
 
     private static string FormatReleasePackageDescription(
         ReleasePackageDescription description,
-        IReadOnlyDictionary<string, ModMetadata> metadata,
         GameTranslationMetadata? gameMetadata,
         string releaseKind)
     {
@@ -302,11 +281,11 @@ public static class CliRunner
         builder.AppendLine();
         builder.AppendLine("## 模组清单");
         builder.AppendLine();
-        AppendEntriesTable(builder, description.Entries, metadata);
+        AppendEntriesTable(builder, description.Entries);
         builder.AppendLine();
         builder.AppendLine("## 贡献者统计");
         builder.AppendLine();
-        AppendContributorStatsTable(builder, description.Entries, metadata, description.GameTranslation, gameMetadata);
+        AppendContributorStatsTable(builder, description.Entries, description.GameTranslation, gameMetadata);
 
         return builder.ToString();
     }
@@ -331,15 +310,14 @@ public static class CliRunner
 
     private static void AppendEntriesTable(
         StringBuilder builder,
-        IReadOnlyList<ReleaseMilestoneEntry> entries,
-        IReadOnlyDictionary<string, ModMetadata> metadata)
+        IReadOnlyList<ReleaseMilestoneEntry> entries)
     {
-        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 贡献者 | 模组最新版本 |");
+        builder.AppendLine("| 模组中文名称 | 模组英文名称 | 模组ID | 贡献者 | 目标模组版本 |");
         builder.AppendLine("| --- | --- | --- | --- | --- |");
 
         foreach (var entry in entries)
         {
-            var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
+            var item = ModMetadataProvider.ResolveEntryMetadata(entry);
             builder.AppendLine(
                 $"| {FormatLinkedName(item.ChineseName, item.Homepage)} | {FormatLinkedName(item.EnglishName, item.Homepage)} | {EscapeMarkdownTableCell(item.ModId)} | {FormatContributors(item.Contributors)} | {EscapeMarkdownTableCell(item.LatestVersion)} |");
         }
@@ -348,7 +326,6 @@ public static class CliRunner
     private static void AppendContributorStatsTable(
         StringBuilder builder,
         IReadOnlyList<ReleaseMilestoneEntry> entries,
-        IReadOnlyDictionary<string, ModMetadata> metadata,
         GameTranslationEntry? gameTranslation,
         GameTranslationMetadata? gameMetadata)
     {
@@ -356,7 +333,7 @@ public static class CliRunner
 
         foreach (var entry in entries)
         {
-            var item = ModMetadataProvider.ResolveEntryMetadata(entry, metadata);
+            var item = ModMetadataProvider.ResolveEntryMetadata(entry);
             AddContributorStats(stats, item.Contributors);
         }
 

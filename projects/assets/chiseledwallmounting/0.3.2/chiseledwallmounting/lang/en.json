@@ -1,0 +1,4 @@
+{
+  "game:placefailure-chiseledwallmounting-recessedsurfaceinvalid": "The aimed chisel face is not an exposed voxel surface.",
+  "game:placefailure-chiseledwallmounting-recessedmountobstructed": "The wall object would intersect chiseled material in front of this surface."
+}

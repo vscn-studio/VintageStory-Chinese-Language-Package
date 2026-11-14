@@ -1,0 +1,5 @@
+{
+  "block-soilfallow": "Fallow",
+  "invfarming:farming-fallow-title": "Farming - Dealing with Fallow",
+  "invfarming:farming-fallow-body": "After every harvest your farmland will turn into fallow. In order to use it again you need to re-till it using your trusty hoe. You can also simply 'destroy' the fallow in order to turn it back into farmland, but that will cause it to lose 5% of every nutrient type.</strong><br><i></strong><br><i>Farmland gains +10% to it's base fertility as long as it stays under fallow, but only then. As soon as it's re-tilled its nutrients will start slowly drifting towards its regular fertility. Re-till your farmland just before sowing for the best results!"
+}

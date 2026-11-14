@@ -1,0 +1,16 @@
+{
+  "blockhelp-cut-bear-head": "切除熊皮头部",
+  "item-fleshings": "刮皮碎屑",
+  "itemdesc-fleshings": "从生皮上刮下的碎屑。可熬炼成油脂，也可任其腐烂。",
+  "block-rack-small-ns": "小制皮架",
+  "block-rack-small-we": "小制皮架",
+  "block-rack-small-sn": "小制皮架",
+  "block-rack-small-ew": "小制皮架",
+  "block-rack-large-ns": "大制皮架",
+  "block-rack-large-we": "大制皮架",
+  "item-fat-chunk": "熬炼脂肪小块",
+  "hideworking-title": "沉浸式制皮",
+  "hideworking-text": "<strong>沉浸式制皮</strong><br><br><i>在传统木架上准备、绷展、刮削、盐渍和熟化兽皮。</i><br><br>盐渍、涂油和刮皮都需要制皮架。两种架子每次都只能绷上一张兽皮，并用绳子固定。加工过程中，兽皮的外观也会变化。兽皮仍可存放在地面上，但浸泡过的兽皮不能在地面上刮削。后续还将加入更多沉浸式储存方式。<br><br><strong>搭建制皮架</strong><br><br><strong><a href=\"handbook://block-hideracks:rack-small-ns\">小制皮架</a></strong>（占地 2 × 2 × 1 格；用于小型和中型兽皮）<br><br><strong><a href=\"handbook://block-hideracks:rack-large-ns\">大制皮架</a></strong>（占地 3 × 3 × 1 格；用于大型和巨型兽皮）<br><br>两种架子都能朝四个方向放置。将合适大小的兽皮放到空架子上，即可开始加工。<br><br><strong>盐渍与保存</strong><br><br>先绷上一张生皮。手持<a href=\"handbook://item-salt\">盐</a>，右键点击架上的兽皮进行盐渍。<br><br><strong>用盐量：</strong>小型 1 · 中型 2 · 大型 4 · 巨型 8<br><br>盐渍兽皮须在架上放置 48 个游戏小时，之后才能取下或涂油。已禁用在合成栏中盐渍兽皮。未完成盐渍就拆掉架子，会损毁兽皮。<br><br><strong>涂油与毛皮</strong><br><br>绷上一张生皮，或等盐渍兽皮静置满 48 小时。<br><br>涂油前，先在合成栏中用小刀或切肉刀将原版脂肪块切成<a href=\"handbook://item-hideracks:fat-chunk\">熬炼脂肪小块</a>。这些小块可直接涂在架上绷展的兽皮上。<br><br>手持脂肪小块，右键点击架上的兽皮进行涂油。<br><br><strong>脂肪小块用量：</strong>小型 1 · 中型 2 · 大型 4 · 巨型 8<br><br>制皮架只接受本模组的脂肪小块，不能直接使用原版脂肪块。已禁用在合成栏中给兽皮涂油。<br><br>涂油兽皮须在架上放置 48 个游戏小时，才能变成毛皮。熟化完成前拆掉架子，会损毁兽皮。<br><br><strong>浸泡与刮皮</strong><br><br>按照原版制革流程浸泡兽皮。将浸泡过的兽皮绷上架子，装备小刀，瞄准兽皮并按住右键刮削。顶部进度条会显示进展。你可以随时停下，稍后继续。已禁用在合成栏中或地面上用小刀刮削浸泡兽皮。<br><br>刮削时，依据兽皮大小和概率，还可能获得<a href=\"handbook://item-hideracks:fleshings\">刮皮碎屑</a>。可让碎屑腐烂后用于施肥，也可将其熬炼为<a href=\"handbook://item-hideracks:fat-chunk\">熬炼脂肪小块</a>。<br><br><strong>熊皮与去头</strong><br><br>黑熊、棕熊、熊猫、北极熊和马来熊的毛皮在架上保留各自的外观。<br><br>完整熊皮带有头部。用小刀对<strong>放在地面上或绷在架上的</strong>完整熊皮操作，即可切除头部。已禁用在合成栏中去头。<br><br>剩下的无头熊皮仍可按相应流程加工。",
+  "block-rack-large-sn": "大制皮架",
+  "block-rack-large-ew": "大制皮架"
+}

@@ -1,0 +1,21 @@
+{
+  "archimedes_screw:block-water-archimedesscrew-straight": "Water Archimedes Screw",
+  "archimedes_screw:block-water-archimedesscrew-ported-north": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-ported-east": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-ported-south": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-ported-west": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-end-outlet-north": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-end-outlet-east": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-end-outlet-south": "Water Archimedes Screw Endcap",
+  "archimedes_screw:block-water-archimedesscrew-end-outlet-west": "Water Archimedes Screw Endcap",
+  "archimedes_screw:item-chutesection-lead": "Lead Pipe Section",
+  "game:tabname-archimedes_screw": "Archimedes Screw",
+  "archimedes_screw:archimedes-screw-requires-water": "Requires water at the intake position",
+  "archimedes_screw:archimedes-screw-endcap-context": "Place the end cap in water (intake) or on top of a straight screw or intake (outlet)",
+  "archimedes_screw:placefailure-archimedes-screw-requires-water": "Requires water at the intake position",
+  "archimedes_screw:placefailure-archimedes-screw-endcap-context": "Place the end cap in water (intake) or on top of a straight screw or intake (outlet)",
+  "game:placefailure-archimedes-screw-requires-water": "Requires water at the intake position",
+  "game:placefailure-archimedes-screw-endcap-context": "Place the end cap in water (intake) or on top of a straight screw or intake (outlet)",
+  "archimedes_screw:handbook-guide-title": "Archimedes Screw Guide",
+  "archimedes_screw:handbook-guide-text": "<strong>Archimedes Screw</strong><br><i>A powered pump for lifting water.</i><br>The Archimedes Screw is a vertical multiblock that draws water at the intake and creates a single water source block at the outlet. The source is maintained as long as the assembly is valid, mechanically powered, and the intake stays in water. If the screw loses power, the assembly is broken, or the intake leaves the water, the created source block is removed.<br><br><strong>Assembly Basics</strong><br>Build from bottom to top: place an end-cap at the bottom to create an intake, stack straight screw segments above it, and place an end-cap on top to create an outlet. A valid assembly requires one intake at the bottom, one outlet at the top, and only straight segments between them. The intake can be placed dry, but the screw only runs once water is present at the intake. You can right-click on any of the Archimedes screw parts to view the current status of the assembly. Mechanical power can be fed in through the top or bottom of the assembly."
+}

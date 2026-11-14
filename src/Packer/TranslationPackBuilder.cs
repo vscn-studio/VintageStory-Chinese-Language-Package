@@ -57,7 +57,7 @@ public static class TranslationPackBuilder
 
         try
         {
-            await CreateZipAsync(tempZipPath, config, validated, cancellationToken);
+            await CreateZipAsync(tempZipPath, config, validated, repositoryRoot, cancellationToken);
             ReplaceOutputAtomically(tempZipPath, outputZipPath);
         }
         catch
@@ -200,14 +200,13 @@ public static class TranslationPackBuilder
         var excludedProjects = config.GetExcludedProjectsSet();
         var excludedModIds = config.GetExcludedModIdsSet();
         var excludedVersions = config.GetExcludedVersionsSet();
-        var specialStatusProjects = LoadIndexSpecialStatusProjects(contentRoot);
         var candidates = new List<TranslationCandidate>();
         var skippedDirectoryCount = 0;
 
         foreach (var projectDirectory in Directory.EnumerateDirectories(contentRoot).OrderBy(path => path, StringComparer.OrdinalIgnoreCase))
         {
             var projectSlug = Path.GetFileName(projectDirectory);
-            if (excludedProjects.Contains(projectSlug) || specialStatusProjects.Contains(projectSlug))
+            if (excludedProjects.Contains(projectSlug))
             {
                 continue;
             }
@@ -260,44 +259,6 @@ public static class TranslationPackBuilder
         }
 
         return new ScanResult(candidates, skippedDirectoryCount);
-    }
-
-    private static HashSet<string> LoadIndexSpecialStatusProjects(string contentRoot)
-    {
-        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        var indexPath = Path.Combine(contentRoot, "index.json");
-        if (!File.Exists(indexPath))
-        {
-            return result;
-        }
-
-        try
-        {
-            using var document = JsonDocument.Parse(File.ReadAllBytes(indexPath));
-            if (document.RootElement.ValueKind != JsonValueKind.Object)
-            {
-                return result;
-            }
-
-            foreach (var project in document.RootElement.EnumerateObject())
-            {
-                if (project.Value.ValueKind != JsonValueKind.Object ||
-                    !project.Value.TryGetProperty("latestVersion", out var latestVersion) ||
-                    latestVersion.ValueKind != JsonValueKind.String ||
-                    !IsNonPackableMarker(latestVersion.GetString()))
-                {
-                    continue;
-                }
-
-                result.Add(project.Name);
-            }
-        }
-        catch (JsonException ex)
-        {
-            throw new PackerException($"Invalid metadata index '{indexPath}': {ex.Message}");
-        }
-
-        return result;
     }
 
     private static List<SelectedTranslation> SelectCandidates(
@@ -399,6 +360,7 @@ public static class TranslationPackBuilder
         string zipPath,
         PackerConfig config,
         IReadOnlyCollection<ValidatedTranslation> translations,
+        string repositoryRoot,
         CancellationToken cancellationToken)
     {
         await using var stream = new FileStream(zipPath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None);
@@ -412,6 +374,23 @@ public static class TranslationPackBuilder
                 new ModInfo(config),
                 new JsonSerializerOptions { WriteIndented = true },
                 cancellationToken);
+        }
+
+        var gameMetadata = config.GameTranslation is null ? null : await GameTranslationMetadataProvider.LoadAsync(
+            PackerConfigLoader.ResolvePath(config.GameTranslation.ContentRoot, repositoryRoot),
+            config.GameTranslation.TargetVersion, cancellationToken);
+        var record = new PackageRecord(1, config.ModId, config.PackageVersion, translations.Select(translation =>
+        {
+            var selected = translation.Selected;
+            var isGame = config.GameTranslation is not null && selected.DestinationPath == $"assets/game/lang/{config.TargetLanguage}.json";
+            return new PackageRecordEntry(selected.DestinationPath, selected.ProjectSlug, selected.RealModId,
+                selected.TargetModVersion, PackageHistory.Hash(translation.Content),
+                isGame ? gameMetadata!.Contributors : ModMetadataProvider.ReadContributors(selected.SourceDirectory), isGame);
+        }).ToArray());
+        var recordEntry = archive.CreateEntry(PackageHistory.RecordFileName, CompressionLevel.Optimal);
+        await using (var recordStream = recordEntry.Open())
+        {
+            await JsonSerializer.SerializeAsync(recordStream, record, PackageHistory.JsonOptions, cancellationToken);
         }
 
         foreach (var translation in translations)
@@ -493,11 +472,6 @@ public static class TranslationPackBuilder
         };
 
         return markerKind != CandidateKind.CommunityTranslation;
-    }
-
-    private static bool IsNonPackableMarker(string? value)
-    {
-        return NonPackableMarkerNames.Contains(value?.Trim() ?? string.Empty, StringComparer.OrdinalIgnoreCase);
     }
 
     private enum CandidateKind
