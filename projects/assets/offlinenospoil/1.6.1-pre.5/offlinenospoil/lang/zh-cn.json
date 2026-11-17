@@ -1,0 +1,18 @@
+{
+  "tooltip-status-normal": "<font color=\"#f0b35a\">状态：正常腐烂</font>",
+  "tooltip-player-rate": "<font color=\"#72d391\">离线腐烂速度：{0}</font>",
+  "tooltip-container-unused": "<font color=\"#72d391\">无人使用时腐烂速度：{0}</font>",
+  "tooltip-container-open": "<font color=\"#f0b35a\">打开时腐烂速度：正常</font>",
+  "tooltip-crock-online": "<font color=\"#f0b35a\">领地授权成员或最后使用者在线时：正常腐烂</font>",
+  "tooltip-container-last-user": "<font color=\"#a9b9c4\">最后使用者：{0}</font>",
+  "tooltip-container-no-user": "未记录",
+  "tooltip-container-active": "<font color=\"#72d391\">当前状态：无人使用保护中</font>",
+  "tooltip-container-inactive": "<font color=\"#f0b35a\">当前状态：正常腐烂</font>",
+  "tooltip-cap": "<font color=\"#a9b9c4\">实际上限：{0}</font>",
+  "tooltip-paused": "暂停",
+  "tooltip-normal": "正常",
+  "tooltip-no-cap": "无上限",
+  "tooltip-percent": "{0}%",
+  "tooltip-hours": "{0} 小时",
+  "tooltip-days": "{0} 天"
+}

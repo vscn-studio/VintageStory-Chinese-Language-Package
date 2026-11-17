@@ -1,0 +1,15 @@
+{
+  "game:tabname-desirepaths": "自然踩踏小径",
+  "block-soilpath-verylow-*": "贫瘠土壤小径",
+  "block-soilpath-low-*": "低肥力土壤小径",
+  "block-soilpath-medium-*": "中肥力土壤小径",
+  "block-soilpath-high-*": "黑土小径",
+  "block-soilpath-compost-*": "高肥力土壤小径",
+  "block-soilpath-forest-*": "森林地表小径",
+  "block-soilpathslab-verylow-*": "贫瘠土壤小径",
+  "block-soilpathslab-low-*": "低肥力土壤小径",
+  "block-soilpathslab-medium-*": "中肥力土壤小径",
+  "block-soilpathslab-high-*": "黑土小径",
+  "block-soilpathslab-compost-*": "高肥力土壤小径",
+  "block-soilpathslab-forest-*": "森林地表小径"
+}

@@ -1,0 +1,18 @@
+{
+  "tooltip-status-normal": "<font color=\"#f0b35a\">Status: normal spoilage</font>",
+  "tooltip-player-rate": "<font color=\"#72d391\">Offline spoilage rate: {0}</font>",
+  "tooltip-container-unused": "<font color=\"#72d391\">When unused, spoilage: {0}</font>",
+  "tooltip-container-open": "<font color=\"#f0b35a\">When open, spoilage: normal</font>",
+  "tooltip-crock-online": "<font color=\"#f0b35a\">Claim members or the last user online: normal spoilage</font>",
+  "tooltip-container-last-user": "<font color=\"#a9b9c4\">Last user: {0}</font>",
+  "tooltip-container-no-user": "not recorded",
+  "tooltip-container-active": "<font color=\"#72d391\">Current state: protected while unattended</font>",
+  "tooltip-container-inactive": "<font color=\"#f0b35a\">Current state: normal spoilage</font>",
+  "tooltip-cap": "<font color=\"#a9b9c4\">Actual cap: {0}</font>",
+  "tooltip-paused": "paused",
+  "tooltip-normal": "normal",
+  "tooltip-no-cap": "no cap",
+  "tooltip-percent": "{0}%",
+  "tooltip-hours": "{0}h",
+  "tooltip-days": "{0}d"
+}

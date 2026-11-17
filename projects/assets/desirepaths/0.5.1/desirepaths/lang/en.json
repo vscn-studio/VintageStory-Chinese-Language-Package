@@ -1,0 +1,15 @@
+{
+  "game:tabname-desirepaths": "Desire Paths",
+  "block-soilpath-verylow-*": "Barren soil path",
+  "block-soilpath-low-*": "Low fertility soil path",
+  "block-soilpath-medium-*": "Medium fertility soil path",
+  "block-soilpath-high-*": "Terra preta path",
+  "block-soilpath-compost-*": "High fertility soil path",
+  "block-soilpath-forest-*": "Forest floor path",
+  "block-soilpathslab-verylow-*": "Barren soil path",
+  "block-soilpathslab-low-*": "Low fertility soil path",
+  "block-soilpathslab-medium-*": "Medium fertility soil path",
+  "block-soilpathslab-high-*": "Terra preta path",
+  "block-soilpathslab-compost-*": "High fertility soil path",
+  "block-soilpathslab-forest-*": "Forest floor path"
+}
