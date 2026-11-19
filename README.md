@@ -134,19 +134,19 @@ projects/game/<game-version>/assets/game/lang/en.json
 
 `contributors` 的 `name` 必填，`url` 和 `role` 可选。该文件仅用于游戏本体，独立于模组目录中的 `README.txt`。发布时会按 `targetVersion` 读取本体贡献者，并写入 Release 说明、Release README 和贡献者统计。
 
-要启用本体翻译，在 `config/packer/default.json` 中设置 `gameTranslation`：
+默认打包配置已包含 `1.23.0-pre.1` 本体翻译。可在 `config/packer/default.json` 的 `gameTranslation` 中选择版本，设为 `null` 则只打包模组翻译：
 
 ```json
 "gameTranslation": {
   "contentRoot": "projects/game",
-  "targetVersion": "1.22.3"
+  "targetVersion": "1.23.0-pre.1"
 }
 ```
 
 `targetVersion` 是精确选择，不会自动改用目录中的更高版本。打包器会读取：
 
 ```text
-projects/game/1.22.3/assets/game/lang/zh-cn.json
+projects/game/1.23.0-pre.1/assets/game/lang/zh-cn.json
 ```
 
 并输出为：
@@ -155,7 +155,7 @@ projects/game/1.22.3/assets/game/lang/zh-cn.json
 assets/game/lang/zh-cn.json
 ```
 
-同时，生成的 `modinfo.json` 会声明 `game: 1.22.3` 依赖。本体翻译不计入模组翻译数量，在发布变更表中单独标记为“游戏本体”。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
+同时，生成的 `modinfo.json` 会声明 `game: 1.23.0-pre.1` 依赖。本体翻译不计入模组翻译数量，在发布变更表中单独标记为“游戏本体”。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
 
 ## 译名标准化术语表
 
@@ -263,7 +263,7 @@ python -m unittest discover -s tests/ReleaseWorkflow
 
 ## GitHub Actions
 
-Release 通过 `.github/workflows/release.yml` 手动触发。除 `release_kind` 外，还需要填写 `game_version`，它同时决定 Updater 的构建 API 版本；当仓库已有 `projects/game/<game_version>/assets/game/lang/zh-cn.json` 时，勾选 `include_game_translation` 即可将该版本的本体翻译加入语言包。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
+Release 通过 `.github/workflows/release.yml` 手动触发。`game_version` 默认选择 `1.23.0-pre.1`，`include_game_translation` 默认勾选，将该版本的本体翻译加入语言包；取消勾选可只发布模组翻译。`updater_api_version` 独立指定更新器的构建 API，默认保留 `1.22.3`，不影响汉化包的目标版本。1.23.0-pre.1 的公开服务端 API 下载地址当前不可用，更新器暂沿用已有稳定版构建基准；API 版本含预发布后缀时会从 `unstable` 目录下载，否则从 `stable` 下载。版本号会按 UTC+8 当前年月和已有标签自动生成，格式为 `YY.M.N`：例如 2026 年 7 月第一次修订为 `26.7.1`；如果当前月份已有最新标签 `v26.7.8`，下一次发布为 `26.7.9`；如果进入 8 月且没有 `v26.8.*` 标签，则从 `26.8.1` 开始。
 
 发布时会下载最近一次已发布的语言包 ZIP（包括预发布，按发布时间选择，跳过草稿），与本次实际打包记录对比，生成仅包含新增、更新和移除翻译的 Release 表格。第一次发布没有旧包时全部列为新增。下载或 API 查询失败会停止工作流，避免误生成全量变更。
 

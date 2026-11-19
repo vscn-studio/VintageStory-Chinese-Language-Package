@@ -11,14 +11,19 @@ on:
           - release
           - pre-release
       game_version:
-        description: Vintage Story version used for the updater build and optional game translation
+        description: Target Vintage Story version for the game translation
+        required: true
+        default: "1.23.0-pre.1"
+        type: string
+      updater_api_version:
+        description: Vintage Story server API version used to compile the updater (independent of the translation target)
         required: true
         default: "1.22.3"
         type: string
       include_game_translation:
         description: Include projects/game/<game_version>/assets/game/lang/zh-cn.json in the language pack
         required: true
-        default: false
+        default: true
         type: boolean
 
 permissions:
@@ -29,7 +34,8 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  VINTAGE_STORY_BUILD_VERSION: ${{ inputs.game_version }}
+  VINTAGE_STORY_BUILD_VERSION: ${{ inputs.updater_api_version }}
+  TARGET_GAME_VERSION: ${{ inputs.game_version }}
 
 jobs:
   release:
@@ -112,7 +118,7 @@ jobs:
 
           config_path = Path("config/packer/default.json")
           config = json.loads(config_path.read_text(encoding="utf-8"))
-          game_version = os.environ["VINTAGE_STORY_BUILD_VERSION"].strip()
+          game_version = os.environ["TARGET_GAME_VERSION"].strip()
           include_game_translation = os.environ["INCLUDE_GAME_TRANSLATION"].strip().lower() == "true"
 
           if include_game_translation:
@@ -135,7 +141,8 @@ jobs:
           {
             echo "### Game translation"
             echo
-            echo "- Game version: ${VINTAGE_STORY_BUILD_VERSION}"
+            echo "- Translation target: ${TARGET_GAME_VERSION}"
+            echo "- Updater build API: ${VINTAGE_STORY_BUILD_VERSION}"
             echo "- Included: ${INCLUDE_GAME_TRANSLATION}"
           } >> "${GITHUB_STEP_SUMMARY}"
 
@@ -190,7 +197,11 @@ jobs:
           vintage_story_dir="${RUNNER_TEMP}/vintagestory"
           archive_path="${RUNNER_TEMP}/vs-server.tar.gz"
           mkdir -p "${vintage_story_dir}"
-          curl -fsSL "https://cdn.vintagestory.at/gamefiles/stable/vs_server_linux-x64_${VINTAGE_STORY_BUILD_VERSION}.tar.gz" -o "${archive_path}"
+          api_channel="stable"
+          if [[ "${VINTAGE_STORY_BUILD_VERSION}" == *-* ]]; then
+            api_channel="unstable"
+          fi
+          curl -fsSL "https://cdn.vintagestory.at/gamefiles/${api_channel}/vs_server_linux-x64_${VINTAGE_STORY_BUILD_VERSION}.tar.gz" -o "${archive_path}"
           tar -xzf "${archive_path}" -C "${vintage_story_dir}"
           test -f "${vintage_story_dir}/VintagestoryAPI.dll"
           echo "VINTAGE_STORY=${vintage_story_dir}" >> "${GITHUB_ENV}"
