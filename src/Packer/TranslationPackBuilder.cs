@@ -532,12 +532,6 @@ public static class TranslationPackBuilder
             Side = "client";
             RequiredOnClient = true;
             RequiredOnServer = false;
-            Dependencies = config.GameTranslation is null
-                ? null
-                : new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
-                {
-                    ["game"] = config.GameTranslation.TargetVersion
-                };
         }
 
         [System.Text.Json.Serialization.JsonPropertyName("type")]
@@ -567,9 +561,5 @@ public static class TranslationPackBuilder
         [System.Text.Json.Serialization.JsonPropertyName("requiredOnServer")]
         public bool RequiredOnServer { get; }
 
-        [System.Text.Json.Serialization.JsonPropertyName("dependencies")]
-        [System.Text.Json.Serialization.JsonIgnore(
-            Condition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull)]
-        public IReadOnlyDictionary<string, string>? Dependencies { get; }
     }
 }

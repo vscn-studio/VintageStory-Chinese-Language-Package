@@ -59,10 +59,13 @@ public sealed class PackerTests
         Assert.Equal("vscnlangpack", root.GetProperty("modid").GetString());
         Assert.True(root.GetProperty("requiredOnClient").GetBoolean());
         Assert.False(root.GetProperty("requiredOnServer").GetBoolean());
+        Assert.False(root.TryGetProperty("dependencies", out _));
     }
 
-    [Fact]
-    public async Task BuildAsync_IncludesConfiguredGameTranslationAndDependency()
+    [Theory]
+    [InlineData("1.22.3")]
+    [InlineData("1.23.0-pre.1")]
+    public async Task BuildAsync_IncludesConfiguredGameTranslationWithoutVersionDependency(string sourceVersion)
     {
         using var workspace = new TestWorkspace();
         workspace.WriteText(
@@ -73,7 +76,7 @@ public sealed class PackerTests
             }
             """);
         workspace.WriteText(
-            "projects/game/1.22.3/assets/game/lang/zh-cn.json",
+            $"projects/game/{sourceVersion}/assets/game/lang/zh-cn.json",
             """
             {
               "mainmenu-singleplayer": "单人游戏"
@@ -84,14 +87,14 @@ public sealed class PackerTests
         config.GameTranslation = new GameTranslationConfig
         {
             ContentRoot = "projects/game",
-            TargetVersion = "1.22.3"
+            TargetVersion = sourceVersion
         };
 
         var result = await TranslationPackBuilder.BuildAsync(config, workspace.RootPath);
 
         Assert.Equal(1, result.SelectedTranslationCount);
         Assert.True(result.GameTranslationIncluded);
-        Assert.Equal("1.22.3", result.TargetGameVersion);
+        Assert.Equal(sourceVersion, result.TargetGameVersion);
 
         using var archive = ZipFile.OpenRead(result.OutputZipPath);
         using var gameTranslationReader = new StreamReader(
@@ -101,14 +104,15 @@ public sealed class PackerTests
 
         using var modInfoReader = new StreamReader(archive.GetEntry("modinfo.json")!.Open());
         using var modInfoDocument = JsonDocument.Parse(await modInfoReader.ReadToEndAsync());
-        Assert.Equal(
-            "1.22.3",
-            modInfoDocument.RootElement.GetProperty("dependencies").GetProperty("game").GetString());
+        Assert.False(modInfoDocument.RootElement.TryGetProperty("dependencies", out _));
+
+        var record = PackageHistory.Read(result.OutputZipPath);
+        Assert.Equal(sourceVersion, Assert.Single(record.Entries, entry => entry.IsGame).Version);
 
         var description = TranslationPackBuilder.DescribeReleasePackage(config, workspace.RootPath, "0.0.1");
         Assert.Equal(1, description.SelectedTranslationCount);
         Assert.Single(description.Entries);
-        Assert.Equal("1.22.3", description.GameTranslation?.TargetGameVersion);
+        Assert.Equal(sourceVersion, description.GameTranslation?.TargetGameVersion);
     }
 
     [Fact]

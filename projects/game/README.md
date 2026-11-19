@@ -31,6 +31,6 @@
 projects/game/1.22.3/assets/game/lang/zh-cn.json
 ```
 
-在 `config/packer/default.json` 的 `gameTranslation` 中指定该版本后，Packer 会将它写入发布包的 `assets/game/lang/zh-cn.json`，并在 `modinfo.json` 中声明对应的 `game` 依赖。
+在 `config/packer/default.json` 的 `gameTranslation` 中指定该版本后，Packer 会将它写入发布包的 `assets/game/lang/zh-cn.json`。该版本仅用于选择译文并记录在打包记录和发布信息中，`modinfo.json` 不声明游戏版本依赖，语言包不限制游戏版本。
 
 不要将本体翻译放到 `projects/assets`。那个目录仅用于模组翻译，且会被模组元数据和版本检查流程扫描。

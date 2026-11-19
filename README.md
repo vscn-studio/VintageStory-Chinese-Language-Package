@@ -155,7 +155,7 @@ projects/game/1.23.0-pre.1/assets/game/lang/zh-cn.json
 assets/game/lang/zh-cn.json
 ```
 
-同时，生成的 `modinfo.json` 会声明 `game: 1.23.0-pre.1` 依赖。本体翻译不计入模组翻译数量，在发布变更表中单独标记为“游戏本体”。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
+`targetVersion` 仅选择本体译文的来源版本，并记录在打包记录和发布信息中；生成的 `modinfo.json` 不声明游戏版本依赖，语言包不会因游戏版本不同而被依赖检查阻止加载。本体翻译不计入模组翻译数量，在发布变更表中单独标记为“游戏本体”。`assets/game/lang/zh-cn.json` 由本体翻译独占；若某个模组项目也试图输出该路径，打包会失败并指出冲突来源。
 
 ## 译名标准化术语表
 
