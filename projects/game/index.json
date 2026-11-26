@@ -1,4 +1,21 @@
 {
+	"1.23.0-pre.2": {
+		"contributors": [
+			{
+				"name": "HansJack",
+				"url": "https://vintagestory.top/u/HansJack",
+				"role": "游戏本体翻译"
+			},
+			{
+				"name": "law",
+				"role": "BetterChinese 译文优化参考"
+			},
+			{
+				"name": "Aimli",
+				"role": "BetterChinese 译文优化参考"
+			}
+		]
+	},
   "1.23.0-pre.1": {
     "contributors": [
       {

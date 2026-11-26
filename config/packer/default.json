@@ -10,7 +10,7 @@
   "contentRoot": "projects/assets",
   "gameTranslation": {
     "contentRoot": "projects/game",
-    "targetVersion": "1.23.0-pre.1"
+    "targetVersion": "1.23.0-pre.2"
   },
   "outputDirectory": "build",
   "outputFileNameTemplate": "VintageStory-Chinese-Language-Package-{version}.zip",
